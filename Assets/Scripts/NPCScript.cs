@@ -72,11 +72,14 @@ public class NPCScript : MonoBehaviour
         }
         if (NPCState == 1 && Input.GetKeyDown(KeyCode.RightArrow))
         {
+            if(alive != true)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y + 1, 0);
+            }
             alive = true;
             //grant
             OptionsPopup.transform.position = new Vector2(999, 999);
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-            transform.position = new Vector3(transform.position.x, transform.position.y+1, 0);
             NPCState = 0;
         }
         if (NPCState == 1 && Input.GetKeyDown(KeyCode.DownArrow))
