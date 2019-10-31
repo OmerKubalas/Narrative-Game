@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Narrate;
 
 public class NPCScript : MonoBehaviour
 {
@@ -8,8 +9,14 @@ public class NPCScript : MonoBehaviour
     public bool sick;
     bool InRange;
     int NPCState;
-    public string[] dialogue;
     public GameObject spacePopup, OptionsPopup;
+
+    //NarrationSpeeches
+    public Narration regularSpeech;
+    public Narration specialConditionSpeech;
+    public Narration aliveGiveLifeSpeech;
+    public Narration aliveTakeLifeSpeech;
+    public Narration deadGiveLifeSpeech;
 
     // Start is called before the first frame update
     void Start()
@@ -55,33 +62,45 @@ public class NPCScript : MonoBehaviour
             OptionsPopup.transform.position = new Vector2(transform.position.x, transform.position.y + 4);
             NPCState = 1;
         }
+
         if (NPCState == 1 && alive && Input.GetKeyDown(KeyCode.UpArrow))
         {
             //talk
+            NarrationManager.instance.PlayNarration(regularSpeech);
             OptionsPopup.transform.position = new Vector2(999, 999);
             NPCState = 0;
         }
+
         if (NPCState == 1 && alive && Input.GetKeyDown(KeyCode.LeftArrow))
         {
             alive = false;
             //absorb
+            NarrationManager.instance.PlayNarration(aliveTakeLifeSpeech);
             OptionsPopup.transform.position = new Vector2(999, 999);
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
             transform.position = new Vector3(transform.position.x, transform.position.y - 1, 0);
             NPCState = 0;
         }
+
         if (NPCState == 1 && Input.GetKeyDown(KeyCode.RightArrow))
         {
             if(alive != true)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y + 1, 0);
+                NarrationManager.instance.PlayNarration(deadGiveLifeSpeech);
             }
+            else
+            {
+                NarrationManager.instance.PlayNarration(aliveGiveLifeSpeech);
+            }
+
             alive = true;
             //grant
             OptionsPopup.transform.position = new Vector2(999, 999);
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             NPCState = 0;
         }
+
         if (NPCState == 1 && Input.GetKeyDown(KeyCode.DownArrow))
         {
             //cancel
