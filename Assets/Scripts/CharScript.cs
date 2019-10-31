@@ -8,7 +8,7 @@ public class CharScript : MonoBehaviour
     public float speed;
     public float jumpForce;
     float jumps;
-    int PlayerState;
+    public static int PlayerState;
 
     GameObject NPC;
     
@@ -24,7 +24,8 @@ public class CharScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerState != 2)
+        Debug.Log(PlayerState);
+        if (PlayerState != 2 && PlayerState != 3)
         {
             playerbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), playerbody.velocity.y / speed) * speed;
 
@@ -42,34 +43,43 @@ public class CharScript : MonoBehaviour
                 transform.localScale = new Vector3(-1, 3, 1);
             }
         }
+        else
+        {
+            playerbody.velocity = new Vector2(0, playerbody.velocity.y / speed) * speed;
+        }
+
+        if (PlayerState == 1 && Input.GetKeyUp(KeyCode.Space))
+        {
+            PlayerState = 2;
+        }
 
         if (PlayerState == 2)
         {
-            if (Input.GetKeyUp(KeyCode.UpArrow) && NPC.GetComponent<NPCScript>().alive)
+            if (Input.GetKeyDown(KeyCode.UpArrow) && NPC.GetComponent<NPCScript>().alive)
             {
                 //talk here
-                PlayerState = 0;
+                PlayerState = 3;
             }
-            if (Input.GetKeyUp(KeyCode.LeftArrow) && (NPC.GetComponent<NPCScript>().alive || !NPC.GetComponent<NPCScript>().alive))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && NPC.GetComponent<NPCScript>().alive)
             {
                 //absorb life here
-                PlayerState = 0;
+                PlayerState = 3;
             }
-            if (Input.GetKeyUp(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 //give life here
-                PlayerState = 0;
+                PlayerState = 3;
             }
-            if (Input.GetKeyUp(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 //cancel
-                PlayerState = 0;
+                PlayerState = 1;
             }
         }
 
-        if (PlayerState == 1 && Input.GetKeyDown(KeyCode.Space))
+        if (PlayerState == 3 && Input.GetKeyUp(KeyCode.Space))
         {
-            PlayerState = 2;
+            PlayerState = 1;
         }
     }
 
@@ -82,6 +92,15 @@ public class CharScript : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "NPC" && PlayerState == 0)
+        {
+            PlayerState = 1;
+            NPC = col.gameObject;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D col)
     {
         if(col.gameObject.tag == "NPC" && PlayerState == 0)
         {
@@ -97,4 +116,6 @@ public class CharScript : MonoBehaviour
             PlayerState = 0;
         }
     }
+
+
 }

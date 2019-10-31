@@ -46,7 +46,7 @@ public class NPCScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && InRange)
+        if(Input.GetKeyUp(KeyCode.Space) && InRange && CharScript.PlayerState == 2)
         {
             spacePopup.transform.position = new Vector2(999, 999);
             if (alive)
@@ -106,6 +106,11 @@ public class NPCScript : MonoBehaviour
             //cancel
             OptionsPopup.transform.position = new Vector2(999, 999);
             NPCState = 0;
+        }
+
+        if (InRange && !NarrationManager.instance.isPlaying && CharScript.PlayerState == 1)
+        {
+            spacePopup.transform.position = new Vector2(transform.position.x, transform.position.y + 2);
         }
     }
 

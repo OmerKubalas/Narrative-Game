@@ -362,6 +362,18 @@ PrefabInstance:
     - target: {fileID: 11464564, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
       propertyPath: characterController
       value: 
+      objectReference: {fileID: 859766332}
+    - target: {fileID: 11464564, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
+      propertyPath: pressToContinue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464564, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
+      propertyPath: disableCharacterWhileNarrating
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464564, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
+      propertyPath: defaultPhraseDuration
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22494448, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1717,13 +1729,13 @@ MonoBehaviour:
     phrases:
     - audio: {fileID: 0}
       text: I'm regular speech
-      duration: 1
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   specialConditionSpeech:
     busyBehavior: 0
@@ -1741,13 +1753,13 @@ MonoBehaviour:
     phrases:
     - audio: {fileID: 0}
       text: Thank you for making me healthier (Alive Give Life)
-      duration: 1
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   aliveTakeLifeSpeech:
     busyBehavior: 0
@@ -1756,13 +1768,13 @@ MonoBehaviour:
     phrases:
     - audio: {fileID: 0}
       text: No don't kill me (Alive Take Life)
-      duration: 1
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   deadGiveLifeSpeech:
     busyBehavior: 0
@@ -1771,11 +1783,11 @@ MonoBehaviour:
     phrases:
     - audio: {fileID: 0}
       text: Wow thank you i'm alive again
-      duration: 1
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
