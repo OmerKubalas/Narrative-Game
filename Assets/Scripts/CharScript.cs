@@ -45,22 +45,22 @@ public class CharScript : MonoBehaviour
 
         if (PlayerState == 2)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && NPC.GetComponent<NPCScript>().alive)
+            if (Input.GetKeyUp(KeyCode.UpArrow) && NPC.GetComponent<NPCScript>().alive)
             {
                 //talk here
                 PlayerState = 0;
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && NPC.GetComponent<NPCScript>().alive)
+            if (Input.GetKeyUp(KeyCode.LeftArrow) && (NPC.GetComponent<NPCScript>().alive || !NPC.GetComponent<NPCScript>().alive))
             {
                 //absorb life here
                 PlayerState = 0;
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyUp(KeyCode.RightArrow))
             {
                 //give life here
                 PlayerState = 0;
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyUp(KeyCode.DownArrow))
             {
                 //cancel
                 PlayerState = 0;
@@ -75,7 +75,7 @@ public class CharScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Ground")
+        if(col.gameObject.tag == "Ground" && col.gameObject.transform.position.y < this.gameObject.transform.position.y - 1.9f)
         {
             jumps = 1;
         }
@@ -83,7 +83,7 @@ public class CharScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag == "NPC")
+        if(col.gameObject.tag == "NPC" && PlayerState == 0)
         {
             PlayerState = 1;
             NPC = col.gameObject;
@@ -92,7 +92,7 @@ public class CharScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.tag == "NPC")
+        if (col.gameObject.tag == "NPC" && PlayerState == 1)
         {
             PlayerState = 0;
         }
