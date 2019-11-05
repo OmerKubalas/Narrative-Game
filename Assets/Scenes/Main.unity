@@ -949,8 +949,8 @@ MonoBehaviour:
   comphealthbar: {fileID: 1269369968}
   speed: 10
   jumpForce: 16.5
-  jumps: 1
-  comphealth: 100
+  jumps: 0
+  companionstate: 1
 --- !u!1 &1102758582
 GameObject:
   m_ObjectHideFlags: 0

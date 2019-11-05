@@ -123,6 +123,15 @@ public class NPCScript : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player" && CharScript.PlayerState != 2)
+        {
+            spacePopup.transform.position = new Vector2(transform.position.x, transform.position.y + 2);
+            InRange = true;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")

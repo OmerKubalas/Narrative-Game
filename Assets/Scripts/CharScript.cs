@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.PostProcessing;
 
 public class CharScript : MonoBehaviour
@@ -10,10 +11,13 @@ public class CharScript : MonoBehaviour
     public float jumpForce;
     float jumps;
     public static int PlayerState;
+    public static int sanity;
+    public static float intensity;
 
     GameObject NPC;
 
     GameObject camera;
+    PostProcessVolume volume;
 
     // Start is called before the first frame update
     void Start()
@@ -22,15 +26,16 @@ public class CharScript : MonoBehaviour
         speed = 10;
         jumpForce = 16.5f;
         PlayerState = 0;
+        sanity = 4;
 
         camera = GameObject.FindGameObjectWithTag("MainCamera");
-        camera.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value = 5;
+        intensity = camera.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value;
+        intensity = 0.2f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PlayerState);
         if (PlayerState != 2 && PlayerState != 3)
         {
             playerbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), playerbody.velocity.y / speed) * speed;
@@ -68,6 +73,10 @@ public class CharScript : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && NPC.GetComponent<NPCScript>().alive)
             {
+                if (NPC.GetComponent<NPCScript>().sick == false)
+                {
+                    sanity --;
+                }
                 //absorb life here
                 PlayerState = 3;
             }
@@ -78,6 +87,7 @@ public class CharScript : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
+                sanity++;
                 //cancel
                 PlayerState = 1;
             }
@@ -86,6 +96,79 @@ public class CharScript : MonoBehaviour
         if (PlayerState == 3 && Input.GetKeyUp(KeyCode.Space))
         {
             PlayerState = 1;
+        }
+
+
+        //the whole sanity thing
+        {
+            if (sanity == 4)
+            {
+                if (intensity > 0.2f)
+                {
+                    intensity = intensity - 0.05f * Time.deltaTime;
+                }
+                else if (intensity < 0.2f)
+                {
+                    intensity = intensity + 0.05f * Time.deltaTime;
+                }
+            }
+            else if (sanity == 3)
+            {
+                if (intensity > 0.325f)
+                {
+                    intensity = intensity - 0.05f * Time.deltaTime;
+                }
+                else if (intensity < 0.325f)
+                {
+                    intensity = intensity + 0.05f * Time.deltaTime;
+                }
+            }
+            else if (sanity == 2)
+            {
+                if (intensity > 0.425f)
+                {
+                    intensity = intensity - 0.07f * Time.deltaTime;
+                }
+                else if (intensity < 0.425f)
+                {
+                    intensity = intensity + 0.07f * Time.deltaTime;
+                }
+            }
+            else if (sanity == 1)
+            {
+                if (intensity > 0.575f)
+                {
+                    intensity = intensity - 0.05f * Time.deltaTime;
+                }
+                else if (intensity < 0.575f)
+                {
+                    intensity = intensity + 0.05f * Time.deltaTime;
+                }
+            }
+            else if (sanity < 1)
+            {
+                if (intensity < 50f)
+                {
+                    intensity = intensity + 0.1f * Time.deltaTime;
+                }
+                if (intensity > 0.60f)
+                {
+                    intensity = intensity + 0.5f * Time.deltaTime;
+                }
+                if (intensity > 1f)
+                {
+                    intensity = intensity + 1f * Time.deltaTime;
+                }
+                if (intensity > 20f)
+                {
+                    intensity = intensity + 1f * Time.deltaTime;
+                }
+            }
+            if (intensity > 6f)
+            {
+                SceneManager.LoadScene("GameOverScene");
+            }
+            camera.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value = intensity;
         }
     }
 
