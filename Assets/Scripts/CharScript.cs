@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class CharScript : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class CharScript : MonoBehaviour
     public static int PlayerState;
 
     GameObject NPC;
-    
+
+    GameObject camera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,9 @@ public class CharScript : MonoBehaviour
         speed = 10;
         jumpForce = 16.5f;
         PlayerState = 0;
+
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
+        camera.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value = 5;
     }
 
     // Update is called once per frame
