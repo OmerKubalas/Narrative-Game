@@ -75,14 +75,14 @@ public class NPCScript : MonoBehaviour
             OptionsPopup.transform.position = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 4);
         }
 
-        if (alive && Input.GetKeyDown(KeyCode.UpArrow) && CharScript.PlayerState == 3)
+        if (alive && Input.GetKeyDown(KeyCode.UpArrow) && CharScript.PlayerState == 2)
         {
             //talk
             NarrationManager.instance.PlayNarration(regularSpeech);
             OptionsPopup.transform.position = new Vector2(999, 999);
         }
 
-        if (alive && Input.GetKeyDown(KeyCode.LeftArrow) && CharScript.PlayerState == 3)
+        if (alive && Input.GetKeyDown(KeyCode.LeftArrow) && CharScript.PlayerState == 2)
         {
             alive = false;
             //absorb
@@ -92,7 +92,7 @@ public class NPCScript : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y - 1, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 3)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 2)
         {
             if(alive != true)
             {
