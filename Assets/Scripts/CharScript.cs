@@ -16,8 +16,7 @@ public class CharScript : MonoBehaviour
 
     GameObject NPC;
 
-    GameObject camera;
-    PostProcessVolume volume;
+    GameObject cameraGO;
 
     // Start is called before the first frame update
     void Start()
@@ -28,14 +27,15 @@ public class CharScript : MonoBehaviour
         PlayerState = 0;
         sanity = 4;
 
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
-        intensity = camera.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value;
+        cameraGO = GameObject.FindGameObjectWithTag("MainCamera");
+        intensity = cameraGO.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value;
         intensity = 0.2f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(PlayerState);
         if (PlayerState != 2 && PlayerState != 3)
         {
             playerbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), playerbody.velocity.y / speed) * speed;
@@ -101,6 +101,10 @@ public class CharScript : MonoBehaviour
 
         //the whole sanity thing
         {
+            if (sanity > 4)
+            {
+                sanity = 4;
+            }
             if (sanity == 4)
             {
                 if (intensity > 0.2f)
@@ -168,7 +172,7 @@ public class CharScript : MonoBehaviour
             {
                 SceneManager.LoadScene("GameOverScene");
             }
-            camera.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value = intensity;
+            cameraGO.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value = intensity;
         }
     }
 
@@ -186,6 +190,7 @@ public class CharScript : MonoBehaviour
         {
             PlayerState = 1;
             NPC = col.gameObject;
+            Debug.Log(NPC.name);
         }
     }
 
