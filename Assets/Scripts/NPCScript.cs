@@ -8,7 +8,6 @@ public class NPCScript : MonoBehaviour
     public bool alive; //took life, give life
     public bool sick;
     bool InRange;
-    public GameObject spacePopup, optionsPopup;
 
     //NarrationSpeeches
     public Narration regularSpeech;

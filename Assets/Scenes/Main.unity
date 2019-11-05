@@ -1164,8 +1164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alive: 1
   sick: 1
-  spacePopup: {fileID: 1617178343}
-  optionsPopup: {fileID: 0}
   regularSpeech:
     busyBehavior: 0
     singleAudio_MultiSub: 0
@@ -1179,7 +1177,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
   specialConditionSpeech:
     busyBehavior: 0
@@ -1203,7 +1201,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
   aliveTakeLifeSpeech:
     busyBehavior: 0
@@ -1233,7 +1231,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
 --- !u!61 &1154160513
 BoxCollider2D:
@@ -1462,8 +1460,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alive: 0
   sick: 1
-  spacePopup: {fileID: 1617178343}
-  optionsPopup: {fileID: 0}
   regularSpeech:
     busyBehavior: 0
     singleAudio_MultiSub: 0
@@ -1477,7 +1473,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
   specialConditionSpeech:
     busyBehavior: 0
@@ -1501,7 +1497,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
   aliveTakeLifeSpeech:
     busyBehavior: 0
@@ -1531,7 +1527,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
 --- !u!61 &1475846857
 BoxCollider2D:
@@ -2036,8 +2032,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alive: 0
   sick: 0
-  spacePopup: {fileID: 1617178343}
-  optionsPopup: {fileID: 0}
   regularSpeech:
     busyBehavior: 0
     singleAudio_MultiSub: 0
@@ -2051,7 +2045,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
   specialConditionSpeech:
     busyBehavior: 0
@@ -2075,7 +2069,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
   aliveTakeLifeSpeech:
     busyBehavior: 0
@@ -2105,7 +2099,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
 --- !u!61 &1888587065
 BoxCollider2D:
@@ -2384,8 +2378,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alive: 1
   sick: 0
-  spacePopup: {fileID: 1617178343}
-  optionsPopup: {fileID: 0}
   regularSpeech:
     busyBehavior: 0
     singleAudio_MultiSub: 0
@@ -2399,7 +2391,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
   specialConditionSpeech:
     busyBehavior: 0
@@ -2423,7 +2415,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
   aliveTakeLifeSpeech:
     busyBehavior: 0
@@ -2437,8 +2429,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 1
-    lastCalculatedHeight: 178
+    expanded: 0
+    lastCalculatedHeight: 16
     useSmartSubs: 0
   deadGiveLifeSpeech:
     busyBehavior: 0
@@ -2453,5 +2445,5 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
