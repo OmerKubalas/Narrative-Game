@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class CompScript : MonoBehaviour
 {
@@ -76,6 +77,11 @@ public class CompScript : MonoBehaviour
 
         comphealthbar.GetComponent<RectTransform>().transform.localScale = new Vector3(comphealth / 100, 0.1f, 1);
         comphealthbar.transform.position = new Vector2(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y + 1.5f);
+
+        if(comphealth <= 0)
+        {
+            SceneManager.LoadScene("GameOverScene");
+        }
     }
 
     IEnumerator Jump()
