@@ -16,6 +16,8 @@ public class CharScript : MonoBehaviour
 
     GameObject NPC;
 
+    public GameObject spacePopup, optionsPopup;
+
     GameObject cameraGO;
 
     // Start is called before the first frame update
@@ -35,7 +37,7 @@ public class CharScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(PlayerState);
+        Debug.Log(PlayerState);
         if (PlayerState != 2 && PlayerState != 3)
         {
             playerbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), playerbody.velocity.y / speed) * speed;
@@ -59,9 +61,10 @@ public class CharScript : MonoBehaviour
             playerbody.velocity = new Vector2(0, playerbody.velocity.y / speed) * speed;
         }
 
-        if (PlayerState == 1 && Input.GetKeyUp(KeyCode.Space))
+        if (PlayerState == 1 && Input.GetKeyDown(KeyCode.Space))
         {
             PlayerState = 2;
+            SetSpaceOptionsPrompts();
         }
 
         if (PlayerState == 2)
@@ -69,7 +72,6 @@ public class CharScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow) && NPC.GetComponent<NPCScript>().alive)
             {
                 //talk here
-                PlayerState = 3;
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && NPC.GetComponent<NPCScript>().alive)
             {
@@ -78,24 +80,28 @@ public class CharScript : MonoBehaviour
                     sanity --;
                 }
                 //absorb life here
-                PlayerState = 3;
             }
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 //give life here
-                PlayerState = 3;
             }
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 sanity++;
                 //cancel
                 PlayerState = 1;
+                SetSpaceOptionsPrompts();
             }
         }
 
         if (PlayerState == 3 && Input.GetKeyUp(KeyCode.Space))
         {
             PlayerState = 1;
+            SetSpaceOptionsPrompts();
+        }
+        if (PlayerState == 3) //just to make optionspopup go away 
+        {
+            SetSpaceOptionsPrompts();
         }
 
 
@@ -176,6 +182,35 @@ public class CharScript : MonoBehaviour
         }
     }
 
+    void SetSpaceOptionsPrompts()
+    {
+        if (NPC.GetComponent<NPCScript>().alive)
+        {
+            optionsPopup.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            optionsPopup.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+        }
+        else
+        {
+            optionsPopup.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+            optionsPopup.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+        }
+        if (PlayerState == 0 || PlayerState == 3)
+        {
+            spacePopup.transform.position = new Vector2(999, 999);
+            optionsPopup.transform.position = new Vector2(999, 999);
+        }
+        if (PlayerState == 1)
+        {
+            spacePopup.transform.position = new Vector2(NPC.transform.position.x, NPC.transform.position.y + 2);
+            optionsPopup.transform.position = new Vector2(999, 999);
+        }
+        if (PlayerState == 2)
+        {
+            spacePopup.transform.position = new Vector2(999, 999);
+            optionsPopup.transform.position = new Vector2(NPC.transform.position.x, NPC.transform.position.y + 4);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.tag == "Ground" && col.gameObject.transform.position.y < this.gameObject.transform.position.y - 1.9f)
@@ -190,7 +225,7 @@ public class CharScript : MonoBehaviour
         {
             PlayerState = 1;
             NPC = col.gameObject;
-            Debug.Log(NPC.name);
+            SetSpaceOptionsPrompts();
         }
     }
 
@@ -200,6 +235,7 @@ public class CharScript : MonoBehaviour
         {
             PlayerState = 1;
             NPC = col.gameObject;
+            SetSpaceOptionsPrompts();
         }
     }
 
@@ -208,6 +244,7 @@ public class CharScript : MonoBehaviour
         if (col.gameObject.tag == "NPC" && PlayerState == 1)
         {
             PlayerState = 0;
+            SetSpaceOptionsPrompts();
         }
     }
 }

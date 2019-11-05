@@ -8,7 +8,7 @@ public class NPCScript : MonoBehaviour
     public bool alive; //took life, give life
     public bool sick;
     bool InRange;
-    public GameObject spacePopup, OptionsPopup;
+    public GameObject spacePopup, optionsPopup;
 
     //NarrationSpeeches
     public Narration regularSpeech;
@@ -44,81 +44,39 @@ public class NPCScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(InRange && CharScript.PlayerState == 1)
-        {
-            spacePopup.transform.position = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 2);
-            if (alive)
-            {
-                OptionsPopup.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-                OptionsPopup.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-            }
-            else
-            {
-                OptionsPopup.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
-                OptionsPopup.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
-            }
-            OptionsPopup.transform.position = new Vector2(999,999);
-        }
-        if (InRange && CharScript.PlayerState == 2)
-        {
-            if (alive)
-            {
-                OptionsPopup.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-                OptionsPopup.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-            }
-            else
-            {
-                OptionsPopup.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
-                OptionsPopup.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
-            }
-            spacePopup.transform.position = new Vector2(999, 999);
-            OptionsPopup.transform.position = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 4);
-        }
 
-        if (alive && Input.GetKeyDown(KeyCode.UpArrow) && CharScript.PlayerState == 2)
+        if (InRange && alive && Input.GetKeyDown(KeyCode.UpArrow) && CharScript.PlayerState == 2)
         {
             //talk
+            CharScript.PlayerState = 3;
             NarrationManager.instance.PlayNarration(regularSpeech);
-            OptionsPopup.transform.position = new Vector2(999, 999);
         }
 
-        if (alive && Input.GetKeyDown(KeyCode.LeftArrow) && CharScript.PlayerState == 2)
+        if (InRange && alive && Input.GetKeyDown(KeyCode.LeftArrow) && CharScript.PlayerState == 2)
         {
             alive = false;
             //absorb
+            CharScript.PlayerState = 3;
             NarrationManager.instance.PlayNarration(aliveTakeLifeSpeech);
-            OptionsPopup.transform.position = new Vector2(999, 999);
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
             transform.position = new Vector3(transform.position.x, transform.position.y - 1, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 2)
+        if (InRange && Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 2)
         {
-            if(alive != true)
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y + 1, 0);
-                NarrationManager.instance.PlayNarration(deadGiveLifeSpeech);
-            }
-            else
+            if(alive)
             {
                 NarrationManager.instance.PlayNarration(aliveGiveLifeSpeech);
             }
-
-            alive = true;
+            else
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y + 1, 0);
+                NarrationManager.instance.PlayNarration(deadGiveLifeSpeech);
+                alive = true;
+            }
             //grant
-            OptionsPopup.transform.position = new Vector2(999, 999);
+            CharScript.PlayerState = 3;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-        }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow) && CharScript.PlayerState == 2)
-        {
-            //cancel
-            OptionsPopup.transform.position = new Vector2(999, 999);
-        }
-
-        if (InRange && !NarrationManager.instance.isPlaying && CharScript.PlayerState == 1)
-        {
-            spacePopup.transform.position = new Vector2(transform.position.x, transform.position.y + 2);
         }
     }
 
@@ -126,7 +84,6 @@ public class NPCScript : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            spacePopup.transform.position = new Vector2(transform.position.x, transform.position.y + 2);
             InRange = true;
         }
     }
@@ -135,7 +92,6 @@ public class NPCScript : MonoBehaviour
     {
         if (col.gameObject.tag == "Player" && CharScript.PlayerState != 2)
         {
-            spacePopup.transform.position = new Vector2(transform.position.x, transform.position.y + 2);
             InRange = true;
         }
     }
@@ -144,7 +100,6 @@ public class NPCScript : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            spacePopup.transform.position = new Vector2(999, 999);
             InRange = false;
         }
     }
