@@ -61,8 +61,9 @@ public class NPCScript : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y - 1, 0);
         }
 
-        if (InRange && Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 2)
+        if (InRange && Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 2 && CharScript.reservehealth >= 50)
         {
+            CharScript.reservehealth -= 50;
             if(alive)
             {
                 NarrationManager.instance.PlayNarration(aliveGiveLifeSpeech);

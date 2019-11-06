@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - NPC
   - Companion
+  - Wall
   layers:
   - Default
   - TransparentFX

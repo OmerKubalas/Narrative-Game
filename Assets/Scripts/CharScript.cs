@@ -9,14 +9,16 @@ public class CharScript : MonoBehaviour
     public Rigidbody2D playerbody;
     public float speed;
     public float jumpForce;
+    public static float reservehealth;
     float jumps;
     public static int PlayerState;
     public static int sanity;
     public static float intensity;
+    bool lookingatcompanion;
 
     GameObject NPC;
 
-    public GameObject spacePopup, optionsPopup;
+    public GameObject spacePopup, optionsPopup, companion, companionPopup, reserveHealthBar;
 
     GameObject cameraGO;
 
@@ -28,6 +30,7 @@ public class CharScript : MonoBehaviour
         jumpForce = 16.5f;
         PlayerState = 0;
         sanity = 4;
+        reservehealth = 0;
 
         cameraGO = GameObject.FindGameObjectWithTag("MainCamera");
         intensity = cameraGO.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value;
@@ -55,13 +58,18 @@ public class CharScript : MonoBehaviour
             {
                 transform.localScale = new Vector3(-1, 3, 1);
             }
+            if (Input.GetKeyDown(KeyCode.Space) && lookingatcompanion && reservehealth >= 25 && CompScript.comphealth <= 75 && CompScript.comphealth > 0)
+            {
+                reservehealth -= 25;
+                CompScript.comphealth += 25;
+            }
         }
         else
         {
             playerbody.velocity = new Vector2(0, playerbody.velocity.y / speed) * speed;
         }
 
-        if (PlayerState == 1 && Input.GetKeyDown(KeyCode.Space))
+        if (PlayerState == 1 && Input.GetKeyDown(KeyCode.Space) && lookingatcompanion == false)
         {
             PlayerState = 2;
             SetSpaceOptionsPrompts();
@@ -75,13 +83,15 @@ public class CharScript : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && NPC.GetComponent<NPCScript>().alive)
             {
+                reservehealth += 25;
                 if (NPC.GetComponent<NPCScript>().sick == false)
                 {
-                    sanity --;
+                    reservehealth += 25;
+                    sanity--;
                 }
                 //absorb life here
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) && reservehealth >= 50)
             {
                 //give life here
             }
@@ -104,6 +114,13 @@ public class CharScript : MonoBehaviour
             SetSpaceOptionsPrompts();
         }
 
+        reserveHealthBar.GetComponent<RectTransform>().transform.localScale = new Vector3(reservehealth / 100, 0.1f, 1);
+        reserveHealthBar.transform.position = new Vector2(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y + 2.5f);
+
+        if (reservehealth > 100)
+        {
+            reservehealth = 100;
+        }
 
         //the whole sanity thing
         {
@@ -194,6 +211,14 @@ public class CharScript : MonoBehaviour
             optionsPopup.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
             optionsPopup.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
         }
+        if (reservehealth >=50)
+        {
+            optionsPopup.transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+        }
+        else
+        {
+            optionsPopup.transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+        }
         if (PlayerState == 0 || PlayerState == 3)
         {
             spacePopup.transform.position = new Vector2(999, 999);
@@ -208,6 +233,20 @@ public class CharScript : MonoBehaviour
         {
             spacePopup.transform.position = new Vector2(999, 999);
             optionsPopup.transform.position = new Vector2(NPC.transform.position.x, NPC.transform.position.y + 4);
+        }
+    }
+
+    void SetCompanionPrompt()
+    {
+        if (lookingatcompanion)
+        {
+            spacePopup.transform.position = new Vector2(companion.transform.position.x, companion.transform.position.y + 2.5f);
+            companionPopup.transform.position = new Vector2(companion.transform.position.x, companion.transform.position.y + 3.5f);
+        }
+        if (lookingatcompanion == false)
+        {
+            spacePopup.transform.position = new Vector2(999, 999);
+            companionPopup.transform.position = new Vector2(999, 999);
         }
     }
 
@@ -227,6 +266,11 @@ public class CharScript : MonoBehaviour
             NPC = col.gameObject;
             SetSpaceOptionsPrompts();
         }
+        else if (col.gameObject.tag == "Companion")
+        {
+            lookingatcompanion = true;
+            SetCompanionPrompt();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D col)
@@ -237,6 +281,11 @@ public class CharScript : MonoBehaviour
             NPC = col.gameObject;
             SetSpaceOptionsPrompts();
         }
+        else if (col.gameObject.tag == "Companion")
+        {
+            lookingatcompanion = true;
+            SetCompanionPrompt();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D col)
@@ -245,6 +294,11 @@ public class CharScript : MonoBehaviour
         {
             PlayerState = 0;
             SetSpaceOptionsPrompts();
+        }
+        if (col.gameObject.tag == "Companion")
+        {
+            lookingatcompanion = false;
+            SetCompanionPrompt();
         }
     }
 }
