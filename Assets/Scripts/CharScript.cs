@@ -83,10 +83,8 @@ public class CharScript : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && NPC.GetComponent<NPCScript>().alive)
             {
-                reservehealth += 25;
                 if (NPC.GetComponent<NPCScript>().sick == false)
                 {
-                    reservehealth += 25;
                     sanity--;
                 }
                 //absorb life here

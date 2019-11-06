@@ -57,6 +57,11 @@ public class NPCScript : MonoBehaviour
 
         if (InRange && alive && Input.GetKeyDown(KeyCode.LeftArrow) && CharScript.PlayerState == 2)
         {
+            CharScript.reservehealth += 25;
+            if (sick == false)
+            {
+                CharScript.reservehealth += 25;
+            }
             alive = false;
             //absorb
             CharScript.PlayerState = 3;
