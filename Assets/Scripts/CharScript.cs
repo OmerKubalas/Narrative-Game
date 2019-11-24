@@ -22,6 +22,9 @@ public class CharScript : MonoBehaviour
 
     GameObject cameraGO;
 
+    int PlayerAnimationState = 0;
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,28 +38,36 @@ public class CharScript : MonoBehaviour
         cameraGO = GameObject.FindGameObjectWithTag("MainCamera");
         intensity = cameraGO.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value;
         intensity = 0.2f;
+
+        anim = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PlayerState);
         if (PlayerState != 2 && PlayerState != 3)
         {
             playerbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), playerbody.velocity.y / speed) * speed;
 
+            if (playerbody.velocity.x == 0 && playerbody.velocity.y == 0)
+            {
+                PlayerAnimationState = 0; //idle
+            }
             if (Input.GetKeyDown(KeyCode.UpArrow) && jumps > 0)
             {
                 jumps = 0;
+                PlayerAnimationState = 2; //jump
                 playerbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             }
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 transform.localScale = new Vector3(1, 3, 1);
+                PlayerAnimationState = 1; //walk
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 transform.localScale = new Vector3(-1, 3, 1);
+                PlayerAnimationState = 1; //walk
             }
             if (Input.GetKeyDown(KeyCode.Space) && lookingatcompanion && reservehealth >= 25 && CompScript.comphealth <= 75 && CompScript.comphealth > 0)
             {
@@ -195,6 +206,8 @@ public class CharScript : MonoBehaviour
             }
             cameraGO.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value = intensity;
         }
+
+        SetAnimationState();
     }
 
     void SetSpaceOptionsPrompts()
@@ -248,11 +261,34 @@ public class CharScript : MonoBehaviour
         }
     }
 
+    void SetAnimationState()
+    {
+        switch (PlayerAnimationState)
+        {
+            case 0:
+                anim.SetInteger("PlayerAnimationState", 0); //idle
+                break;
+
+            case 1:
+                anim.SetInteger("PlayerAnimationState", 1); //walk
+                break;
+
+            case 2:
+                anim.SetInteger("PlayerAnimationState", 2); //jump
+                break;
+
+            case 3:
+                anim.SetInteger("PlayerAnimationState", 3); //dead? didn't set 3rd case to anything yet
+                break;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.tag == "Ground" && col.gameObject.transform.position.y < this.gameObject.transform.position.y - 1.9f)
         {
             jumps = 1;
+            PlayerAnimationState = 1;
         }
     }
 

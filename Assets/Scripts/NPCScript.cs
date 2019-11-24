@@ -19,6 +19,9 @@ public class NPCScript : MonoBehaviour
     public string npcSituation;
     public GameObject conditionedByNPC; //the npc which conditions this npc (ex: mother conditions son)
 
+    //Animations
+    int NPCAnimationState;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -36,23 +39,32 @@ public class NPCScript : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            NPCAnimationState = 0; //idle
         }
         else
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
             transform.position = new Vector3(transform.position.x, transform.position.y-1, 0);
+            NPCAnimationState = 1; //dead
         }
+
+        anim = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!NarrationManager.instance.isPlaying && alive)
+        {
+            NPCAnimationState = 0; //idle animation
+        }
 
         if (InRange && alive && Input.GetKeyDown(KeyCode.UpArrow) && CharScript.PlayerState == 2)
         {
             //talk
             CharScript.PlayerState = 3;
             NarrationManager.instance.PlayNarration(regularSpeech);
+            NPCAnimationState = 2; //talk
         }
 
         if (InRange && alive && Input.GetKeyDown(KeyCode.LeftArrow) && CharScript.PlayerState == 2)
@@ -68,6 +80,7 @@ public class NPCScript : MonoBehaviour
             NarrationManager.instance.PlayNarration(aliveTakeLifeSpeech);
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
             transform.position = new Vector3(transform.position.x, transform.position.y - 1, 0);
+            NPCAnimationState = 1; //dead animation
         }
 
         if (InRange && Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 2 && CharScript.reservehealth >= 50)
@@ -76,11 +89,13 @@ public class NPCScript : MonoBehaviour
             if(alive)
             {
                 NarrationManager.instance.PlayNarration(aliveGiveLifeSpeech);
+                NPCAnimationState = 0; //idle animation
             }
             else
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y + 1, 0);
                 NarrationManager.instance.PlayNarration(deadGiveLifeSpeech);
+                NPCAnimationState = 0; //idle animation
                 alive = true;
             }
             //grant
@@ -122,6 +137,25 @@ public class NPCScript : MonoBehaviour
                 break;
         }
 
+        SetAnimationState();
+    }
+
+    void SetAnimationState()
+    {
+        switch (NPCAnimationState)
+        {
+            case 0:
+                anim.SetInteger("NPCAnimationState", 0); //idle
+                break;
+
+            case 1:
+                anim.SetInteger("NPCAnimationState", 1); //dead
+                break;
+
+            case 2:
+                anim.SetInteger("NPCAnimationState", 2); //talk
+                break;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)

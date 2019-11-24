@@ -15,14 +15,25 @@ public class CompScript : MonoBehaviour
     public static float comphealth = 100;
     public int companionstate = 1;
 
+    //Animations
+    int CompAnimationState;
+    Animator anim;
+
     void Start()
     {
         comphealth = 100;
         jumps = 1;
+
+        anim = this.GetComponent<Animator>();
     }
 
     void Update()
     {
+        if (companionbody.velocity.x == 0 && companionbody.velocity.y == 0)
+        {
+            CompAnimationState = 0; //idle anim
+        }
+
         if (companionstate == 1)
         {
             MoveNearPlayer();
@@ -50,11 +61,16 @@ public class CompScript : MonoBehaviour
         }
         if (comphealth <= 0)
         {
-            comphealth = 0;
+            comphealth = 0.000001f; //(if set as 0, this if case will keep looping)
             companionbody.velocity = new Vector2(0, companionbody.velocity.y / speed) * speed;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, 0);
             companionstate = 0;
             CharScript.sanity = 0;
+            CompAnimationState = 3; //dead anim
         }
+
+        SetAnimationState();
     }
 
     IEnumerator Jump()
@@ -62,6 +78,7 @@ public class CompScript : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         if (jumps == 1)
         {
+            CompAnimationState = 2; //jump anim
             companionbody.velocity = new Vector2(companionbody.velocity.x, 0);
             companionbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             jumps = 0;
@@ -74,11 +91,13 @@ public class CompScript : MonoBehaviour
         {
             companionbody.velocity = new Vector2(1, companionbody.velocity.y / speed) * speed;
             comphealth -= 3 * Time.deltaTime;
+            CompAnimationState = 1; //walk anim
         }
         else if (this.gameObject.transform.position.x - 3 > Player.transform.position.x)
         {
             companionbody.velocity = new Vector2(-1, companionbody.velocity.y / speed) * speed;
             comphealth -= 3 * Time.deltaTime;
+            CompAnimationState = 1; //walk anim
         }
         else
         {
@@ -86,7 +105,7 @@ public class CompScript : MonoBehaviour
         }
     }
 
-    void MoveToPlayer()
+    void MoveToPlayer() //while jumping
     {
         if (this.gameObject.transform.position.x < Player.transform.position.x - 0.05f)
         {
@@ -101,6 +120,28 @@ public class CompScript : MonoBehaviour
         else
         {
             companionbody.velocity = new Vector2(0, companionbody.velocity.y / speed) * speed;
+        }
+    }
+
+    void SetAnimationState()
+    {
+        switch (CompAnimationState)
+        {
+            case 0:
+                anim.SetInteger("CompAnimationState", 0); //idle
+                break;
+
+            case 1:
+                anim.SetInteger("CompAnimationState", 1); //walk
+                break;
+
+            case 2:
+                anim.SetInteger("CompAnimationState", 2); //jump
+                break;
+
+            case 3:
+                anim.SetInteger("CompAnimationState", 3); //dead
+                break;
         }
     }
 
