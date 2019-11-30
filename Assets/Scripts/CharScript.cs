@@ -19,12 +19,15 @@ public class CharScript : MonoBehaviour
 
     GameObject NPC;
 
-    public GameObject spacePopup, optionsPopup, companion, companionPopup, reserveHealthBar;
+    public GameObject spacePopup, optionsPopup, bossOptionsPopup, companion, companionPopup, reserveHealthBar, Boss;
 
     GameObject cameraGO;
 
     int PlayerAnimationState = 0;
     Animator anim;
+
+    //types of NPC
+    public static int numberOfAliveSickNPCs;
 
     // Start is called before the first frame update
     void Start()
@@ -41,12 +44,14 @@ public class CharScript : MonoBehaviour
         intensity = 0.2f;
 
         anim = this.GetComponent<Animator>();
+
+        UpdateNPCStats();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (PlayerState != 2 && PlayerState != 3)
+        if (PlayerState != 2 && PlayerState != 3 && PlayerState != 12 && PlayerState != 13)
         {
             playerbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), playerbody.velocity.y / speed) * speed;
 
@@ -80,13 +85,19 @@ public class CharScript : MonoBehaviour
         {
             playerbody.velocity = new Vector2(0, playerbody.velocity.y / speed) * speed;
         }
-
+        //FOR NPCS
         if (PlayerState == 1 && Input.GetKeyDown(KeyCode.Space) && lookingatcompanion == false)
         {
             PlayerState = 2;
             SetSpaceOptionsPrompts();
         }
-
+        //FOR BOSS
+        if (PlayerState == 11 && Input.GetKeyDown(KeyCode.Space) && lookingatcompanion == false)
+        {
+            PlayerState = 12;
+            SetBossSpaceOptionsPrompts();
+        }
+        //FOR NPCS
         if (PlayerState == 2)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) && NPC.GetComponent<NPCScript>().alive)
@@ -113,15 +124,45 @@ public class CharScript : MonoBehaviour
                 SetSpaceOptionsPrompts();
             }
         }
+        //FOR BOSS
+        if (PlayerState == 12)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                //talk here
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                //absorb life here
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                //give life here
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+
+            }
+        }
 
         if (!NarrationManager.instance.isPlaying && PlayerState == 3 && Input.GetKeyUp(KeyCode.Space))
         {
             PlayerState = 1;
+            UpdateNPCStats();
             SetSpaceOptionsPrompts();
+        }
+        if (!NarrationManager.instance.isPlaying && PlayerState == 13 && Input.GetKeyUp(KeyCode.Space))
+        {
+            PlayerState = 11;
+            SetBossSpaceOptionsPrompts();
         }
         if (PlayerState == 3) //just to make optionspopup go away 
         {
             SetSpaceOptionsPrompts();
+        }
+        if (PlayerState == 13) //just to make optionspopup go away 
+        {
+            SetBossSpaceOptionsPrompts();
         }
 
         reserveHealthBar.GetComponent<RectTransform>().transform.localScale = new Vector3(reservehealth / 100, 0.1f, 1);
@@ -208,7 +249,7 @@ public class CharScript : MonoBehaviour
             cameraGO.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value = intensity;
         }
 
-        SetAnimationState();
+        //SetAnimationState();
     }
 
     void SetSpaceOptionsPrompts()
@@ -248,6 +289,25 @@ public class CharScript : MonoBehaviour
         }
     }
 
+    void SetBossSpaceOptionsPrompts()
+    {
+        if (PlayerState == 0 || PlayerState == 13)
+        {
+            spacePopup.transform.position = new Vector2(999, 999);
+            bossOptionsPopup.transform.position = new Vector2(999, 999);
+        }
+        if (PlayerState == 11)
+        {
+            spacePopup.transform.position = new Vector2(Boss.transform.position.x, Boss.transform.position.y + 2);
+            bossOptionsPopup.transform.position = new Vector2(999, 999);
+        }
+        if (PlayerState == 12)
+        {
+            spacePopup.transform.position = new Vector2(999, 999);
+            bossOptionsPopup.transform.position = new Vector2(Boss.transform.position.x, Boss.transform.position.y + 4);
+        }
+    }
+
     void SetCompanionPrompt()
     {
         if (lookingatcompanion)
@@ -284,9 +344,22 @@ public class CharScript : MonoBehaviour
         }
     }
 
+    void UpdateNPCStats()
+    {
+        numberOfAliveSickNPCs = 0;
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("NPC").Length; i++)
+        {
+            if (GameObject.FindGameObjectsWithTag("NPC")[i].GetComponent<NPCScript>().alive && GameObject.FindGameObjectsWithTag("NPC")[i].GetComponent<NPCScript>().sick)
+            {
+                numberOfAliveSickNPCs++;
+            }
+        }
+        Debug.Log(numberOfAliveSickNPCs);
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Ground" && col.gameObject.transform.position.y < this.gameObject.transform.position.y - 1.9f)
+        if(col.gameObject.tag == "Ground" && col.gameObject.transform.position.y < this.gameObject.transform.position.y - 1.7f)
         {
             jumps = 1;
             PlayerAnimationState = 1;
@@ -306,6 +379,11 @@ public class CharScript : MonoBehaviour
             lookingatcompanion = true;
             SetCompanionPrompt();
         }
+        if (col.gameObject.tag == "Boss" && PlayerState == 0)
+        {
+            PlayerState = 11;
+            SetBossSpaceOptionsPrompts();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D col)
@@ -321,6 +399,11 @@ public class CharScript : MonoBehaviour
             lookingatcompanion = true;
             SetCompanionPrompt();
         }
+        else if (col.gameObject.tag == "Boss" && PlayerState == 0)
+        {
+            PlayerState = 11;
+            SetBossSpaceOptionsPrompts();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D col)
@@ -334,6 +417,11 @@ public class CharScript : MonoBehaviour
         {
             lookingatcompanion = false;
             SetCompanionPrompt();
+        }
+        if (col.gameObject.tag == "Boss" && PlayerState == 11)
+        {
+            PlayerState = 0;
+            SetBossSpaceOptionsPrompts();
         }
     }
 }

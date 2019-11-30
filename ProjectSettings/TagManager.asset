@@ -8,6 +8,7 @@ TagManager:
   - NPC
   - Companion
   - Wall
+  - Boss
   layers:
   - Default
   - TransparentFX

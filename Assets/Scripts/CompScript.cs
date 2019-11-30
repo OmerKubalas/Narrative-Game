@@ -50,6 +50,15 @@ public class CompScript : MonoBehaviour
             {
                 MoveToPlayer();
             }
+
+            if (this.gameObject.transform.position.y > Player.transform.position.y + 7 || this.gameObject.transform.position.y < Player.transform.position.y - 7)
+            {
+                this.gameObject.transform.position = Player.transform.position;
+            }
+            if (this.gameObject.transform.position.x > Player.transform.position.x + 5 || this.gameObject.transform.position.x < Player.transform.position.x - 5)
+            {
+                this.gameObject.transform.position = Player.transform.position;
+            }
         }
 
         comphealthbar.GetComponent<RectTransform>().transform.localScale = new Vector3(comphealth / 100, 0.1f, 1);
