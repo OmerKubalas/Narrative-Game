@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.PostProcessing;
+using Narrate;
 
 public class CharScript : MonoBehaviour
 {
@@ -51,12 +52,12 @@ public class CharScript : MonoBehaviour
 
             if (playerbody.velocity.x == 0 && playerbody.velocity.y == 0)
             {
-                PlayerAnimationState = 0; //idle
+               PlayerAnimationState = 0; //idle
             }
             if (Input.GetKeyDown(KeyCode.UpArrow) && jumps > 0)
             {
                 jumps = 0;
-                PlayerAnimationState = 2; //jump
+                //PlayerAnimationState = 2; //jump
                 playerbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             }
             if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -113,7 +114,7 @@ public class CharScript : MonoBehaviour
             }
         }
 
-        if (PlayerState == 3 && Input.GetKeyUp(KeyCode.Space))
+        if (!NarrationManager.instance.isPlaying && PlayerState == 3 && Input.GetKeyUp(KeyCode.Space))
         {
             PlayerState = 1;
             SetSpaceOptionsPrompts();
