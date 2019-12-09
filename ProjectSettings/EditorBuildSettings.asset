@@ -14,4 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: 3ea29722bcc01894d960186d898983d1
+  - enabled: 1
+    path: Assets/Scenes/KillGodScene.unity
+    guid: a9c4efd5440efb24a82cac9833ef695b
+  - enabled: 1
+    path: Assets/Scenes/OtherEnding.unity
+    guid: 4412ae774e0172a46a128eb18500c011
+  - enabled: 1
+    path: Assets/Scenes/SacrificeScene.unity
+    guid: 7497c62c4ff4b564694930a27833b6ff
+  - enabled: 1
+    path: Assets/Scenes/SwitchScene.unity
+    guid: 94eae569f3c86914d88ac932a6a428c5
   m_configObjects: {}

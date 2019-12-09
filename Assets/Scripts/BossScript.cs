@@ -47,6 +47,7 @@ public class BossScript : MonoBehaviour
             if (CharScript.numberOfAliveSickNPCs == 0)
             {
                 NarrationManager.instance.PlayNarration(killSpeech);
+                CharScript.ending = 1;
             }
             else
             {
@@ -59,6 +60,7 @@ public class BossScript : MonoBehaviour
         {
             CharScript.PlayerState = 13;
             NarrationManager.instance.PlayNarration(theOtherSpeech);
+            CharScript.ending = 4;
         }
 
         if (InRange && Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 12)
@@ -67,6 +69,7 @@ public class BossScript : MonoBehaviour
             if (CharScript.reservehealth > 99)
             {
                 NarrationManager.instance.PlayNarration(switchSpeech);
+                CharScript.ending = 2;
             }
             else
             {
@@ -78,6 +81,8 @@ public class BossScript : MonoBehaviour
         {
             CharScript.PlayerState = 13;
             NarrationManager.instance.PlayNarration(sacrificeSpeech);
+            CharScript.ending = 3;
+
         }
 
        // SetAnimationState();

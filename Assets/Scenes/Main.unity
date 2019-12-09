@@ -3636,8 +3636,8 @@ MonoBehaviour:
       lastCalculatedHeight: 72
       move: 0
     LoopAudioForDuration: 0
-    expanded: 1
-    lastCalculatedHeight: 178
+    expanded: 0
+    lastCalculatedHeight: 16
     useSmartSubs: 0
 --- !u!212 &1603169106
 SpriteRenderer:

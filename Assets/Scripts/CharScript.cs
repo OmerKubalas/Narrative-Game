@@ -28,6 +28,9 @@ public class CharScript : MonoBehaviour
 
     //types of NPC
     public static int numberOfAliveSickNPCs;
+    //public static List<GameObject> AliveSickNPCs = new List<GameObject>(); //if we want to access alive sick npcs
+
+    public static int ending = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -155,6 +158,7 @@ public class CharScript : MonoBehaviour
         {
             PlayerState = 11;
             SetBossSpaceOptionsPrompts();
+            LoadEndingScene();
         }
         if (PlayerState == 3) //just to make optionspopup go away 
         {
@@ -225,6 +229,7 @@ public class CharScript : MonoBehaviour
             }
             else if (sanity < 1)
             {
+                //dead animation
                 if (intensity < 50f)
                 {
                     intensity = intensity + 0.1f * Time.deltaTime;
@@ -347,14 +352,35 @@ public class CharScript : MonoBehaviour
     void UpdateNPCStats()
     {
         numberOfAliveSickNPCs = 0;
+        //AliveSickNPCs.Clear();
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("NPC").Length; i++)
         {
             if (GameObject.FindGameObjectsWithTag("NPC")[i].GetComponent<NPCScript>().alive && GameObject.FindGameObjectsWithTag("NPC")[i].GetComponent<NPCScript>().sick)
             {
                 numberOfAliveSickNPCs++;
+                //AliveSickNPCs.Add(GameObject.FindGameObjectsWithTag("NPC")[i]); //if we want to access the alive sick npcs we can reach them from here
             }
         }
-        Debug.Log(numberOfAliveSickNPCs);
+    }
+
+    void LoadEndingScene()
+    {
+        if (ending == 1)
+        {
+            SceneManager.LoadScene("KillGodScene");
+        }
+        if (ending == 2)
+        {
+            SceneManager.LoadScene("SwitchScene");
+        }
+        if (ending == 3)
+        {
+            SceneManager.LoadScene("SacrificeScene");
+        }
+        if (ending == 4)
+        {
+            SceneManager.LoadScene("OtherEnding");
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D col)
