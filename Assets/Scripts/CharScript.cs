@@ -25,6 +25,7 @@ public class CharScript : MonoBehaviour
 
     int PlayerAnimationState = 0;
     Animator anim;
+    float jumpAnimationBlend;
 
     //types of NPC
     public static int numberOfAliveSickNPCs;
@@ -54,6 +55,7 @@ public class CharScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (PlayerState != 2 && PlayerState != 3 && PlayerState != 12 && PlayerState != 13)
         {
             playerbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), playerbody.velocity.y / speed) * speed;
@@ -64,18 +66,28 @@ public class CharScript : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.UpArrow) && jumps > 0)
             {
+                jumpAnimationBlend = 0;
                 jumps = 0;
-                //PlayerAnimationState = 2; //jump
+                PlayerAnimationState = 2; //jump
                 playerbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                PlayerAnimationState = 2;
             }
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                transform.localScale = new Vector3(1, 3, 1);
+                if (transform.localScale.x > 0)
+                {
+                    transform.position += new Vector3(8.1f, 0, 0); //add pixels to make him move correctly
+                }
+                transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
                 PlayerAnimationState = 1; //walk
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                transform.localScale = new Vector3(-1, 3, 1);
+                if (transform.localScale.x < 0)
+                {
+                    transform.position -= new Vector3(8.1f, 0, 0);
+                }
+                transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 PlayerAnimationState = 1; //walk
             }
             if (Input.GetKeyDown(KeyCode.Space) && lookingatcompanion && reservehealth >= 25 && CompScript.comphealth <= 75 && CompScript.comphealth > 0)
@@ -254,7 +266,7 @@ public class CharScript : MonoBehaviour
             cameraGO.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value = intensity;
         }
 
-        //SetAnimationState();
+        SetAnimationState();
     }
 
     void SetSpaceOptionsPrompts()
@@ -340,7 +352,12 @@ public class CharScript : MonoBehaviour
                 break;
 
             case 2:
+                if (jumpAnimationBlend <= 1.0f)
+                {
+                    jumpAnimationBlend += 0.045f;
+                }
                 anim.SetInteger("PlayerAnimationState", 2); //jump
+                anim.SetFloat("Blend", jumpAnimationBlend);
                 break;
 
             case 3:
