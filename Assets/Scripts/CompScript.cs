@@ -46,7 +46,7 @@ public class CompScript : MonoBehaviour
             {
                 MoveToPlayer();
             }
-            if (this.gameObject.transform.position.y > Player.transform.position.y - 0.4f)
+            if (this.gameObject.transform.position.y > Player.transform.position.y - 0.2f)
             {
                 MoveToPlayer();
             }
@@ -55,7 +55,7 @@ public class CompScript : MonoBehaviour
             {
                 this.gameObject.transform.position = Player.transform.position;
             }
-            if (this.gameObject.transform.position.x > Player.transform.position.x + 5 || this.gameObject.transform.position.x < Player.transform.position.x - 5)
+            if (this.gameObject.transform.position.x > Player.transform.position.x + 10 || this.gameObject.transform.position.x < Player.transform.position.x - 10)
             {
                 this.gameObject.transform.position = Player.transform.position;
             }
