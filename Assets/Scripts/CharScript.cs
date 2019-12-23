@@ -60,7 +60,7 @@ public class CharScript : MonoBehaviour
         {
             playerbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), playerbody.velocity.y / speed) * speed;
 
-            if (playerbody.velocity.x == 0 && playerbody.velocity.y == 0)
+            if (playerbody.velocity.x == 0)
             {
                PlayerAnimationState = 0; //idle
             }
