@@ -22,11 +22,13 @@ public class NPCScript : MonoBehaviour
     //SpecialConditions
     bool killedOnce = false;
     bool aliveGiveLifeSpeechDone = false;
-    bool activeRegularSpeech, regularSpeechDone = false;
+    bool activeRegularSpeech;
+    public int regularSpeechDone = 0;
 
     //ExtraSpecialConditions
-    public static bool sacrificeSickoKiller;
-    bool spokenWithJohn, spokenWithHusband;
+    public static bool sacrificeSickoKiller, collapsedMine;
+    bool spokenWithJohn, spokenWithHusband; //erase
+
 
     //Animations
     int NPCAnimationState;
@@ -86,6 +88,18 @@ public class NPCScript : MonoBehaviour
                     NarrationManager.instance.PlayNarration(regularSpeech);
                 }
             }
+            if (npcSituation == "DrunkMiner")
+            {
+                if (conditionedByNPC.GetComponent<NPCScript>().alive)
+                {
+                    this.GetComponent<NarrationList>().Play();
+                }
+                else
+                {
+                    NarrationManager.instance.PlayNarration(regularSpeech);
+                }
+            }
+
             else
             {
                 NarrationManager.instance.PlayNarration(regularSpeech);
@@ -95,7 +109,8 @@ public class NPCScript : MonoBehaviour
         }
         if (activeRegularSpeech && CharScript.PlayerState == 0) //if regularSpeech happened and we finished reading it, become true
         {
-            regularSpeechDone = true;
+            regularSpeechDone++;
+            activeRegularSpeech = false;
         }
 
         if (InRange && alive && Input.GetKeyDown(KeyCode.LeftArrow) && CharScript.PlayerState == 2)
@@ -188,19 +203,29 @@ public class NPCScript : MonoBehaviour
                 break;
 
             case "SickWorker":
-                if (regularSpeechDone) //if killed and brought back
-                {
-                    regularSpeech.phrases[0].text = "Hello again, any news about the mine situation? *cough*";
-                    regularSpeech.phrases[1].text = "";
-                    regularSpeech.phrases[2].text = "";
-                }
-                else
+                if (SpokeWith("SickWorker") == 0)
                 {
                     regularSpeech.phrases[0].text = "I come from the upper village. Those pompous assholes think they can go around kicking out the sick.";
                     regularSpeech.phrases[1].text = "wo*cough* They say we're costly to sustain, as if they don't run around squandering their money as it is! If only I could enter the mines and work there, but they won't let me in without the mayor's permission either.rkedddd";
                     regularSpeech.phrases[2].text = "Talk about being caught between a rock and a hard place.";
                 }
-                //TO-DO: Add if Char talked with miner chief
+                if (SpokeWith("SickWorker") >= 1) //if killed and brought back
+                {
+                    regularSpeech.phrases[0].text = "Hello again, any news about the mine situation? *cough*";
+                    regularSpeech.phrases[1].text = "";
+                    regularSpeech.phrases[2].text = "";
+                    regularSpeechDone = 1;
+
+                    if (SpokeWith("WorkerChief") >= 1)
+                    {
+                        regularSpeech.phrases[1].text = "Huh, so they really do need another worker!";
+                        regularSpeech.phrases[2].text = "*cough* Great, I'll head there straight away!";
+                        //transform.position = new Vector3(177, 10, 0);
+                        regularSpeechDone = 2;
+                    }
+                }
+                
+                //TO-DO: Add 
                 break;
 
             case "Corpse1":
@@ -234,6 +259,8 @@ public class NPCScript : MonoBehaviour
                 if (conditionedByNPC.GetComponent<NPCScript>().alive) //if husband is alive
                 {
                     regularSpeech.phrases[0].text = "My husband! It's a miracle! Maybe we should move to a safer place now...";
+                    regularSpeech.phrases[1].text = "";
+                    regularSpeech.phrases[2].text = "";
                     aliveTakeLifeSpeech.phrases[0].text = "No! I have so much to live for!";
                 }
                 else //if he is dead
@@ -249,27 +276,103 @@ public class NPCScript : MonoBehaviour
                 if (!aliveGiveLifeSpeechDone) //if killed and brought back
                 {
                     regularSpeech.phrases[0].text = "I get a terrible headache whenever I attempt to recall... Can you help me...?";
+                    regularSpeechDone = 0;
                 }
                 else
                 {
                     regularSpeech.phrases[0].text = " Oh, now I remember... I guess that's what he does to those who know too much. My wife and I should be moving out of here... Know this, the mayor is a huge hypocrite, he's kicking out the sick, saying they're a burden on society, but he's actually sick himself.";
+                    //spokeWithHusband
                 }
                 break;
 
             case "Mayor":
-                if (!regularSpeechDone) //if killed and brought back
+                if (SpokeWith("Mayor") == 0) //if never spoken with mayor
                 {
                     regularSpeech.phrases[0].text = "An alchemist just walks into my mansion... What are the odds? Don't worry, your kind is very welcome here.";
                     regularSpeech.phrases[1].text = "In fact, I have a small favor to ask of you. *cough* I heard there are other alchemists like you residing underground.";
                     regularSpeech.phrases[2].text = "I'll give you a key to the mines, in turn, would you be as kind as to bring your alchemist friends to me? The miners have been complaining about them, and we need their help for research, *cough* it's for a good cause, you can trust me.";
                 }
-                else if (regularSpeechDone)
+                else if (SpokeWith("Mayor") >= 1 && !(SpokeWith("Corpse2") >= 1 || SpokeWith("Husband") >= 1))
                 {
                     regularSpeech.phrases[0].text = "Have you seen your alchemist friends yet?";
                     regularSpeech.phrases[1].text = "No? What are you waiting for?";
                     regularSpeech.phrases[2].text = "";
                 }
+                else if (SpokeWith("Mayor") >= 1 && (SpokeWith("Corpse2") >= 1 || SpokeWith("Husband") >= 1))
+                {
+                    regularSpeech.phrases[0].text = "Oh? So you've heard some rumors about me? Pay them no mind, that's all they are, just rumors. ";
+                    regularSpeech.phrases[1].text = "By the way, could you tell me who exactly told you those things?";
+                    regularSpeech.phrases[2].text = "I'm just wondering.";
+                }
+                //TO-DO: add in alchemists part
                 break;
+
+            case "MineGatekeeper":
+                if (SpokeWith("Mayor") == 0)
+                {
+                    regularSpeech.phrases[0].text = "Where do you think you're going!? You need a permission slip to enter through here.";
+                    regularSpeech.phrases[1].text = "Go talk with the mayor.";
+                }
+                if (SpokeWith("Mayor") >= 1)
+                {
+                    regularSpeech.phrases[0].text = "You're welcome to come right in with your permission slip.";
+                    regularSpeech.phrases[1].text = "";
+                    //TO-DO: Destroy Gate
+                }
+                break;
+
+            case "WorkerChief":
+                if (SpokeWith("AlchemistChief") == 0 && SpokeWith("SickWorker") == 0)
+                {
+                    regularSpeech.phrases[0].text = "Hello, sir. We're working hard as usual, but we are short on workers.";
+                    regularSpeech.phrases[1].text = "If you bring us a worker, it'd be great.";
+                }
+                else if (SpokeWith("AlchemistChief") >= 1 && SpokeWith("SickWorker") == 0)
+                {
+                    regularSpeech.phrases[0].text = "You spoke with the alchemists? Well you shouldn't listen to them.";
+                    regularSpeech.phrases[1].text = "We're all honest hard working men down here. Please just help us find another worker.";
+                }
+                else if (SpokeWith("SickWorker") >= 2 && SpokeWith("Alchemists") == 0)
+                {
+                    regularSpeech.phrases[0].text = "Thanks for bringing us that guy. We can work a bit more effectively now.";
+                    regularSpeech.phrases[1].text = "Now only if those shady alchemists were gone, then we could truly focus and break this boulder.";
+                }
+                //TO-DO: ADD GONE ALCHEMISTS
+                break;
+
+            case "DrunkMiner":
+                if (alive)
+                {
+                    collapsedMine = true;
+                }
+                else
+                {
+                    collapsedMine = false;
+                }
+                break;
+
+            case "KilledMiner":
+                if (conditionedByNPC.GetComponent<NPCScript>().alive) //if drunkard is alive
+                {
+                    regularSpeech.phrases[0].text = "Someone should really get rid of that drunkard!";
+                }
+                else //if he is dead
+                {
+                    regularSpeech.phrases[0].text = "I'm glad someone took care of the drunkard running around here. Who lets a drunk man work in a mine anyway!?";
+                }
+                break;
+
+            case "AlchemistChief":
+                if (SpokeWith("AlchemistChief") == 0)
+                {
+                    regularSpeech.phrases[0].text = "It's rare to see other alchemists nowadays, what's the occasion?";
+                }
+                if (SpokeWith("AlchemistChief") >= 1)
+                {
+                    regularSpeech.phrases[0].text = "I'm not going to change my mind. Enough is enough. They'll have to kill me first";
+                }
+                break;
+
 
 
             default:
@@ -295,6 +398,14 @@ public class NPCScript : MonoBehaviour
                 anim.SetInteger("NPCAnimationState", 2); //talk
                 break;
         }
+    }
+
+    int SpokeWith(string charName)
+    {
+        GameObject NPC = GameObject.Find(charName);
+        int timesSpoken = NPC.GetComponent<NPCScript>().regularSpeechDone;
+        return timesSpoken;
+
     }
 
     private void OnTriggerEnter2D(Collider2D col)
