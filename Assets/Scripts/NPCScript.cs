@@ -137,7 +137,7 @@ public class NPCScript : MonoBehaviour
                 break;
         }
 
-        SetAnimationState();
+        //SetAnimationState();
     }
 
     void SetAnimationState()

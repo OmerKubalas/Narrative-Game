@@ -55,7 +55,6 @@ public class CharScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (PlayerState != 2 && PlayerState != 3 && PlayerState != 12 && PlayerState != 13)
         {
             playerbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), playerbody.velocity.y / speed) * speed;
@@ -104,6 +103,7 @@ public class CharScript : MonoBehaviour
         if (PlayerState == 1 && Input.GetKeyDown(KeyCode.Space) && lookingatcompanion == false)
         {
             PlayerState = 2;
+            PlayerAnimationState = 0;
             SetSpaceOptionsPrompts();
         }
         //FOR BOSS
@@ -115,6 +115,7 @@ public class CharScript : MonoBehaviour
         //FOR NPCS
         if (PlayerState == 2)
         {
+            
             if (Input.GetKeyDown(KeyCode.UpArrow) && NPC.GetComponent<NPCScript>().alive)
             {
                 //talk here
@@ -276,7 +277,7 @@ public class CharScript : MonoBehaviour
 
     void SetSpaceOptionsPrompts()
     {
-        if (NPC.GetComponent<NPCScript>().alive)
+        if (NPC != null && NPC.GetComponent<NPCScript>().alive)
         {
             optionsPopup.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
             optionsPopup.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
