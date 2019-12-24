@@ -162,7 +162,7 @@ public class CharScript : MonoBehaviour
 
         if (!NarrationManager.instance.isPlaying && PlayerState == 3 && Input.GetKeyUp(KeyCode.Space))
         {
-            PlayerState = 1;
+            PlayerState = 0;
             UpdateNPCStats();
             SetSpaceOptionsPrompts();
         }
@@ -264,6 +264,11 @@ public class CharScript : MonoBehaviour
                 SceneManager.LoadScene("GameOverScene");
             }
             cameraGO.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value = intensity;
+        }
+
+        if(NarrationManager.instance.isPlaying)
+        {
+            PlayerAnimationState = 0;
         }
 
         SetAnimationState();
@@ -431,7 +436,7 @@ public class CharScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if(col.gameObject.tag == "NPC" && PlayerState == 0)
+        if(col.gameObject.tag == "NPC" && PlayerState == 0 && NarrationManager.instance.isPlaying == false)
         {
             PlayerState = 1;
             NPC = col.gameObject;
