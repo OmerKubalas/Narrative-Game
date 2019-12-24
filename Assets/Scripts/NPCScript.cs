@@ -19,6 +19,10 @@ public class NPCScript : MonoBehaviour
     public string npcSituation;
     public GameObject conditionedByNPC; //the npc which conditions this npc (ex: mother conditions son)
 
+    //SpecialConditions
+    bool killedOnce;
+    bool aliveGiveLifeSpeechDone;
+
     //Animations
     int NPCAnimationState;
     Animator anim;
@@ -69,12 +73,14 @@ public class NPCScript : MonoBehaviour
 
         if (InRange && alive && Input.GetKeyDown(KeyCode.LeftArrow) && CharScript.PlayerState == 2)
         {
-            CharScript.reservehealth += 25;
+            CharScript.reservehealth += 20;
             if (sick == false)
             {
-                CharScript.reservehealth += 25;
+                CharScript.reservehealth += 20;
+                CharScript.sanity--;
             }
             alive = false;
+            killedOnce = true;
             //absorb
             CharScript.PlayerState = 3;
             NarrationManager.instance.PlayNarration(aliveTakeLifeSpeech);
@@ -83,26 +89,29 @@ public class NPCScript : MonoBehaviour
             NPCAnimationState = 1; //dead animation
         }
 
-        if (InRange && Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 2 && CharScript.reservehealth >= 50)
+        if (InRange && Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 2)
         {
-            CharScript.reservehealth -= 50;
-            if(alive)
+            if (alive && CharScript.reservehealth >= 20)
             {
+                CharScript.reservehealth -= 20;
                 NarrationManager.instance.PlayNarration(aliveGiveLifeSpeech);
+                aliveGiveLifeSpeechDone = true;
                 NPCAnimationState = 0; //idle animation
+                CharScript.PlayerState = 3;
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             }
-            else
+            else if (!alive && CharScript.reservehealth >= 60)
             {
+                CharScript.reservehealth -= 60;
+                CharScript.sanity += 2;
                 transform.position = new Vector3(transform.position.x, transform.position.y + 1, 0);
                 NarrationManager.instance.PlayNarration(deadGiveLifeSpeech);
                 NPCAnimationState = 0; //idle animation
                 alive = true;
+                CharScript.PlayerState = 3;
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             }
-            //grant
-            CharScript.PlayerState = 3;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
-
 
         //NarrationCases (we may customize any npc speech to our liking here)
         switch (npcSituation)
@@ -130,6 +139,23 @@ public class NPCScript : MonoBehaviour
                 {
                     regularSpeech.phrases[0].text = "Oh no, mom! I have nobody left!";
                     deadGiveLifeSpeech.phrases[0].text = "You've brought me back to life.. It's meaningless without my mom.";
+                }
+                break;
+
+            case "Beggar":
+                if (killedOnce) //if killed and brought back
+                {
+                    regularSpeech.phrases[0].text = "Mister alchemist sir! I'm not causing any trouble, please spare me some change!";
+                }
+                break;
+
+            case "SickoKiller":
+                if (aliveGiveLifeSpeechDone) //if killed and brought back
+                {
+                    //we can spawn a different visual here
+                    transform.position = new Vector3(200, 10, 0);
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                    GetComponent<NPCScript>().enabled = false;
                 }
                 break;
 

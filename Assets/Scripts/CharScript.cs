@@ -89,10 +89,10 @@ public class CharScript : MonoBehaviour
                 transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 PlayerAnimationState = 1; //walk
             }
-            if (Input.GetKeyDown(KeyCode.Space) && lookingatcompanion && reservehealth >= 25 && CompScript.comphealth <= 75 && CompScript.comphealth > 0)
+            if (Input.GetKeyDown(KeyCode.Space) && lookingatcompanion && reservehealth >= 20 && CompScript.comphealth <= 80 && CompScript.comphealth > 0)
             {
-                reservehealth -= 25;
-                CompScript.comphealth += 25;
+                reservehealth -= 20;
+                CompScript.comphealth += 20;
             }
         }
         else
@@ -115,17 +115,17 @@ public class CharScript : MonoBehaviour
         //FOR NPCS
         if (PlayerState == 2)
         {
-            
+            PlayerAnimationState = 0;
             if (Input.GetKeyDown(KeyCode.UpArrow) && NPC.GetComponent<NPCScript>().alive)
             {
                 //talk here
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && NPC.GetComponent<NPCScript>().alive)
             {
-                if (NPC.GetComponent<NPCScript>().sick == false)
-                {
-                    sanity--;
-                }
+                //if (NPC.GetComponent<NPCScript>().sick == false)
+                //{
+                //    sanity--;
+                //}
                 //absorb life here
             }
             if (Input.GetKeyDown(KeyCode.RightArrow) && reservehealth >= 50)
@@ -287,7 +287,7 @@ public class CharScript : MonoBehaviour
             optionsPopup.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
             optionsPopup.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
         }
-        if (reservehealth >=50)
+        if (reservehealth >= 20 && NPC.GetComponent<NPCScript>().alive || reservehealth >= 60 && !NPC.GetComponent<NPCScript>().alive)
         {
             optionsPopup.transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         }
