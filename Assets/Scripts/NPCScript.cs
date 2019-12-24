@@ -20,12 +20,13 @@ public class NPCScript : MonoBehaviour
     public GameObject conditionedByNPC; //the npc which conditions this npc (ex: mother conditions son)
 
     //SpecialConditions
-    bool killedOnce;
-    bool aliveGiveLifeSpeechDone;
-    bool regularSpeechDone;
+    bool killedOnce = false;
+    bool aliveGiveLifeSpeechDone = false;
+    bool activeRegularSpeech, regularSpeechDone = false;
 
     //ExtraSpecialConditions
     public static bool sacrificeSickoKiller;
+    bool spokenWithJohn, spokenWithHusband;
 
     //Animations
     int NPCAnimationState;
@@ -71,9 +72,30 @@ public class NPCScript : MonoBehaviour
         {
             //talk
             CharScript.PlayerState = 3;
-            NarrationManager.instance.PlayNarration(regularSpeech);
-            regularSpeechDone = true;
             NPCAnimationState = 2; //talk
+
+            //special condition for random speech only occurs if we press up
+            if (npcSituation == "Worshipper")
+            {
+                if (conditionedByNPC.GetComponent<NPCScript>().alive)
+                {
+                    this.GetComponent<NarrationList>().Play();
+                }
+                else
+                {
+                    NarrationManager.instance.PlayNarration(regularSpeech);
+                }
+            }
+            else
+            {
+                NarrationManager.instance.PlayNarration(regularSpeech);
+            }
+
+            activeRegularSpeech = true;
+        }
+        if (activeRegularSpeech && CharScript.PlayerState == 0) //if regularSpeech happened and we finished reading it, become true
+        {
+            regularSpeechDone = true;
         }
 
         if (InRange && alive && Input.GetKeyDown(KeyCode.LeftArrow) && CharScript.PlayerState == 2)
@@ -169,6 +191,14 @@ public class NPCScript : MonoBehaviour
                 if (regularSpeechDone) //if killed and brought back
                 {
                     regularSpeech.phrases[0].text = "Hello again, any news about the mine situation? *cough*";
+                    regularSpeech.phrases[1].text = "";
+                    regularSpeech.phrases[2].text = "";
+                }
+                else
+                {
+                    regularSpeech.phrases[0].text = "I come from the upper village. Those pompous assholes think they can go around kicking out the sick.";
+                    regularSpeech.phrases[1].text = "wo*cough* They say we're costly to sustain, as if they don't run around squandering their money as it is! If only I could enter the mines and work there, but they won't let me in without the mayor's permission either.rkedddd";
+                    regularSpeech.phrases[2].text = "Talk about being caught between a rock and a hard place.";
                 }
                 //TO-DO: Add if Char talked with miner chief
                 break;
@@ -184,16 +214,60 @@ public class NPCScript : MonoBehaviour
                 }
                 break;
 
+            case "Corpse2":
+                //we spoke to it
+                break;
+
             case "Worshipper":
                 if (conditionedByNPC.GetComponent<NPCScript>().alive) //if priest alive
                 {
-                    //random text
-                    regularSpeech.phrases[0].text = "Oh, John! We're alive!";
+                   //done
                 }
                 else //if he is dead
                 {
                     regularSpeech.phrases[0].text = "Heretics! I got word you killed the priest with your wicked alchemy! I have nothing to say to you. Begone!";
                     regularSpeech.phrases[1].text = "I have nothing to say to you. Begone!";
+                }
+                break;
+
+            case "Wife":
+                if (conditionedByNPC.GetComponent<NPCScript>().alive) //if husband is alive
+                {
+                    regularSpeech.phrases[0].text = "My husband! It's a miracle! Maybe we should move to a safer place now...";
+                    aliveTakeLifeSpeech.phrases[0].text = "No! I have so much to live for!";
+                }
+                else //if he is dead
+                {
+                    regularSpeech.phrases[0].text = "*crying* My husband... I got worried when he didn't come back from the mayor's mansion, so I started walking here and this is what I find...";
+                    regularSpeech.phrases[1].text = "The mayor says there's a murderer on the loose, that he may be the one who killed him.";
+                    regularSpeech.phrases[2].text = "Don't we have a gatekeeper whose job is to prevent such incidents...?";
+                    aliveTakeLifeSpeech.phrases[0].text = "I'm coming to your side, darling.";
+                }
+                break;
+
+            case "Husband":
+                if (!aliveGiveLifeSpeechDone) //if killed and brought back
+                {
+                    regularSpeech.phrases[0].text = "I get a terrible headache whenever I attempt to recall... Can you help me...?";
+                }
+                else
+                {
+                    regularSpeech.phrases[0].text = " Oh, now I remember... I guess that's what he does to those who know too much. My wife and I should be moving out of here... Know this, the mayor is a huge hypocrite, he's kicking out the sick, saying they're a burden on society, but he's actually sick himself.";
+                }
+                break;
+
+            case "Mayor":
+                if (!regularSpeechDone) //if killed and brought back
+                {
+                    regularSpeech.phrases[0].text = "An alchemist just walks into my mansion... What are the odds? Don't worry, your kind is very welcome here.";
+                    regularSpeech.phrases[1].text = "In fact, I have a small favor to ask of you. *cough* I heard there are other alchemists like you residing underground.";
+                    regularSpeech.phrases[2].text = "I'll give you a key to the mines, in turn, would you be as kind as to bring your alchemist friends to me? The miners have been complaining about them, and we need their help for research, *cough* it's for a good cause, you can trust me.";
+                }
+                else if (regularSpeechDone)
+                {
+                    regularSpeech.phrases[0].text = "Have you seen your alchemist friends yet?";
+                    regularSpeech.phrases[1].text = "No? What are you waiting for?";
+                    regularSpeech.phrases[2].text = "";
                 }
                 break;
 

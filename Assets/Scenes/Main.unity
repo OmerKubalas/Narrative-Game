@@ -5613,7 +5613,7 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
+  npcSituation: Corpse2
   conditionedByNPC: {fileID: 0}
 --- !u!61 &888470686
 BoxCollider2D:
@@ -6431,9 +6431,15 @@ MonoBehaviour:
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
+    - audio: {fileID: 0}
+      text: 'bla bla '
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 358
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -6480,8 +6486,8 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
-  conditionedByNPC: {fileID: 0}
+  npcSituation: Wife
+  conditionedByNPC: {fileID: 1839091826}
 --- !u!61 &958291377
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9568,9 +9574,15 @@ MonoBehaviour:
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
+    - audio: {fileID: 0}
+      text: 'bla bla '
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 358
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -9617,7 +9629,7 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
+  npcSituation: Mayor
   conditionedByNPC: {fileID: 0}
 --- !u!61 &1522900736
 BoxCollider2D:
@@ -11777,14 +11789,14 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: 'I needed this after being knocked out for a while. '
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   aliveTakeLifeSpeech:
     busyBehavior: 0
@@ -11816,7 +11828,7 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
+  npcSituation: Husband
   conditionedByNPC: {fileID: 0}
 --- !u!61 &1839091830
 BoxCollider2D:
@@ -12539,6 +12551,7 @@ GameObject:
   - component: {fileID: 1994717652}
   - component: {fileID: 1994717651}
   - component: {fileID: 1994717650}
+  - component: {fileID: 1994717654}
   m_Layer: 0
   m_Name: Worshipper
   m_TagString: NPC
@@ -12599,14 +12612,14 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
-      duration: 0.0000001
+      text: 
+      duration: 0
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
-      duration: 0.0000001
+      text: 
+      duration: 0
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
@@ -12736,6 +12749,90 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1994717654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994717648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e01524c299bc6744aea5de0ff276f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whenEndReached: 4
+  loopNarrations: 1
+  shuffle: 1
+  narrations:
+  - busyBehavior: 0
+    singleAudio_MultiSub: 0
+    mainAudio: {fileID: 0}
+    phrases:
+    - audio: {fileID: 0}
+      text: ' Hear ye! You''ve forgotten the gods and now we all suffer the consequences. '
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    LoopAudioForDuration: 0
+    expanded: 0
+    lastCalculatedHeight: 16
+    useSmartSubs: 0
+  - busyBehavior: 0
+    singleAudio_MultiSub: 0
+    mainAudio: {fileID: 0}
+    phrases:
+    - audio: {fileID: 0}
+      text: Hear ye! The gods are angry! We haven't bid their due faith.
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: 'They unleashed this sickness upon us to drain us of our lives. '
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    LoopAudioForDuration: 0
+    expanded: 0
+    lastCalculatedHeight: 16
+    useSmartSubs: 0
+  - busyBehavior: 0
+    singleAudio_MultiSub: 0
+    mainAudio: {fileID: 0}
+    phrases:
+    - audio: {fileID: 0}
+      text: Repent! Repent and ask for forgiveness!
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    LoopAudioForDuration: 0
+    expanded: 0
+    lastCalculatedHeight: 16
+    useSmartSubs: 0
+  - busyBehavior: 0
+    singleAudio_MultiSub: 0
+    mainAudio: {fileID: 0}
+    phrases:
+    - audio: {fileID: 0}
+      text: How long has it been since you last praised our gods!?
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: 'Spread their word and hope it''s not too late! '
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    LoopAudioForDuration: 0
+    expanded: 0
+    lastCalculatedHeight: 16
+    useSmartSubs: 0
 --- !u!1 &2003705607
 GameObject:
   m_ObjectHideFlags: 0
@@ -13045,16 +13142,29 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I come from the upper village. Those pompous assholes think they can go
-        around kicking out the sick. *cough* They say we're costly to sustain, as
-        if they don't run around squandering their money as it is!
+      text: ' I come from the upper village. Those pompous assholes think they can
+        go around kicking out the sick. *cough* They say we''re costly to sustain,
+        as if they don''t run around squandering their money as it is!'
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: f only I could enter the mines and work there, but they won't let me in
+        without the mayor's permission either.
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Talk about being caught between a rock and a hard place.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 1
-    lastCalculatedHeight: 178
+    expanded: 0
+    lastCalculatedHeight: 16
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
