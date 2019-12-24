@@ -19,6 +19,7 @@ public class BossScript : MonoBehaviour
     public Narration theOtherSpeech; //caseLeft
 
     public Narration sacrificeSpeech; //caseDown
+    public Narration killerSacrificeSpeech;
 
     //Animations
     int BossAnimationState;
@@ -80,7 +81,14 @@ public class BossScript : MonoBehaviour
         if (InRange && Input.GetKeyDown(KeyCode.DownArrow) && CharScript.PlayerState == 12)
         {
             CharScript.PlayerState = 13;
-            NarrationManager.instance.PlayNarration(sacrificeSpeech);
+            if (NPCScript.sacrificeSickoKiller)
+            {
+                NarrationManager.instance.PlayNarration(killerSacrificeSpeech); 
+            }
+            else
+            {
+                NarrationManager.instance.PlayNarration(sacrificeSpeech);
+            }
             CharScript.ending = 3;
 
         }

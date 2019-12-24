@@ -22,6 +22,10 @@ public class NPCScript : MonoBehaviour
     //SpecialConditions
     bool killedOnce;
     bool aliveGiveLifeSpeechDone;
+    bool regularSpeechDone;
+
+    //ExtraSpecialConditions
+    public static bool sacrificeSickoKiller;
 
     //Animations
     int NPCAnimationState;
@@ -68,6 +72,7 @@ public class NPCScript : MonoBehaviour
             //talk
             CharScript.PlayerState = 3;
             NarrationManager.instance.PlayNarration(regularSpeech);
+            regularSpeechDone = true;
             NPCAnimationState = 2; //talk
         }
 
@@ -156,8 +161,42 @@ public class NPCScript : MonoBehaviour
                     transform.position = new Vector3(200, 10, 0);
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
                     GetComponent<NPCScript>().enabled = false;
+                    sacrificeSickoKiller = true;
                 }
                 break;
+
+            case "SickWorker":
+                if (regularSpeechDone) //if killed and brought back
+                {
+                    regularSpeech.phrases[0].text = "Hello again, any news about the mine situation? *cough*";
+                }
+                //TO-DO: Add if Char talked with miner chief
+                break;
+
+            case "Corpse1":
+                if (conditionedByNPC.GetComponent<NPCScript>().alive) //if corpse2 alive
+                {
+                    deadGiveLifeSpeech.phrases[0].text = "Oh, John! We're alive!";
+                }
+                else //if he is dead
+                {
+                    deadGiveLifeSpeech.phrases[0].text = "Oh! I'm back! What happened to John!?";
+                }
+                break;
+
+            case "Worshipper":
+                if (conditionedByNPC.GetComponent<NPCScript>().alive) //if priest alive
+                {
+                    //random text
+                    regularSpeech.phrases[0].text = "Oh, John! We're alive!";
+                }
+                else //if he is dead
+                {
+                    regularSpeech.phrases[0].text = "Heretics! I got word you killed the priest with your wicked alchemy! I have nothing to say to you. Begone!";
+                    regularSpeech.phrases[1].text = "I have nothing to say to you. Begone!";
+                }
+                break;
+
 
             default:
                 break;

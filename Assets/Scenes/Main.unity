@@ -6720,8 +6720,8 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
-  conditionedByNPC: {fileID: 0}
+  npcSituation: Corpse1
+  conditionedByNPC: {fileID: 888470682}
 --- !u!61 &964936674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8917,6 +8917,15 @@ MonoBehaviour:
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
+    LoopAudioForDuration: 0
+    expanded: 0
+    lastCalculatedHeight: 16
+    useSmartSubs: 0
+  killerSacrificeSpeech:
+    busyBehavior: 0
+    singleAudio_MultiSub: 0
+    mainAudio: {fileID: 0}
+    phrases: []
     LoopAudioForDuration: 0
     expanded: 0
     lastCalculatedHeight: 16
@@ -12650,8 +12659,8 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
-  conditionedByNPC: {fileID: 0}
+  npcSituation: Worshipper
+  conditionedByNPC: {fileID: 1467911988}
 --- !u!61 &1994717652
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13036,20 +13045,16 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
-      duration: 0.0000001
-      drawAudio: 1
-      lastCalculatedHeight: 90
-      move: 0
-    - audio: {fileID: 0}
-      text: 'bla bla '
+      text: I come from the upper village. Those pompous assholes think they can go
+        around kicking out the sick. *cough* They say we're costly to sustain, as
+        if they don't run around squandering their money as it is!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -13096,7 +13101,7 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
+  npcSituation: SickWorker
   conditionedByNPC: {fileID: 0}
 --- !u!61 &2050327417
 BoxCollider2D:
