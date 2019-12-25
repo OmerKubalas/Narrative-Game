@@ -35,11 +35,13 @@ public class CharScript : MonoBehaviour
 
 
     //conditionalBools
-    public static bool sentWorker, minersOut, alchemistsOut, destroyBoulder;
+    public static bool SetSpaceOptionsPromptsBool, sentWorker, minersOut, alchemistsOut, destroyBoulder, boulderWasDestroyed;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        boulderWasDestroyed = false;
         jumps = 1;
         speed = 10;
         PlayerState = 0;
@@ -276,6 +278,12 @@ public class CharScript : MonoBehaviour
         }
 
         SetAnimationState();
+
+        if (SetSpaceOptionsPromptsBool)
+        {
+            SetSpaceOptionsPrompts();
+            SetSpaceOptionsPromptsBool = false;
+        }
     }
 
     void SetSpaceOptionsPrompts()

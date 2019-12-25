@@ -3308,8 +3308,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: Wait a second! You need a permission slip to enter through here. Go talk
-        with the mayor.
+      text: Wait a second! *cough* You need a permission slip to enter through here.
+        Go talk with the mayor.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3322,7 +3322,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 70
+    lastCalculatedHeight: 268
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -3330,7 +3330,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: Thanks sir. But I believe the workers might need this more than me.
+      text: Thanks sir. *cough* But I believe the workers might need this more than
+        me.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3345,7 +3346,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: Why would you do this!? I'm just doing my job!
+      text: Why would you do this!? I'm just doing my job! *cough*
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3360,7 +3361,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: So, do you regret what you did? You can apologise now.
+      text: '*cough* *cough* So, do you regret what you did? You can apologise now.'
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3686,8 +3687,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 1
-    lastCalculatedHeight: 628
+    expanded: 0
+    lastCalculatedHeight: 16
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -4166,14 +4167,14 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: 
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 268
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -5760,7 +5761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fdb1e355142e1142b652bfd7d05eaba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alive: 1
+  alive: 0
   sick: 1
   regularSpeech:
     busyBehavior: 0
@@ -11917,7 +11918,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799663570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 159.34, y: 10.87, z: 0}
+  m_LocalPosition: {x: 156.42, y: 10.87, z: 0}
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 550423745}

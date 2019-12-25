@@ -101,22 +101,36 @@ public class NPCScript : MonoBehaviour
             }
             else if (npcSituation == "SickWorker" && sendWorkerOption)
             {
+                NarrationManager.instance.PlayNarration(regularSpeech);
+                transform.position = new Vector2(163, 11);
+                GetComponent<BoxCollider2D>().enabled = false;
                 CharScript.sentWorker = true;
-                NarrationManager.instance.PlayNarration(regularSpeech);
             }
-            else if (npcSituation == "WorkerChief" && destroyBoulderOption)
+
+            else if (npcSituation == "WorkerChief" && destroyBoulderOption && !CharScript.destroyBoulder)
             {
                 CharScript.destroyBoulder = true;
                 GameObject.Find("Boulder").transform.position = new Vector2(999, 999);
                 NarrationManager.instance.PlayNarration(regularSpeech);
                 destroyBoulderOption = false;
             }
-            else if (npcSituation == "AlchemistChief" && destroyBoulderOption)
+            else if (npcSituation == "WorkerChief" && !destroyBoulderOption && CharScript.destroyBoulder)
             {
+                CharScript.boulderWasDestroyed = true;
                 NarrationManager.instance.PlayNarration(regularSpeech);
+            }
+
+            else if (npcSituation == "AlchemistChief" && destroyBoulderOption && !CharScript.destroyBoulder)
+            {
                 CharScript.destroyBoulder = true;
                 GameObject.Find("Boulder").transform.position = new Vector2(999, 999);
+                NarrationManager.instance.PlayNarration(regularSpeech);
                 destroyBoulderOption = false;
+            }
+            else if (npcSituation == "AlchemistChief" && !destroyBoulderOption && CharScript.destroyBoulder)
+            {
+                CharScript.boulderWasDestroyed = true;
+                NarrationManager.instance.PlayNarration(regularSpeech);
             }
             else
             {
@@ -185,22 +199,33 @@ public class NPCScript : MonoBehaviour
 
         if (InRange && Input.GetKeyDown(KeyCode.C) && CharScript.PlayerState == 2)
         {
-            CharScript.PlayerState = 3;
-            NPCAnimationState = 2; //talk
             if (npcSituation == "WorkerChief" && minersOutOption)
             {
+                CharScript.PlayerState = 0;
+                CharScript.SetSpaceOptionsPromptsBool = true;
+                NPCAnimationState = 0; //talk
                 CharScript.minersOut = true;
                 //Destroy(this.gameObject);
                 transform.position = new Vector2(999, 999);
-                //destroy other miners too
+                GameObject.Find("SickWorker").transform.position = new Vector2(999, 999);
+                GameObject.Find("SickWorker").GetComponent<NPCScript>().alive = false;
+                GameObject.Find("MineGatekeeper").transform.position = new Vector2(999, 999);
+                GameObject.Find("KilledMiner").transform.position = new Vector2(999, 999);
+                GameObject.Find("DrunkMiner").transform.position = new Vector2(999, 999);
+                GameObject.Find("DrunkMiner").GetComponent<NPCScript>().alive = false;
             }
 
             if (npcSituation == "AlchemistChief" && alchemistsOutOption)
             {
+                CharScript.PlayerState = 0;
+                CharScript.SetSpaceOptionsPromptsBool = true;
+                NPCAnimationState = 0; //talk
+
                 CharScript.alchemistsOut = true;
                 //Destroy(this.gameObject);
                 transform.position = new Vector2(999, 999);
-                //destroy other miners too
+                GameObject.Find("Alchemist1").transform.position = new Vector2(999, 999);
+                GameObject.Find("Alchemist2").transform.position = new Vector2(999, 999);
             }
         }
 
@@ -247,7 +272,9 @@ public class NPCScript : MonoBehaviour
                     //we can spawn a different visual here
                     transform.position = new Vector3(200, 10, 0);
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
-                    GetComponent<NPCScript>().enabled = false;
+                    GetComponent<NPCScript>().alive = false;
+                    GetComponent<BoxCollider2D>().enabled = false;
+                    //DISABLED COLLIDER INSTEAD OF SCRIPT TO MAKE HIM DIE
                     sacrificeSickoKiller = true;
                 }
                 break;
@@ -410,7 +437,7 @@ public class NPCScript : MonoBehaviour
                     Debug.Log(CharScript.alchemistsOut);
                     destroyBoulderOption = true;
                 }
-                if (CharScript.alchemistsOut && CharScript.destroyBoulder)
+                if (CharScript.alchemistsOut && CharScript.destroyBoulder && CharScript.boulderWasDestroyed)
                 {
                     regularSpeech.phrases[0].text = "All in a day's work. No need to thank us.";
                     regularSpeech.phrases[1].text = "";
@@ -449,17 +476,17 @@ public class NPCScript : MonoBehaviour
                 break;
 
             case "Alchemist1":
-                if (SpokeWith("AlchemistChief") == 0)
+                if (SpokeWith("AlchemistChief") == 0 && !CharScript.destroyBoulder && conditionedByNPC.GetComponent<NPCScript>().alive)
                 {
                     regularSpeech.phrases[0].text = "You're also alchemists? Where have you guys been living?";
                     regularSpeech.phrases[1].text = "The settlements weren't exactly welcoming of us.";
                 }
-                if (SpokeWith("AlchemistChief") >= 1)
+                if (SpokeWith("AlchemistChief") >= 1 && !CharScript.destroyBoulder && conditionedByNPC.GetComponent<NPCScript>().alive)
                 {
                     regularSpeech.phrases[0].text = "I'm not sure if I agree with the chief...";
                     regularSpeech.phrases[1].text = "This may be our chance to reconnect with the townsfolk. Maybe we should help.";
                 }
-                if (CharScript.destroyBoulder && CharScript.minersOut)
+                if (CharScript.destroyBoulder && CharScript.minersOut && conditionedByNPC.GetComponent<NPCScript>().alive)
                 {
                     regularSpeech.phrases[0].text = "It's always nice to have more alchemists around.";
                     regularSpeech.phrases[1].text = "Make yourselves at home.";
@@ -472,17 +499,17 @@ public class NPCScript : MonoBehaviour
                 break;
 
             case "Alchemist2":
-                //if (SpokeWith("AlchemistChief") == 0)
-                //{
-                //    regularSpeech.phrases[0].text = "Those miner folks sure are noisy!";
-                //    regularSpeech.phrases[1].text = "";
-                //}
-                if (SpokeWith("AlchemistChief") >= 2 && !CharScript.destroyBoulder)
+                if (SpokeWith("AlchemistChief") == 0 && !CharScript.destroyBoulder && conditionedByNPC.GetComponent<NPCScript>().alive)
+                {
+                    regularSpeech.phrases[0].text = "Those miner folks sure are noisy! Not even within a cavern can we do our studies in peace...";
+                    regularSpeech.phrases[1].text = "";
+                }
+                if (SpokeWith("AlchemistChief") >= 2 && !CharScript.destroyBoulder && conditionedByNPC.GetComponent<NPCScript>().alive)
                 {
                     regularSpeech.phrases[0].text = "The chief is right, I don't trust that mayor a bit! How come he only needs us now!?";
                     regularSpeech.phrases[1].text = "I'll bet you 3 potions he just wants to use us.";
                 }
-                else if (CharScript.destroyBoulder && CharScript.minersOut)
+                else if (CharScript.destroyBoulder && CharScript.minersOut && conditionedByNPC.GetComponent<NPCScript>().alive)
                 {
                     regularSpeech.phrases[0].text = "Finally, some quiet. Thanks for getting rid of those pesky miners.";
                     regularSpeech.phrases[1].text = "";
@@ -499,9 +526,9 @@ public class NPCScript : MonoBehaviour
                 {
                     //in the editor
                 }
-                if (SpokeWith("AlchemistChief") >= 1)
+                if (SpokeWith("AlchemistChief") >= 1 && !CharScript.minersOut)
                 {
-                    regularSpeech.phrases[0].text = "I'm not going to change my mind. Enough is enough. They'll have to kill me first";
+                    regularSpeech.phrases[0].text = "I'm not going to change my mind. Enough is enough. They'll have to kill me first to get me out!";
                     regularSpeech.phrases[1].text = "It's the miners who should leave us in peace! I'm sure my pupils will back me up on this.";
                     regularSpeech.phrases[2].text = "";
                     regularSpeech.phrases[3].text = "";
@@ -519,7 +546,7 @@ public class NPCScript : MonoBehaviour
 
                     destroyBoulderOption = true;
                 }
-                if (CharScript.minersOut && CharScript.destroyBoulder)
+                if (CharScript.minersOut && CharScript.destroyBoulder && CharScript.boulderWasDestroyed)
                 {
                     regularSpeech.phrases[0].text = "Hello, friend. Good to see you.";
                     regularSpeech.phrases[1].text = "";
@@ -531,6 +558,11 @@ public class NPCScript : MonoBehaviour
                 if (!alive)
                 {
                     alchemistsOutOption = true;
+                }
+
+                if (alive)
+                {
+                    alchemistsOutOption = false;
                 }
                 break;
 
