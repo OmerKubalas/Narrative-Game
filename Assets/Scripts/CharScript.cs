@@ -79,7 +79,7 @@ public class CharScript : MonoBehaviour
             {
                 if (transform.localScale.x > 0)
                 {
-                   // transform.position += new Vector3(8.1f, 0, 0); //add pixels to make him move correctly
+                    transform.position += new Vector3(8.1f, 0, 0); //add pixels to make him move correctly
                 }
                 transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
                 PlayerAnimationState = 1; //walk
@@ -88,7 +88,7 @@ public class CharScript : MonoBehaviour
             {
                 if (transform.localScale.x < 0)
                 {
-                    //transform.position -= new Vector3(8.1f, 0, 0);
+                    transform.position -= new Vector3(8.1f, 0, 0);
                 }
                 transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 PlayerAnimationState = 1; //walk
@@ -361,7 +361,7 @@ public class CharScript : MonoBehaviour
                 anim.SetInteger("PlayerAnimationState", 1); //walk
                 break;
 
-            case 2: //jump
+            case 2:
                 if (jumpAnimationBlend <= 1.0f)
                 {
                     jumpAnimationBlend += 0.045f;
