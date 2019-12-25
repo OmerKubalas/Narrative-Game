@@ -8,18 +8,19 @@ public class BossScript : MonoBehaviour
     public bool alive;
     bool InRange;
 
+    static public bool alchemistsHelped, alchemistsAlive;
+
 
     //NarrationSpeeches
     public Narration killSpeech; //caseUp
     public Narration failToKillSpeech;
 
     public Narration switchSpeech; //caseRight
-    public Narration failToSwitchSpeech;
 
-    public Narration theOtherSpeech; //caseLeft
+    public Narration alchemistsHelpedSpeech; // caseLeft
+    public Narration theOtherSpeech;
 
     public Narration sacrificeSpeech; //caseDown
-    public Narration killerSacrificeSpeech;
 
     //Animations
     int BossAnimationState;
@@ -60,37 +61,29 @@ public class BossScript : MonoBehaviour
         if (InRange && alive && Input.GetKeyDown(KeyCode.LeftArrow) && CharScript.PlayerState == 12)
         {
             CharScript.PlayerState = 13;
-            NarrationManager.instance.PlayNarration(theOtherSpeech);
+            if (alchemistsHelped && alchemistsAlive)
+            {
+                NarrationManager.instance.PlayNarration(alchemistsHelpedSpeech);
+            }
+            else
+            {
+                NarrationManager.instance.PlayNarration(theOtherSpeech);
+            }
             CharScript.ending = 4;
         }
 
         if (InRange && Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 12)
         {
             CharScript.PlayerState = 13;
-            if (CharScript.reservehealth > 99)
-            {
-                NarrationManager.instance.PlayNarration(switchSpeech);
-                CharScript.ending = 2;
-            }
-            else
-            {
-                NarrationManager.instance.PlayNarration(failToSwitchSpeech);
-            }
+            NarrationManager.instance.PlayNarration(switchSpeech);
+            CharScript.ending = 2;
         }
 
         if (InRange && Input.GetKeyDown(KeyCode.DownArrow) && CharScript.PlayerState == 12)
         {
             CharScript.PlayerState = 13;
-            if (NPCScript.sacrificeSickoKiller)
-            {
-                NarrationManager.instance.PlayNarration(killerSacrificeSpeech); 
-            }
-            else
-            {
-                NarrationManager.instance.PlayNarration(sacrificeSpeech);
-            }
+            NarrationManager.instance.PlayNarration(sacrificeSpeech);
             CharScript.ending = 3;
-
         }
 
        // SetAnimationState();

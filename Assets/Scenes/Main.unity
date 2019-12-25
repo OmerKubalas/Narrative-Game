@@ -465,13 +465,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
-      duration: 0.0000001
-      drawAudio: 1
-      lastCalculatedHeight: 90
-      move: 0
-    - audio: {fileID: 0}
-      text: 'bla bla '
+      text: You know, that gatekeeper was hell of a meal! A sick man has to eat. *cough*
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -492,8 +486,14 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: You might have saved a life just now! *cough* Now, I should be heading
-        east, the voices in my head have been growing louder.
+      text: You might have saved a life just now! *cough*
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Now, I should be heading east, the voices in my head have been growing
+        louder.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -508,7 +508,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: Oh well! This world was shit, anyway.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -523,7 +523,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: Why the fuck would you do that!? Are you messing with me!?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -1833,13 +1833,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
-      duration: 0.0000001
-      drawAudio: 1
-      lastCalculatedHeight: 90
-      move: 0
-    - audio: {fileID: 0}
-      text: 'bla bla '
+      text: Go away alchemist! We have it bad enough without your wicked magic cursing
+        our village!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -1854,7 +1849,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: I'm not so easily fooled. This won't help you get on my good side!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -1869,7 +1864,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: You come here, uninvited, and dare to practice your alchemy on us!?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -1884,7 +1879,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: Are our lives just toys for you to play with?!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -2180,7 +2175,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: My son is more worthy of this! You should've given it to him! Please!
+      text: My son needs this more than I do! You shouldn't waste it on me, please!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -2195,7 +2190,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: Please, give my life to my son..
+      text: Please, heal my son!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -2694,6 +2689,38 @@ PrefabInstance:
       propertyPath: m_Text
       value: Press "Space" to Continue
       objectReference: {fileID: 0}
+    - target: {fileID: 11401396, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401396, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401396, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491702, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491702, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491702, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 22447206, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -665
+      objectReference: {fileID: 0}
+    - target: {fileID: 22447206, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -128
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
 --- !u!1 &445413758
@@ -2873,7 +2900,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 260.00003, y: 30.000004}
+  m_AnchoredPosition: {x: 260.00006, y: 30.000004}
   m_SizeDelta: {x: 60, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &468746488
@@ -4506,7 +4533,7 @@ RectTransform:
   m_GameObject: {fileID: 661054876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.033492822, y: 0.033492822, z: 0.033492822}
+  m_LocalScale: {x: 0.0129629625, y: 0.0129629625, z: 0.0129629625}
   m_Children:
   - {fileID: 1269369969}
   - {fileID: 454443687}
@@ -4515,8 +4542,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 758, y: 418}
+  m_AnchoredPosition: {x: -7.77, y: 0}
+  m_SizeDelta: {x: 1920.0001, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &677580906
 GameObject:
@@ -6206,8 +6233,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -6215,14 +6242,15 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: Oh thanks sir. *COUGH COUGH* By the way, they say there's a crazed murderer
+        on the loose! Be careful, now.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   aliveTakeLifeSpeech:
     busyBehavior: 0
@@ -6230,14 +6258,15 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: What have I done to you!?... Maybe that's what I get for lying about my
+        health.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   deadGiveLifeSpeech:
     busyBehavior: 0
@@ -6245,14 +6274,15 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: You brought me back? I promise I will never lie about my health again,
+        sir.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   npcSituation: Beggar
   conditionedByNPC: {fileID: 0}
@@ -8938,7 +8968,42 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: Oh no I'm dying.
+      text: You would dare challange me? You should know that it is futile, as long
+        as I draw power from the curse...
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Wait, how can this be!? I feel no power flowing into me! What have you
+        done to those I've cursed!?
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: You've slaughtered them all, just to stand a chance against me!? Your
+        selfishness will be the undoing of this world!
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: You've slaughtered them all, just to stand a chance against me!? Your
+        selfishness will be the undoing of this world!
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: It's foolish to presume this land can thrive on alchemy alone!
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: It is the people who need me, not the other way around! Curse you! You
+        will regret this!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -8953,7 +9018,15 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You fool, you can't kill me while I draw energy from the sick.
+      text: Fool! It's not possible for you to match my might! I draw power from humanity
+        itself.
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: As long as the people under my curse are alive, you cannot hope to defeat
+        me!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -8968,7 +9041,51 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: switchspeech
+      text: So you have no interest in restoring the wellness of the people?
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: All you want is to decide who is cursed and who is not?
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Is this meant to be an act of justice? Of revenge?
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Perhaps a punishment to the people who have mistreated others?
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Such strange ideals, it seems you alchemists are not any more noble than
+        the rest.
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: I will humor your request, alchemist...
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: But know that my curse will continue devouring life from humanity for
+        many future generations to come.
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Until someone more responsible than you does what is necessary...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -8977,14 +9094,85 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  failToSwitchSpeech:
+  alchemistsHelpedSpeech:
     busyBehavior: 0
     singleAudio_MultiSub: 0
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: bring me some life energy
-      duration: 0.0000001
+      text: You genuinely think your powers of alchemy can fell a god? Preposterous.
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Some fools have attempted it, but there has not been a single alchemist
+        in history who was strong enough to overcome a god.
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: What makes you believe you are any different?
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: 'Alchemist 1: He is not just a "single" alchemist. We''re here to help!'
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: 'Alchemist 2: I''ve seen this boy''s powers, they''re unlike anything
+        I''ve seen before.'
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: I'd say they easily tread into "godly" territory.
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: 'Alchemist Chief: So there really was a temple hidden behind the mines...
+        We can do our research later.'
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Worry not, child. We told you we would stand by you when you needed us.
+        It seems this is the time.
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Extend us your life force as we focus our powers on him!
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: 'The Hunger God: This... this is too much! How can you control the life
+        force of others!?'
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Only gods have the rights to such a power! This is blasphemous!
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Curse you! You will not be forgiven for this!
+      duration: 0
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
@@ -8998,7 +9186,20 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: other speech
+      text: You genuinely think your powers of alchemy can fell a god? Preposterous.
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Some fools have attempted it, but there has not been a single alchemist
+        in history who was strong enough to overcome a god.
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: What makes you believe you are any different?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -9013,20 +9214,24 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: Humanity will be safe from the curse for a while.
+      text: Very wise of you, alchemist. Your past transgressions are now forgiven!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
-    LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
-    useSmartSubs: 0
-  killerSacrificeSpeech:
-    busyBehavior: 0
-    singleAudio_MultiSub: 0
-    mainAudio: {fileID: 0}
-    phrases: []
+    - audio: {fileID: 0}
+      text: The people shall regain their faith!
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: All will be well for this land, as long as they stay loyal to me, offer
+        me prayer and sacrifice.
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
     LoopAudioForDuration: 0
     expanded: 0
     lastCalculatedHeight: 16
@@ -9247,13 +9452,21 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
+      text: You alchemists have damned us all with your witchcraft!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: You turned your backs on the gods and this terrible sickness is ravaging
+        the land!
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Your damned powers cannot even do a thing against it! Such a mockery,
+        you are!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -9268,7 +9481,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: I don't need help from the likes of you!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -9283,7 +9496,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: 'Damn you! Know that you will all be smitten by the gods! '
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -9298,7 +9511,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: I don't need your pity. I'd rather be at the gods' side than in this wicked
+        world!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -10804,8 +11018,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -10813,7 +11027,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've extended my life a bit more.. For that, I'm thankful
+      text: '*cough* I feel a bit better... Thank you, sir.'
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -13244,16 +13458,22 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: ' I come from the upper village. Those pompous assholes think they can
-        go around kicking out the sick. *cough* They say we''re costly to sustain,
-        as if they don''t run around squandering their money as it is!'
+      text: I come from the upper village. Those pompous assholes think they can go
+        around kicking out the sick.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: f only I could enter the mines and work there, but they won't let me in
-        without the mayor's permission either.
+      text: '*cough* They say we''re costly to sustain, as if they don''t run around
+        squandering their money as it is!'
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: If only I could enter the mines and work there, but they won't let me
+        in without the mayor's permission either.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -13274,7 +13494,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: Thank you, sir. But I'd appreciate it a lot more if you'd help me find
+        a way to sustain myself.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -13289,7 +13510,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: It's been a hard knock life *cough*, and now it's over...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -13304,7 +13525,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: 'Back to the same struggle... *sigh* '
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
