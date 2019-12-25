@@ -2031,14 +2031,33 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: brother speech
+      text: 'Brother: The voices keep calling me east towards the mines...'
+      duration: 0.0000001
+      drawAudio: 0
+      lastCalculatedHeight: 72
+      move: 0
+    - audio: {fileID: 0}
+      text: I know my condition makes it hard for me to travel, but I want answers!
+      duration: 0.0000001
+      drawAudio: 0
+      lastCalculatedHeight: 72
+      move: 0
+    - audio: {fileID: 0}
+      text: And I have you by my side, I know you'll keep me safe and healthy with
+        your powers, big brother.
+      duration: 0.0000001
+      drawAudio: 0
+      lastCalculatedHeight: 72
+      move: 0
+    - audio: {fileID: 0}
+      text: Please take me to the east!
       duration: 0.0000001
       drawAudio: 0
       lastCalculatedHeight: 72
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 394
     useSmartSubs: 0
 --- !u!61 &299455942
 BoxCollider2D:
@@ -3891,7 +3910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerbody: {fileID: 537712182}
   speed: 10
-  jumpForce: 16.5
+  jumpForce: 20
   spacePopup: {fileID: 1617178343}
   optionsPopup: {fileID: 345127369}
   bossOptionsPopup: {fileID: 157907341}
@@ -3944,7 +3963,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8106346, y: 2.9897146}
+  m_Size: {x: 4, y: 2.9897146}
   m_EdgeRadius: 0
 --- !u!1 &550423744
 GameObject:
@@ -4970,7 +4989,7 @@ MonoBehaviour:
     lastCalculatedHeight: 16
     useSmartSubs: 0
   npcSituation: DrunkMiner
-  conditionedByNPC: {fileID: 0}
+  conditionedByNPC: {fileID: 784217198}
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
@@ -5072,13 +5091,13 @@ MonoBehaviour:
     phrases:
     - audio: {fileID: 0}
       text: Dead guyyy... *hic* Funny, right?
-      duration: 0
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 70
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   - busyBehavior: 0
     singleAudio_MultiSub: 0
@@ -5086,13 +5105,13 @@ MonoBehaviour:
     phrases:
     - audio: {fileID: 0}
       text: Drinking on the job? *burp* No, man, this is just water.
-      duration: 0
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 70
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   - busyBehavior: 0
     singleAudio_MultiSub: 0
@@ -5101,13 +5120,13 @@ MonoBehaviour:
     - audio: {fileID: 0}
       text: "\u266AYou load sixteen tons, what do you get, *burp* another day older
         and deeper in debt\u266A"
-      duration: 0
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 70
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   - busyBehavior: 0
     singleAudio_MultiSub: 0
@@ -5115,19 +5134,13 @@ MonoBehaviour:
     phrases:
     - audio: {fileID: 0}
       text: Umm... We were supposed to dig... down... right...?
-      duration: 0
-      drawAudio: 1
-      lastCalculatedHeight: 90
-      move: 0
-    - audio: {fileID: 0}
-      text: 'Spread their word and hope it''s not too late! '
-      duration: 0
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
 --- !u!1 &790241710
 GameObject:
@@ -10727,14 +10740,40 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: brother speech
+      text: 'Brother: Big brother... *cough* How long do we plan on living like this?'
+      duration: 0.0000001
+      drawAudio: 0
+      lastCalculatedHeight: 72
+      move: 0
+    - audio: {fileID: 0}
+      text: It's been years since the failed experiment and the voices in my head
+        have been growing louder...
+      duration: 0.0000001
+      drawAudio: 0
+      lastCalculatedHeight: 72
+      move: 0
+    - audio: {fileID: 0}
+      text: Do you suppose it's because of my sickness?
+      duration: 0.0000001
+      drawAudio: 0
+      lastCalculatedHeight: 72
+      move: 0
+    - audio: {fileID: 0}
+      text: Our parents gave their life trying to cure me and it's only because of
+        them that you have your powers!
+      duration: 0.0000001
+      drawAudio: 0
+      lastCalculatedHeight: 72
+      move: 0
+    - audio: {fileID: 0}
+      text: '*cough* Won''t you try finish what they started? '
       duration: 0.0000001
       drawAudio: 0
       lastCalculatedHeight: 72
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 466
     useSmartSubs: 0
 --- !u!212 &1603169106
 SpriteRenderer:
@@ -11911,8 +11950,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 268
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -13102,13 +13141,13 @@ MonoBehaviour:
     phrases:
     - audio: {fileID: 0}
       text: 
-      duration: 0
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
       text: 
-      duration: 0
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
@@ -13266,13 +13305,13 @@ MonoBehaviour:
     phrases:
     - audio: {fileID: 0}
       text: ' Hear ye! You''ve forgotten the gods and now we all suffer the consequences. '
-      duration: 0
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   - busyBehavior: 0
     singleAudio_MultiSub: 0
@@ -13280,19 +13319,19 @@ MonoBehaviour:
     phrases:
     - audio: {fileID: 0}
       text: Hear ye! The gods are angry! We haven't bid their due faith.
-      duration: 0
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
       text: 'They unleashed this sickness upon us to drain us of our lives. '
-      duration: 0
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 268
     useSmartSubs: 0
   - busyBehavior: 0
     singleAudio_MultiSub: 0
@@ -13300,13 +13339,13 @@ MonoBehaviour:
     phrases:
     - audio: {fileID: 0}
       text: Repent! Repent and ask for forgiveness!
-      duration: 0
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   - busyBehavior: 0
     singleAudio_MultiSub: 0
@@ -13314,19 +13353,19 @@ MonoBehaviour:
     phrases:
     - audio: {fileID: 0}
       text: How long has it been since you last praised our gods!?
-      duration: 0
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
       text: 'Spread their word and hope it''s not too late! '
-      duration: 0
+      duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 268
     useSmartSubs: 0
 --- !u!1 &2003705607
 GameObject:

@@ -42,7 +42,6 @@ public class CharScript : MonoBehaviour
     {
         jumps = 1;
         speed = 10;
-        jumpForce = 16.5f;
         PlayerState = 0;
         sanity = 4;
         reservehealth = 0;
