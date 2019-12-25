@@ -254,13 +254,14 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
+      text: The mayor imprisoned us here. Brought this doctor to make sense of our
+        sickness.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: Why? *cough* He never seemed interested in helping us before.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -275,7 +276,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: Oh, great! I get to suffer a bit longer here! Get us out if you really
+        want to help!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -290,7 +292,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: Better than rotting away in this cell...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -305,7 +307,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: Alive... But still not free...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -317,6 +319,9 @@ MonoBehaviour:
   npcSituation: 
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &33781253
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -535,6 +540,9 @@ MonoBehaviour:
   npcSituation: SickoKiller
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &43686309
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -790,13 +798,19 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
+      text: Hmm... I haven't seen anything like this in my whole life as a doctor...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: It seems this sickness cannot be cured by traditional medicine.
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: It needs a completely different approach... Alchemy, perhaps...?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -811,7 +825,14 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: Oh, so you're an alchemist. Nice to see that some of you support our science.
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: If you'd like to help me with my research, you should go talk to the mayor.
+        He's the one issuing the orders.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -826,7 +847,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: I'm innocent! I didn't imprison these people, I was just following orders!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -841,7 +862,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: Wow! Alchemists can do this too!? I hope some day our science can also
+        reach such heights...!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -853,6 +875,9 @@ MonoBehaviour:
   npcSituation: 
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &46782125
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1891,6 +1916,9 @@ MonoBehaviour:
   npcSituation: 
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &289924868
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2217,6 +2245,9 @@ MonoBehaviour:
   npcSituation: Mother
   conditionedByNPC: {fileID: 1617501930}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &333641091
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3007,13 +3038,13 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
+      text: You're also alchemists? Where have you guys been living?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: The settlements weren't exactly welcoming of us.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3028,7 +3059,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: Huh? How did you do that? Is it an original healing salve you've mixed?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3043,7 +3074,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: What are you doing!? We're all alchemists here, we're supposed to be brethren...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3058,7 +3089,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: I'm... I'm back...? Such power shouldn't be misused like that...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3070,6 +3101,9 @@ MonoBehaviour:
   npcSituation: 
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &472993489
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3249,20 +3283,21 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
+      text: Wait a second! You need a permission slip to enter through here. Go talk
+        with the mayor.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: 
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 268
+    lastCalculatedHeight: 70
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -3270,7 +3305,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: Thanks sir. But I believe the workers might need this more than me.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3285,7 +3320,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: Why would you do this!? I'm just doing my job!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3300,7 +3335,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: So, do you regret what you did? You can apologise now.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3312,6 +3347,9 @@ MonoBehaviour:
   npcSituation: MineGatekeeper
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &490571571
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3584,13 +3622,39 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
+      text: Welcome, it's rare to see other alchemists nowadays, what's the occasion?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: What? The mayor of the city want us out the cavern? And to help him with
+        his research?
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: They drove us out the settlements in the past, now they want us out the
+        cavern,
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: and they expect us to help them on top of all that?
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Such audacity! Have they no shame!? Absolutely not!
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: If anything, it's those rowdy miners who should get out of OUR cave!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3605,7 +3669,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: An impressive use of alchemy. Where did you learn such a technique?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3620,7 +3684,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: Does this mean you're siding against us!? So you would betray your own
+        kind!? I pity you...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3635,7 +3700,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: Playing with lives is no trivial matter! An alchemist should know better!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -3647,6 +3712,9 @@ MonoBehaviour:
   npcSituation: 
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &526233142
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4086,7 +4154,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: Ahh, music to my bones.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -4101,7 +4169,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: Are just another crazy!? What are YOU(italic) on!?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -4116,7 +4184,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: I knew that guy would be the death of us someday. It seems he already
+        became the death of me...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -4128,6 +4197,9 @@ MonoBehaviour:
   npcSituation: KilledMiner
   conditionedByNPC: {fileID: 784217198}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &639290177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4858,7 +4930,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: Never felt better! *burp* My head's a bit spinny, but that's okay...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -4873,7 +4945,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: '*giggle* That tickles! *burp*'
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -4888,7 +4960,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: Yeah! *hic* I'm feeling alive!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -4900,6 +4972,9 @@ MonoBehaviour:
   npcSituation: DrunkMiner
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &784217202
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5003,7 +5078,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
   - busyBehavior: 0
     singleAudio_MultiSub: 0
@@ -5017,7 +5092,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 178
+    lastCalculatedHeight: 70
     useSmartSubs: 0
   - busyBehavior: 0
     singleAudio_MultiSub: 0
@@ -5662,7 +5737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fdb1e355142e1142b652bfd7d05eaba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alive: 0
+  alive: 1
   sick: 1
   regularSpeech:
     busyBehavior: 0
@@ -5670,13 +5745,21 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
+      text: The mayor ordered for the sick to be kicked out. He must have gone mad!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: I've been working for him for a long time, and for the past years, he's
+        been talking about hearing voices in his head!
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: '*cough* Surely, he''s not a sane man anymore. He should not be taken
+        seriously!'
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -5691,7 +5774,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: I don't want help! I want revenge!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -5706,7 +5789,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: I thought you valued life, I guess I was mistaken. *cough*
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -5721,7 +5804,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: What happened? Oh, I remember... So this is how honest folks are treated
+        nowadays, huh?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -5733,6 +5817,9 @@ MonoBehaviour:
   npcSituation: Corpse2
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &888470686
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6287,6 +6374,9 @@ MonoBehaviour:
   npcSituation: Beggar
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &947949222
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6560,8 +6650,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 1
-    lastCalculatedHeight: 358
+    expanded: 0
+    lastCalculatedHeight: 16
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -6569,7 +6659,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: Please, my husband needs this more than I do.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -6599,7 +6689,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: What just happened?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -6611,6 +6701,9 @@ MonoBehaviour:
   npcSituation: Wife
   conditionedByNPC: {fileID: 1839091826}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &958291377
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6789,13 +6882,21 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
+      text: Just 'cause we're sick doesn't mean they can kick us out the town, look
+        what they did to us for resisting!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: '*cough* John was about to voice an objection when this guy knocked the
+        life out of us.'
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: It sounded like he knew something important...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -6810,7 +6911,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: 'Thank you. Really helps out a sick man. '
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -6825,7 +6926,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: No! Not back to the darkness again!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -6840,7 +6941,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: Oh! I'm back! What happened to *John*!?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -6852,6 +6953,9 @@ MonoBehaviour:
   npcSituation: Corpse1
   conditionedByNPC: {fileID: 888470682}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &964936674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7064,13 +7168,22 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
+      text: Your partner seems a bit sick. Sick people are not allowed here, they're
+        starting to become a drain on our resources.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: Try to enter and I'll make an example out of you like I did with the guys
+        outside.
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Oh, you're an alchemist? Never mind then, come right in. The mayor was
+        just looking for some alchemists.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -7085,7 +7198,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: I'm plenty healthy, sir. But thank you for your concern.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -7100,7 +7213,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: Who do you think you are! I'm the mayor's right hand man!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -7115,7 +7228,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: Good. I respect a man who can right his wrongs.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -7127,6 +7240,9 @@ MonoBehaviour:
   npcSituation: 
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &1031524782
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9524,6 +9640,9 @@ MonoBehaviour:
   npcSituation: 
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &1467911992
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9873,26 +9992,47 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
+      text: An alchemist just walks into my mansion... What are the odds?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: Don't worry, your kind is very welcome here. In fact, I have a small favor
+        to ask of you. *cough*
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: I heard there are other alchemists like you residing underground. So I'll
+        give you a key to the mines.
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: In turn, would you be as kind as to send your alchemist friends to me?
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: The miners have been complaining about them, and we need their help for
+        research. *cough*
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: It's for a good cause, you can trust me.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 1
-    lastCalculatedHeight: 358
+    expanded: 0
+    lastCalculatedHeight: 16
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -9900,7 +10040,14 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: So this is the power of alchemy... Pretty neat! *cough* I wonder if it
+        could work on the sickness.
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: It pains me to see all of these sick people suffering, *cough* truly.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -9915,7 +10062,13 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: Are you insane? This town will fall to ruin without my leadership!
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Killing me means reuining everyone's lives here!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -9930,7 +10083,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: So you've come to your senses? I had my trust in you. Not so sure now.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -9942,6 +10095,9 @@ MonoBehaviour:
   npcSituation: Mayor
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &1522900736
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10227,13 +10383,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
-      duration: 0.0000001
-      drawAudio: 1
-      lastCalculatedHeight: 90
-      move: 0
-    - audio: {fileID: 0}
-      text: 'bla bla '
+      text: Those miner folks sure are noisy! Not even within a cavern can we do our
+        studies in peace...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -10248,7 +10399,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: I've never seen alchemy like that before... You simply must let us study
+        it!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -10263,7 +10415,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: I've always wondered what the afterlife is like...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -10278,7 +10430,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: I'm... Huh... I'm back. But I can't remember anything about the other
+        side. How peculiar...
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -10290,6 +10443,9 @@ MonoBehaviour:
   npcSituation: 
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &1564974720
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11069,6 +11225,9 @@ MonoBehaviour:
   npcSituation: Son
   conditionedByNPC: {fileID: 333641088}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &1617501934
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11726,20 +11885,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alive: 1
-  sick: 1
+  sick: 0
   regularSpeech:
     busyBehavior: 0
     singleAudio_MultiSub: 0
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
+      text: Hello, sir. We're working hard as usual, but we are short on workers.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: If you bring us a worker, it'd be great.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -11754,7 +11913,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: What... What did you just do? I felt a jolt of energy pass through me.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -11769,7 +11928,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: What's happening!? We're just doing our jobs here!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -11784,7 +11943,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: Can a working class man not find any rest, even in death?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -11796,6 +11955,9 @@ MonoBehaviour:
   npcSituation: WorkerChief
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &1799663574
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12082,13 +12244,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
-      duration: 0.0000001
-      drawAudio: 1
-      lastCalculatedHeight: 90
-      move: 0
-    - audio: {fileID: 0}
-      text: 'bla bla '
+      text: I get a terrible headache whenever I attempt to recall... Can you help
+        me...?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -12103,14 +12260,14 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: 'I needed this after being knocked out for a while. '
+      text: I needed this after being knocked out for a while. Thanks.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 1
-    lastCalculatedHeight: 178
+    expanded: 0
+    lastCalculatedHeight: 16
     useSmartSubs: 0
   aliveTakeLifeSpeech:
     busyBehavior: 0
@@ -12118,7 +12275,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: No! Stop! Are you also one of his henchmen!?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -12133,7 +12290,14 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: Where am I? The moment I ran out of the mayor's mansion, I felt a heavy
+        impact on my back and everything went black...
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: Did I not die? How did I end up here?
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -12145,6 +12309,9 @@ MonoBehaviour:
   npcSituation: Husband
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &1839091830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12948,7 +13115,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I can hope for a better world for a longer time now.
+      text: I don't need your alchemy! Keep your accursed powers away from me!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -12963,7 +13130,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: Oh gods, I have been your humble servant my whole life. Now, I come to
+        your side!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -12978,7 +13146,8 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've died and lived, and life hasn't changed yet.
+      text: 'Only the gods have the right to grant life! You are a heretic for assuming
+        yourself the same! '
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -12990,6 +13159,9 @@ MonoBehaviour:
   npcSituation: Worshipper
   conditionedByNPC: {fileID: 1467911988}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &1994717652
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13537,6 +13709,9 @@ MonoBehaviour:
   npcSituation: SickWorker
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
+  minersOutOption: 0
+  alchemistsOutOption: 0
+  destroyBoulder: 0
 --- !u!61 &2050327417
 BoxCollider2D:
   m_ObjectHideFlags: 0
