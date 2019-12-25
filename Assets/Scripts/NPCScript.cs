@@ -27,7 +27,7 @@ public class NPCScript : MonoBehaviour
 
     //ExtraSpecialConditions
     public static bool sacrificeSickoKiller, collapsedMine;
-    bool spokenWithJohn, spokenWithHusband; //erase
+    public bool minersOutOption, alchemistsOutOption, destroyBoulder;
 
 
     //Animations
@@ -155,6 +155,42 @@ public class NPCScript : MonoBehaviour
             }
         }
 
+        //conditional buttons and actions
+
+        if (InRange && Input.GetKeyDown(KeyCode.C) && CharScript.PlayerState == 2)
+        {
+            CharScript.PlayerState = 3;
+            NPCAnimationState = 2; //talk
+            if (npcSituation == "WorkerChief" && minersOutOption)
+            {
+                Destroy(this.gameObject);
+                //destroy other miners too
+                CharScript.minersOut = true;
+            }
+
+            if (npcSituation == "AlchemistChief" && alchemistsOutOption)
+            {
+                Destroy(this.gameObject);
+                //destroy other miners too
+                CharScript.alchemistsOut = true;
+            }
+        }
+
+        if (CharScript.minersOut)
+        {
+            alchemistsOutOption = false;
+        }
+        if (CharScript.alchemistsOut)
+        {
+            minersOutOption = false;
+        }
+
+        //if (destroyBoulder)
+        //{
+        //    //Destroy boulder
+        //    destroyBoulder = false;
+        //}
+
         //NarrationCases (we may customize any npc speech to our liking here)
         switch (npcSituation)
         {
@@ -206,14 +242,16 @@ public class NPCScript : MonoBehaviour
                 if (SpokeWith("SickWorker") == 0)
                 {
                     regularSpeech.phrases[0].text = "I come from the upper village. Those pompous assholes think they can go around kicking out the sick.";
-                    regularSpeech.phrases[1].text = "wo*cough* They say we're costly to sustain, as if they don't run around squandering their money as it is! If only I could enter the mines and work there, but they won't let me in without the mayor's permission either.rkedddd";
-                    regularSpeech.phrases[2].text = "Talk about being caught between a rock and a hard place.";
+                    regularSpeech.phrases[1].text = "*cough* They say we're costly to sustain, as if they don't run around squandering their money as it is!";
+                    regularSpeech.phrases[2].text = "If only I could enter the mines and work there, but they won't let me in without the mayor's permission either.";
+                    regularSpeech.phrases[3].text = "Talk about being caught between a rock and a hard place.";
                 }
                 if (SpokeWith("SickWorker") >= 1) //if killed and brought back
                 {
                     regularSpeech.phrases[0].text = "Hello again, any news about the mine situation? *cough*";
                     regularSpeech.phrases[1].text = "";
                     regularSpeech.phrases[2].text = "";
+                    regularSpeech.phrases[3].text = "";
                     regularSpeechDone = 1;
 
                     if (SpokeWith("WorkerChief") >= 1)
@@ -337,6 +375,12 @@ public class NPCScript : MonoBehaviour
                     regularSpeech.phrases[0].text = "Thanks for bringing us that guy. We can work a bit more effectively now.";
                     regularSpeech.phrases[1].text = "Now only if those shady alchemists were gone, then we could truly focus and break this boulder.";
                 }
+
+                if (SpokeWith("AlchemistChief") >= 2)
+                {
+                    //option spawns to drive out the miners
+                    minersOutOption = true;
+                }
                 //TO-DO: ADD GONE ALCHEMISTS
                 break;
 
@@ -370,6 +414,23 @@ public class NPCScript : MonoBehaviour
                 if (SpokeWith("AlchemistChief") >= 1)
                 {
                     regularSpeech.phrases[0].text = "I'm not going to change my mind. Enough is enough. They'll have to kill me first";
+                }
+                if (CharScript.minersOut && !destroyBoulder)
+                {
+                    regularSpeech.phrases[0].text = " You got rid of those miners for us. Thank you. From now on, we'll be there when you need us.";
+                    if (SpokeWith("AlchemistChief") >= 3)
+                    {
+                        destroyBoulder = true;
+                        Debug.Log("DestroyBoulder");
+                    }
+                }
+                if (CharScript.minersOut && destroyBoulder)
+                {
+                    regularSpeech.phrases[0].text = "Hello, friend. Good to see you.";
+                }
+                if (!alive)
+                {
+                    alchemistsOutOption = true;
                 }
                 break;
 

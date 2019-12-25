@@ -33,6 +33,10 @@ public class CharScript : MonoBehaviour
 
     public static int ending = 0;
 
+
+    //conditionalBools
+    public static bool minersOut, alchemistsOut;
+
     // Start is called before the first frame update
     void Start()
     {
