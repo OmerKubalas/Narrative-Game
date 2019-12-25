@@ -316,6 +316,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: 
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &33781253
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -533,6 +534,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: SickoKiller
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &43686309
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -850,6 +852,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: 
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &46782125
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1066,7 +1069,7 @@ GameObject:
   - component: {fileID: 76879206}
   - component: {fileID: 76879205}
   m_Layer: 0
-  m_Name: Ground (15)
+  m_Name: MineGate
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1080,8 +1083,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76879203}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 120.94, y: 12.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 120.94, y: 13.01, z: 0}
+  m_LocalScale: {x: 1, y: 2.6625, z: 1}
   m_Children: []
   m_Father: {fileID: 1369932554}
   m_RootOrder: 12
@@ -1093,7 +1096,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76879203}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: ce5a18d1bcf604e498e32f29443bb6ac, type: 2}
   m_IsTrigger: 0
@@ -1892,6 +1895,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: 
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &289924868
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2217,6 +2221,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: Mother
   conditionedByNPC: {fileID: 1617501930}
+  regularSpeechDone: 0
 --- !u!61 &333641091
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3037,6 +3042,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: 
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &472993489
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3228,8 +3234,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 268
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -3276,8 +3282,9 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
+  npcSituation: MineGatekeeper
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &490571571
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3612,6 +3619,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: 
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &526233142
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4090,8 +4098,9 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
-  conditionedByNPC: {fileID: 0}
+  npcSituation: KilledMiner
+  conditionedByNPC: {fileID: 784217198}
+  regularSpeechDone: 0
 --- !u!61 &639290177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4740,6 +4749,7 @@ GameObject:
   - component: {fileID: 784217202}
   - component: {fileID: 784217201}
   - component: {fileID: 784217200}
+  - component: {fileID: 784217204}
   m_Layer: 0
   m_Name: DrunkMiner
   m_TagString: NPC
@@ -4860,8 +4870,9 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
+  npcSituation: DrunkMiner
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &784217202
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4937,6 +4948,85 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &784217204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784217198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e01524c299bc6744aea5de0ff276f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whenEndReached: 4
+  loopNarrations: 1
+  shuffle: 1
+  narrations:
+  - busyBehavior: 0
+    singleAudio_MultiSub: 0
+    mainAudio: {fileID: 0}
+    phrases:
+    - audio: {fileID: 0}
+      text: Dead guyyy... *hic* Funny, right?
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    LoopAudioForDuration: 0
+    expanded: 1
+    lastCalculatedHeight: 178
+    useSmartSubs: 0
+  - busyBehavior: 0
+    singleAudio_MultiSub: 0
+    mainAudio: {fileID: 0}
+    phrases:
+    - audio: {fileID: 0}
+      text: Drinking on the job? *burp* No, man, this is just water.
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    LoopAudioForDuration: 0
+    expanded: 1
+    lastCalculatedHeight: 178
+    useSmartSubs: 0
+  - busyBehavior: 0
+    singleAudio_MultiSub: 0
+    mainAudio: {fileID: 0}
+    phrases:
+    - audio: {fileID: 0}
+      text: "\u266AYou load sixteen tons, what do you get, *burp* another day older
+        and deeper in debt\u266A"
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    LoopAudioForDuration: 0
+    expanded: 1
+    lastCalculatedHeight: 70
+    useSmartSubs: 0
+  - busyBehavior: 0
+    singleAudio_MultiSub: 0
+    mainAudio: {fileID: 0}
+    phrases:
+    - audio: {fileID: 0}
+      text: Umm... We were supposed to dig... down... right...?
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: 'Spread their word and hope it''s not too late! '
+      duration: 0
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    LoopAudioForDuration: 0
+    expanded: 0
+    lastCalculatedHeight: 16
+    useSmartSubs: 0
 --- !u!1 &790241710
 GameObject:
   m_ObjectHideFlags: 0
@@ -5508,7 +5598,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888470682}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 53.5, y: 26.87, z: 0}
+  m_LocalPosition: {x: 50, y: 26.87, z: 0}
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 848026697}
@@ -5615,6 +5705,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: Corpse2
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &888470686
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6165,6 +6256,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: Beggar
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &947949222
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6488,6 +6580,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: Wife
   conditionedByNPC: {fileID: 1839091826}
+  regularSpeechDone: 0
 --- !u!61 &958291377
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6621,7 +6714,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 964936670}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 49.73, y: 26.8, z: 0}
+  m_LocalPosition: {x: 54, y: 26.8, z: 0}
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 848026697}
@@ -6728,6 +6821,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: Corpse1
   conditionedByNPC: {fileID: 888470682}
+  regularSpeechDone: 0
 --- !u!61 &964936674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7002,6 +7096,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: 
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &1031524782
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7129,7 +7224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &1061091455
 Rigidbody2D:
   serializedVersion: 4
@@ -9214,6 +9309,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: 
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &1467911992
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9631,6 +9727,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: Mayor
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &1522900736
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9978,6 +10075,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: 
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &1564974720
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10756,6 +10854,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: Son
   conditionedByNPC: {fileID: 333641088}
+  regularSpeechDone: 0
 --- !u!61 &1617501934
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11480,8 +11579,9 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
+  npcSituation: WorkerChief
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &1799663574
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11830,6 +11930,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: Husband
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &1839091830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12674,6 +12775,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: Worshipper
   conditionedByNPC: {fileID: 1467911988}
+  regularSpeechDone: 0
 --- !u!61 &1994717652
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13213,6 +13315,7 @@ MonoBehaviour:
     useSmartSubs: 0
   npcSituation: SickWorker
   conditionedByNPC: {fileID: 0}
+  regularSpeechDone: 0
 --- !u!61 &2050327417
 BoxCollider2D:
   m_ObjectHideFlags: 0
