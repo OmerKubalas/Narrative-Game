@@ -451,11 +451,11 @@ public class NPCScript : MonoBehaviour
                 break;
 
             case "Alchemist2":
-                if (SpokeWith("AlchemistChief") == 0)
-                {
-                    regularSpeech.phrases[0].text = "Those miner folks sure are noisy!";
-                    regularSpeech.phrases[1].text = "Not even within a cavern can we do our research in peace...";
-                }
+                //if (SpokeWith("AlchemistChief") == 0)
+                //{
+                //    regularSpeech.phrases[0].text = "Those miner folks sure are noisy!";
+                //    regularSpeech.phrases[1].text = "";
+                //}
                 if (SpokeWith("AlchemistChief") >= 1)
                 {
                     regularSpeech.phrases[0].text = "The chief is right, I don't trust that mayor a bit! How come he only needs us now!?";

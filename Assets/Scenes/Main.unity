@@ -2706,7 +2706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22416264, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.5100708
+      value: 0.51013184
       objectReference: {fileID: 0}
     - target: {fileID: 22472304, guid: 81bc1efb6a09c7a468f85500c18ef233, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -10389,9 +10389,16 @@ MonoBehaviour:
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
+    - audio: {fileID: 0}
+      text: Those miner folks sure are noisy! Not even within a cavern can we do our
+        studies in peace...
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 268
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
