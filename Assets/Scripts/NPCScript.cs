@@ -157,25 +157,6 @@ public class NPCScript : MonoBehaviour
 
         //conditional buttons and actions
 
-        if (InRange && Input.GetKeyDown(KeyCode.C) && CharScript.PlayerState == 2)
-        {
-            CharScript.PlayerState = 3;
-            NPCAnimationState = 2; //talk
-            if (npcSituation == "WorkerChief" && minersOutOption)
-            {
-                Destroy(this.gameObject);
-                //destroy other miners too
-                CharScript.minersOut = true;
-            }
-
-            if (npcSituation == "AlchemistChief" && alchemistsOutOption)
-            {
-                Destroy(this.gameObject);
-                //destroy other miners too
-                CharScript.alchemistsOut = true;
-            }
-        }
-
         if (CharScript.minersOut)
         {
             alchemistsOutOption = false;
@@ -185,6 +166,25 @@ public class NPCScript : MonoBehaviour
             minersOutOption = false;
         }
 
+        if (InRange && Input.GetKeyDown(KeyCode.C) && CharScript.PlayerState == 2)
+        {
+            CharScript.PlayerState = 3;
+            NPCAnimationState = 2; //talk
+            if (npcSituation == "WorkerChief" && minersOutOption)
+            {
+                CharScript.minersOut = true;
+                Destroy(this.gameObject);
+                //destroy other miners too
+            }
+
+            if (npcSituation == "AlchemistChief" && alchemistsOutOption)
+            {
+                CharScript.alchemistsOut = true;
+                Destroy(this.gameObject);
+                //destroy other miners too
+            }
+        }
+        
         //if (destroyBoulder)
         //{
         //    //Destroy boulder
@@ -318,7 +318,10 @@ public class NPCScript : MonoBehaviour
                 }
                 else
                 {
-                    regularSpeech.phrases[0].text = " Oh, now I remember... I guess that's what he does to those who know too much. My wife and I should be moving out of here... Know this, the mayor is a huge hypocrite, he's kicking out the sick, saying they're a burden on society, but he's actually sick himself.";
+                    regularSpeech.phrases[0].text = " Oh, now I remember... I guess that's what he does to those who know too much. My wife and I should be moving out of here... " +
+                        "Know this, the mayor is a huge hypocrite. " +
+                        "He's kicking out the sick, saying they're a burden on society, but he's actually sick himself.";
+
                     //spokeWithHusband
                 }
                 break;
@@ -346,11 +349,11 @@ public class NPCScript : MonoBehaviour
                 break;
 
             case "MineGatekeeper":
-                if (SpokeWith("Mayor") == 0)
-                {
-                    regularSpeech.phrases[0].text = "Where do you think you're going!? You need a permission slip to enter through here.";
-                    regularSpeech.phrases[1].text = "Go talk with the mayor.";
-                }
+                //if (SpokeWith("Mayor") == 0)
+                //{
+                //    regularSpeech.phrases[0].text = "Where do you think you're going!? You need a permission slip to enter through here.";
+                //    regularSpeech.phrases[1].text = "Go talk with the mayor.";
+                //}
                 if (SpokeWith("Mayor") >= 1)
                 {
                     regularSpeech.phrases[0].text = "You're welcome to come right in with your permission slip.";
@@ -370,17 +373,35 @@ public class NPCScript : MonoBehaviour
                     regularSpeech.phrases[0].text = "You spoke with the alchemists? Well you shouldn't listen to them.";
                     regularSpeech.phrases[1].text = "We're all honest hard working men down here. Please just help us find another worker.";
                 }
-                else if (SpokeWith("SickWorker") >= 2 && SpokeWith("Alchemists") == 0)
+                else if (SpokeWith("SickWorker") >= 2 && !CharScript.alchemistsOut) //alchemists not driven out
                 {
                     regularSpeech.phrases[0].text = "Thanks for bringing us that guy. We can work a bit more effectively now.";
                     regularSpeech.phrases[1].text = "Now only if those shady alchemists were gone, then we could truly focus and break this boulder.";
                 }
+                else if (SpokeWith("SickWorker") >= 2 && CharScript.alchemistsOut && !destroyBoulder)
+                {
+                    regularSpeech.phrases[0].text = "Thank you for everything, sir. We'll get this done real fast for you.";
+                    regularSpeech.phrases[1].text = "";
+                    Debug.Log(CharScript.alchemistsOut);
+                    if (SpokeWith("WorkerChief") >= 3)
+                    {
+                        destroyBoulder = true;
+                        Debug.Log("DestroyBoulder");
+                    }
+                }
+                if (CharScript.alchemistsOut && destroyBoulder)
+                {
+                    regularSpeech.phrases[0].text = "All in a day's work. No need to thank us.";
+                    regularSpeech.phrases[1].text = "";
+                }
+
 
                 if (SpokeWith("AlchemistChief") >= 2)
                 {
                     //option spawns to drive out the miners
                     minersOutOption = true;
                 }
+
                 //TO-DO: ADD GONE ALCHEMISTS
                 break;
 
@@ -406,6 +427,52 @@ public class NPCScript : MonoBehaviour
                 }
                 break;
 
+            case "Alchemist1":
+                if (SpokeWith("AlchemistChief") == 0)
+                {
+                    regularSpeech.phrases[0].text = "You're also alchemists? Where have you guys been living?";
+                    regularSpeech.phrases[1].text = "The settlements weren't exactly welcoming of us.";
+                }
+                if (SpokeWith("AlchemistChief") >= 1)
+                {
+                    regularSpeech.phrases[0].text = "I'm not sure if I agree with the chief...";
+                    regularSpeech.phrases[1].text = "This may be our chance to reconnect with the townsfolk. Maybe we should help.";
+                }
+                if (destroyBoulder && CharScript.minersOut)
+                {
+                    regularSpeech.phrases[0].text = "It's always nice to have more alchemists around.";
+                    regularSpeech.phrases[1].text = "Make yourselves at home.";
+                }
+                if (!conditionedByNPC.GetComponent<NPCScript>().alive) //if alchemistChief is dead
+                {
+                    regularSpeech.phrases[0].text = "So you've chosen to abuse your power against out chief...";
+                    regularSpeech.phrases[1].text = "It was foolish of me to trust you, you were never one of us.";
+                }
+                break;
+
+            case "Alchemist2":
+                if (SpokeWith("AlchemistChief") == 0)
+                {
+                    regularSpeech.phrases[0].text = "Those miner folks sure are noisy!";
+                    regularSpeech.phrases[1].text = "Not even within a cavern can we do our research in peace...";
+                }
+                if (SpokeWith("AlchemistChief") >= 1)
+                {
+                    regularSpeech.phrases[0].text = "The chief is right, I don't trust that mayor a bit! How come he only needs us now!?";
+                    regularSpeech.phrases[1].text = "I'll bet you 3 potions he just wants to use us.";
+                }
+                if (destroyBoulder && CharScript.minersOut)
+                {
+                    regularSpeech.phrases[0].text = "Finally, some quiet. Thanks for getting rid of those pesky miners.";
+                    regularSpeech.phrases[1].text = "";
+                }
+                if (!conditionedByNPC.GetComponent<NPCScript>().alive) //if alchemistChief is dead
+                {
+                    regularSpeech.phrases[0].text = "The chief! What have you done!?";
+                    regularSpeech.phrases[1].text = "Alchemists like you are the ones who give us a bad reputation. Go away!";
+                }
+                break;
+
             case "AlchemistChief":
                 if (SpokeWith("AlchemistChief") == 0)
                 {
@@ -417,7 +484,7 @@ public class NPCScript : MonoBehaviour
                 }
                 if (CharScript.minersOut && !destroyBoulder)
                 {
-                    regularSpeech.phrases[0].text = " You got rid of those miners for us. Thank you. From now on, we'll be there when you need us.";
+                    regularSpeech.phrases[0].text = "You got rid of those miners for us. Thank you. From now on, we'll be there when you need us.";
                     if (SpokeWith("AlchemistChief") >= 3)
                     {
                         destroyBoulder = true;

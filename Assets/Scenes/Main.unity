@@ -1865,8 +1865,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -3050,8 +3050,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 268
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -3098,8 +3098,8 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
-  conditionedByNPC: {fileID: 0}
+  npcSituation: Alchemist1
+  conditionedByNPC: {fileID: 526233138}
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
@@ -3709,7 +3709,7 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
+  npcSituation: AlchemistChief
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
   minersOutOption: 0
@@ -10440,8 +10440,8 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
-  conditionedByNPC: {fileID: 0}
+  npcSituation: Alchemist2
+  conditionedByNPC: {fileID: 526233138}
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
@@ -13657,8 +13657,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 448
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0

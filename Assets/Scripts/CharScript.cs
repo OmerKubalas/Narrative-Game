@@ -412,7 +412,7 @@ public class CharScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Ground" && col.gameObject.transform.position.y < this.gameObject.transform.position.y - 1.7f)
+        if(col.gameObject.tag == "Ground")
         {
             jumps = 1;
             PlayerAnimationState = 1;
