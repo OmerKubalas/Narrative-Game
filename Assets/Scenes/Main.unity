@@ -321,7 +321,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &33781253
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -542,7 +543,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &43686309
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -877,7 +879,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &46782125
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1918,7 +1921,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &289924868
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2266,7 +2270,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &333641091
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3122,7 +3127,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &472993489
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3368,7 +3374,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &490571571
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3679,8 +3686,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 628
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -3733,7 +3740,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &526233142
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3952,7 +3960,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 5.6806355, y: -0.9948573}
+  m_Offset: {x: 5.6806355, y: -0.46574926}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3963,7 +3971,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 2.9897146}
+  m_Size: {x: 4, y: 5.7612333}
   m_EdgeRadius: 0
 --- !u!1 &550423744
 GameObject:
@@ -4218,7 +4226,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &639290177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4993,7 +5002,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &784217202
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5832,7 +5842,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &888470686
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6389,7 +6400,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &947949222
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6645,26 +6657,32 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I've been sick for so long.. Everyone has.
+      text: 
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: 
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'bla bla '
+      text: 
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: 
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 448
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -6687,7 +6705,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: You've freed me of my misery. Or have you?
+      text: 
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -6716,7 +6734,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &958291377
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6968,7 +6987,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &964936674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7202,8 +7222,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 358
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -7250,12 +7270,13 @@ MonoBehaviour:
     expanded: 0
     lastCalculatedHeight: 16
     useSmartSubs: 0
-  npcSituation: 
+  npcSituation: MayorRighthandman
   conditionedByNPC: {fileID: 0}
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &1031524782
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9655,7 +9676,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &1467911992
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9837,7 +9859,7 @@ GameObject:
   - component: {fileID: 1486779312}
   - component: {fileID: 1486779311}
   m_Layer: 0
-  m_Name: Ground (20)
+  m_Name: Boulder
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10044,8 +10066,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 628
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -10081,14 +10103,14 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: Killing me means reuining everyone's lives here!
+      text: Killing me means ruining everyone's lives here!
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 268
     useSmartSubs: 0
   deadGiveLifeSpeech:
     busyBehavior: 0
@@ -10110,7 +10132,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &1522900736
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10403,8 +10426,7 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: Those miner folks sure are noisy! Not even within a cavern can we do our
-        studies in peace...
+      text: 
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -10465,7 +10487,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &1564974720
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11273,7 +11296,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &1617501934
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12003,7 +12027,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &1799663574
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12296,9 +12321,21 @@ MonoBehaviour:
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
+    - audio: {fileID: 0}
+      text: 
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
+    - audio: {fileID: 0}
+      text: 
+      duration: 0.0000001
+      drawAudio: 1
+      lastCalculatedHeight: 90
+      move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 358
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -12306,14 +12343,15 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: I needed this after being knocked out for a while. Thanks.
+      text: I needed this after being knocked out for a while. My mind is clear now.
+        Thanks.
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 178
     useSmartSubs: 0
   aliveTakeLifeSpeech:
     busyBehavior: 0
@@ -12357,7 +12395,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &1839091830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13207,7 +13246,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &1994717652
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13757,7 +13797,8 @@ MonoBehaviour:
   regularSpeechDone: 0
   minersOutOption: 0
   alchemistsOutOption: 0
-  destroyBoulder: 0
+  sendWorkerOption: 0
+  destroyBoulderOption: 0
 --- !u!61 &2050327417
 BoxCollider2D:
   m_ObjectHideFlags: 0

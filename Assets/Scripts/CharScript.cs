@@ -35,7 +35,7 @@ public class CharScript : MonoBehaviour
 
 
     //conditionalBools
-    public static bool minersOut, alchemistsOut;
+    public static bool sentWorker, minersOut, alchemistsOut, destroyBoulder;
 
     // Start is called before the first frame update
     void Start()
