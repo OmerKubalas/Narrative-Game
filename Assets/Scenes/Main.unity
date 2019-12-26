@@ -1111,8 +1111,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76879203}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 120.94, y: 13.01, z: 0}
-  m_LocalScale: {x: 1, y: 2.6625, z: 1}
+  m_LocalPosition: {x: 120, y: 19, z: 0}
+  m_LocalScale: {x: 1, y: 15, z: 1}
   m_Children: []
   m_Father: {fileID: 1369932554}
   m_RootOrder: 12
@@ -3076,8 +3076,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 1
-    lastCalculatedHeight: 268
+    expanded: 0
+    lastCalculatedHeight: 16
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0

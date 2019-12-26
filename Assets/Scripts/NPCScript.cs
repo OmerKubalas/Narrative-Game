@@ -77,6 +77,22 @@ public class NPCScript : MonoBehaviour
             NPCAnimationState = 2; //talk
 
             //special condition for random speech only occurs if we press up
+
+            //ALCHEMIST2 DIES WHEN TALKING TO MAYOR IF KILLER NOT HEALED OR KILLED
+            if (npcSituation == "Mayor")
+            {
+                GameObject.Find("MineGate").transform.position = new Vector2(999, 999);
+                if (GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive) //&& nothealed 
+                {
+                    CharScript.alchemist2Died = true;
+                    GameObject.Find("SickoKiller").transform.position = new Vector2(999, 999);
+                    GameObject.Find("Alchemist2").GetComponent<NPCScript>().alive = false;
+                    GameObject.Find("Alchemist2").GetComponent<BoxCollider2D>().enabled = false;
+                    GameObject.Find("Alchemist2").transform.position = new Vector2(130, 10);
+                    GameObject.Find("Alchemist2").transform.rotation = Quaternion.Euler(0, 0, 70);
+                    //CHANGE SPRITE TO SEVERED HEAD
+                }
+            }
             if (npcSituation == "Worshipper")
             {
                 if (conditionedByNPC.GetComponent<NPCScript>().alive) //priest alive
@@ -481,10 +497,10 @@ public class NPCScript : MonoBehaviour
                 break;
 
             case "Alchemist1":
-                if (SpokeWith("AlchemistChief") == 0 && !CharScript.destroyBoulder && conditionedByNPC.GetComponent<NPCScript>().alive)
+                if (SpokeWith("AlchemistChief") == 0 && !CharScript.destroyBoulder && conditionedByNPC.GetComponent<NPCScript>().alive && CharScript.alchemist2Died)
                 {
-                    regularSpeech.phrases[0].text = "You're also alchemists? Where have you guys been living?";
-                    regularSpeech.phrases[1].text = "The settlements weren't exactly welcoming of us.";
+                    regularSpeech.phrases[0].text = "Hey, you guys are alchemists too? One of us went out a while ago, and he still hasn't come back...";
+                    regularSpeech.phrases[1].text = "Have you seen anyone outside with similar clothes?";
                 }
                 if (SpokeWith("AlchemistChief") >= 1 && !CharScript.destroyBoulder && conditionedByNPC.GetComponent<NPCScript>().alive)
                 {
