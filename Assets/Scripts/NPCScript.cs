@@ -436,6 +436,7 @@ public class NPCScript : MonoBehaviour
                     regularSpeech.phrases[1].text = "";
                     Debug.Log(CharScript.alchemistsOut);
                     destroyBoulderOption = true;
+                    CharScript.canKickMiners = false;
                 }
                 if (CharScript.alchemistsOut && CharScript.destroyBoulder && CharScript.boulderWasDestroyed)
                 {
@@ -448,6 +449,10 @@ public class NPCScript : MonoBehaviour
                 {
                     //option spawns to drive out the miners
                     minersOutOption = true;
+                    if (!CharScript.canKickMiners && !CharScript.alchemistsOut)
+                    {
+                        CharScript.canKickMiners = true;
+                    }
                 }
 
                 //TO-DO: ADD GONE ALCHEMISTS
@@ -545,6 +550,7 @@ public class NPCScript : MonoBehaviour
                     regularSpeech.phrases[5].text = "";
 
                     destroyBoulderOption = true;
+                    CharScript.canKickAlchemists = false;
                 }
                 if (CharScript.minersOut && CharScript.destroyBoulder && CharScript.boulderWasDestroyed)
                 {
@@ -558,11 +564,15 @@ public class NPCScript : MonoBehaviour
                 if (!alive)
                 {
                     alchemistsOutOption = true;
+                    if (!CharScript.boulderWasDestroyed && !CharScript.minersOut)
+                    {
+                        CharScript.canKickAlchemists = true;
+                    }
                 }
-
                 if (alive)
                 {
                     alchemistsOutOption = false;
+                    CharScript.canKickAlchemists = false;
                 }
                 break;
 

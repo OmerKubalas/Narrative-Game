@@ -35,7 +35,7 @@ public class CharScript : MonoBehaviour
 
 
     //conditionalBools
-    public static bool SetSpaceOptionsPromptsBool, sentWorker, minersOut, alchemistsOut, destroyBoulder, boulderWasDestroyed;
+    public static bool SetSpaceOptionsPromptsBool, sentWorker, minersOut, alchemistsOut, destroyBoulder, boulderWasDestroyed, canKickMiners, canKickAlchemists;
 
     // Start is called before the first frame update
     void Start()
@@ -318,8 +318,20 @@ public class CharScript : MonoBehaviour
         }
         if (PlayerState == 2)
         {
+            optionsPopup.transform.GetChild(4).GetComponent<SpriteRenderer>().enabled = false;
+            optionsPopup.transform.GetChild(5).GetComponent<SpriteRenderer>().enabled = false;
+
             spacePopup.transform.position = new Vector2(999, 999);
             optionsPopup.transform.position = new Vector2(NPC.transform.position.x, NPC.transform.position.y + 4);
+
+            if (canKickMiners && NPC.name == "WorkerChief")
+            {
+                optionsPopup.transform.GetChild(4).GetComponent<SpriteRenderer>().enabled = true;
+            }
+            else if (canKickAlchemists && NPC.name == "AlchemistChief")
+            {
+                optionsPopup.transform.GetChild(5).GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
     }
 
