@@ -134,7 +134,8 @@ public class NPCScript : MonoBehaviour
             else if (npcSituation == "SickWorker" && sendWorkerOption)
             {
                 NarrationManager.instance.PlayNarration(regularSpeech);
-                transform.position = new Vector2(163, 11);
+                transform.position = new Vector2(999, 999);
+                alive = false;
                 GetComponent<BoxCollider2D>().enabled = false;
                 CharScript.sentWorker = true;
             }

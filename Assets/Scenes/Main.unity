@@ -13751,7 +13751,7 @@ MonoBehaviour:
     mainAudio: {fileID: 0}
     phrases:
     - audio: {fileID: 0}
-      text: ' Hear ye! You''ve forgotten the gods and now we all suffer the consequences. '
+      text: 'Hear ye! You''ve forgotten the gods and now we all suffer the consequences. '
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
