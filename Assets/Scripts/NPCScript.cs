@@ -21,7 +21,7 @@ public class NPCScript : MonoBehaviour
 
     //SpecialConditions
     bool killedOnce = false;
-    bool aliveGiveLifeSpeechDone = false;
+    public bool aliveGiveLifeSpeechDone = false;
     bool activeRegularSpeech;
     public int regularSpeechDone = 0;
 
@@ -82,15 +82,31 @@ public class NPCScript : MonoBehaviour
             if (npcSituation == "Mayor")
             {
                 GameObject.Find("MineGate").transform.position = new Vector2(999, 999);
-                if (GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive) //&& nothealed 
+                if (!GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive && GameObject.Find("SickoKiller").GetComponent<BoxCollider2D>().enabled)
+                {
+                    GameObject.Find("SickoKiller").transform.position = new Vector2(999, 999);
+                }
+                else if (GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive && !GameObject.Find("SickoKiller").GetComponent<NPCScript>().aliveGiveLifeSpeechDone) 
                 {
                     CharScript.alchemist2Died = true;
                     GameObject.Find("SickoKiller").transform.position = new Vector2(999, 999);
+                    GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive = false;
                     GameObject.Find("Alchemist2").GetComponent<NPCScript>().alive = false;
                     GameObject.Find("Alchemist2").GetComponent<BoxCollider2D>().enabled = false;
                     GameObject.Find("Alchemist2").transform.position = new Vector2(130, 10);
                     GameObject.Find("Alchemist2").transform.rotation = Quaternion.Euler(0, 0, 70);
                     //CHANGE SPRITE TO SEVERED HEAD
+                }
+                else if (GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive && GameObject.Find("SickoKiller").GetComponent<NPCScript>().aliveGiveLifeSpeechDone)
+                {
+                    GameObject.Find("SickoKiller").transform.position = new Vector2(207, 10);
+                    GameObject.Find("SickoKiller").transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                    GameObject.Find("SickoKiller").transform.position = new Vector2(207, 10);
+                    GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive = false;
+                    GameObject.Find("SickoKiller").GetComponent<BoxCollider2D>().enabled = false;
+                    GameObject.Find("KillerHelpedTrigger").transform.position = new Vector2(200, 15);
+                    CharScript.sacrificeSickoKiller = true;
+                    //DISABLED COLLIDER INSTEAD OF SCRIPT TO MAKE HIM DIE
                 }
             }
             if (npcSituation == "Worshipper")
@@ -241,7 +257,10 @@ public class NPCScript : MonoBehaviour
                 //Destroy(this.gameObject);
                 transform.position = new Vector2(999, 999);
                 GameObject.Find("Alchemist1").transform.position = new Vector2(999, 999);
-                GameObject.Find("Alchemist2").transform.position = new Vector2(999, 999);
+                if (GameObject.Find("Alchemist2").GetComponent<BoxCollider2D>().enabled)
+                {
+                    GameObject.Find("Alchemist2").transform.position = new Vector2(999, 999);
+                }
             }
         }
 
@@ -252,12 +271,14 @@ public class NPCScript : MonoBehaviour
             case "Mother":
                 if (conditionedByNPC.GetComponent<NPCScript>().alive) //if son is alive
                 {
-                    regularSpeech.phrases[0].text = "Please, help my son! Food is nowhere to be found, he is very sick! I offer my life if you must!";
+                    regularSpeech.phrases[0].text = "Please, help my son! Food is nowhere to be found, he is so sick that he's hallucinating!";
+                    regularSpeech.phrases[1].text = "I'd offer you my life if that's what it takes.";
                     deadGiveLifeSpeech.phrases[0].text = "You've reunited me with my son once more.. Thank you.";
                 }
                 else //if he is dead
                 {
                     regularSpeech.phrases[0].text = "My son! What have you done?!";
+                    regularSpeech.phrases[1].text = "";
                     deadGiveLifeSpeech.phrases[0].text = "What is the point of life when it has rid you of all you love...";
                 }
                 break;
@@ -265,13 +286,15 @@ public class NPCScript : MonoBehaviour
             case "Son":
                 if (conditionedByNPC.GetComponent<NPCScript>().alive) //if mother is alive
                 {
-                    regularSpeech.phrases[0].text = "I am very sick... My mom keeps saying it's because I got a flu... but they're usually not this painful.";
-                    deadGiveLifeSpeech.phrases[0].text = "Mother.. I missed her very much. The sickness is still roaming around.";
+                    regularSpeech.phrases[0].text = "*cough* I am very sick... My mom keeps saying I got a flu... but they're usually not this painful.";
+                    regularSpeech.phrases[1].text = "I can also hear a voice sometimes. My mom says it must be a ha-lucy-nay-shun... What is that?";
+                    deadGiveLifeSpeech.phrases[0].text = "Mother... I missed her very much. *cough* But I didn't miss the voice in my head...";
                 }
                 else //if mother is dead
                 {
-                    regularSpeech.phrases[0].text = "Oh no, mom! I have nobody left!";
-                    deadGiveLifeSpeech.phrases[0].text = "You've brought me back to life.. It's meaningless without my mom.";
+                    regularSpeech.phrases[0].text = "No, mom! Don't leave me alone with the voice! *cough* *cough*";
+                    regularSpeech.phrases[1].text = "";
+                    deadGiveLifeSpeech.phrases[0].text = "You've brought me back to life... No, mom! Don't leave me alone with the voice!";
                 }
                 break;
 
@@ -283,15 +306,17 @@ public class NPCScript : MonoBehaviour
                 break;
 
             case "SickoKiller":
-                if (aliveGiveLifeSpeechDone) //if killed and brought back
+                if (SpokeWith("SickoKiller") >= 1)
                 {
-                    //we can spawn a different visual here
-                    transform.position = new Vector3(200, 10, 0);
-                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
-                    GetComponent<NPCScript>().alive = false;
-                    GetComponent<BoxCollider2D>().enabled = false;
-                    //DISABLED COLLIDER INSTEAD OF SCRIPT TO MAKE HIM DIE
-                    sacrificeSickoKiller = true;
+                    regularSpeech.phrases[0].text = "Guess I'll take a short rest. You may want to move along before I get hungry again.";
+                    regularSpeech.phrases[1].text = "When I'm outta energy, that's when the voice becomes the strongest... *cough* And people start looking the tastiest...";
+                    regularSpeech.phrases[2].text = "";
+                }
+                if (aliveGiveLifeSpeechDone)
+                {
+                    regularSpeech.phrases[0].text = "Thanks dude, I'm feeling way less hungry. Won't have to worry about feeding myself for a while.";
+                    regularSpeech.phrases[1].text = "*cough* I'll keep going east when I'm done taking a rest.";
+                    regularSpeech.phrases[2].text = "";
                 }
                 break;
 
@@ -499,8 +524,8 @@ public class NPCScript : MonoBehaviour
             case "Alchemist1":
                 if (SpokeWith("AlchemistChief") == 0 && !CharScript.destroyBoulder && conditionedByNPC.GetComponent<NPCScript>().alive && CharScript.alchemist2Died)
                 {
-                    regularSpeech.phrases[0].text = "Hey, you guys are alchemists too? One of us went out a while ago, and he still hasn't come back...";
-                    regularSpeech.phrases[1].text = "Have you seen anyone outside with similar clothes?";
+                    regularSpeech.phrases[0].text = "My buddy got killed by a deranged murderer outside... The murderer ate his innards.";
+                    regularSpeech.phrases[1].text = "He didn't know we were alchemists. I incinerated him with fire potions. Now he's ash... Serves him right...";
                 }
                 if (SpokeWith("AlchemistChief") >= 1 && !CharScript.destroyBoulder && conditionedByNPC.GetComponent<NPCScript>().alive)
                 {

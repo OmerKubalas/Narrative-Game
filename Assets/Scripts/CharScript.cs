@@ -35,7 +35,7 @@ public class CharScript : MonoBehaviour
 
 
     //conditionalBools
-    public static bool SetSpaceOptionsPromptsBool, sentWorker, minersOut, alchemistsOut, destroyBoulder, boulderWasDestroyed, canKickMiners, canKickAlchemists, alchemist2Died;
+    public static bool SetSpaceOptionsPromptsBool, sentWorker, minersOut, alchemistsOut, destroyBoulder, boulderWasDestroyed, canKickMiners, canKickAlchemists, alchemist2Died, sacrificeSickoKiller;
 
     // Start is called before the first frame update
     void Start()
