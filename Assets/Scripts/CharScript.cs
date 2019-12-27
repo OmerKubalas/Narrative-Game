@@ -455,6 +455,11 @@ public class CharScript : MonoBehaviour
         {
             PlayerState = 11;
             SetBossSpaceOptionsPrompts();
+            //Set Boulder Position
+            if (GameObject.Find("DrunkMiner").GetComponent<NPCScript>().alive)
+            {
+                GameObject.Find("Boulder").transform.position = new Vector2(185, 12.5f);
+            }
         }
     }
 

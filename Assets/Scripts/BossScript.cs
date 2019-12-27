@@ -10,6 +10,8 @@ public class BossScript : MonoBehaviour
 
     static public bool alchemistsHelped, alchemistsAlive;
 
+    public GameObject AlchemistChief, Alchemist1, Alchemist2;
+
 
     //NarrationSpeeches
     public Narration killSpeech; //caseUp
@@ -61,15 +63,18 @@ public class BossScript : MonoBehaviour
         if (InRange && alive && Input.GetKeyDown(KeyCode.LeftArrow) && CharScript.PlayerState == 12)
         {
             CharScript.PlayerState = 13;
-            if (alchemistsHelped && alchemistsAlive)
+            if (CharScript.minersOut && AlchemistChief.GetComponent<NPCScript>().alive && Alchemist1.GetComponent<NPCScript>().alive && Alchemist2.GetComponent<NPCScript>().alive)
             {
+                AlchemistChief.GetComponent<BoxCollider2D>().enabled = false;
+                Alchemist1.GetComponent<BoxCollider2D>().enabled = false;
+                Alchemist2.GetComponent<BoxCollider2D>().enabled = false;
                 NarrationManager.instance.PlayNarration(alchemistsHelpedSpeech);
+                CharScript.ending = 4;
             }
             else
             {
                 NarrationManager.instance.PlayNarration(theOtherSpeech);
             }
-            CharScript.ending = 4;
         }
 
         if (InRange && Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 12)
