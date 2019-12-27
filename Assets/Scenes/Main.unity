@@ -5524,8 +5524,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 268
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
@@ -9682,27 +9682,28 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: 'Alchemist 1: He is not just a "single" alchemist. We''re here to help!'
+      text: 'Alchemist 1: He is not just a "single" alchemist. We alchemists stand
+        together!'
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
       text: 'Alchemist 2: I''ve seen this boy''s powers, they''re unlike anything
-        I''ve seen before.'
+        I''ve seen before. They''re pretty "godly".'
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
-      text: I'd say they easily tread into "godly" territory.
+      text: 
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
       move: 0
     - audio: {fileID: 0}
       text: 'Alchemist Chief: So there really was a temple hidden behind the mines...
-        We can do our research later.'
+        But we can do our research later.'
       duration: 0.0000001
       drawAudio: 1
       lastCalculatedHeight: 90
@@ -9740,8 +9741,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 0
-    lastCalculatedHeight: 16
+    expanded: 1
+    lastCalculatedHeight: 1168
     useSmartSubs: 0
   theOtherSpeech:
     busyBehavior: 0
@@ -10850,8 +10851,8 @@ MonoBehaviour:
       lastCalculatedHeight: 90
       move: 0
     LoopAudioForDuration: 0
-    expanded: 1
-    lastCalculatedHeight: 268
+    expanded: 0
+    lastCalculatedHeight: 16
     useSmartSubs: 0
   aliveGiveLifeSpeech:
     busyBehavior: 0
