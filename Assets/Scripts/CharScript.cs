@@ -324,11 +324,11 @@ public class CharScript : MonoBehaviour
             spacePopup.transform.position = new Vector2(999, 999);
             optionsPopup.transform.position = new Vector2(NPC.transform.position.x, NPC.transform.position.y + 4);
 
-            if (canKickMiners && NPC.name == "WorkerChief")
+            if (canKickMiners && NPC.name == "WorkerChief" && !alchemistsOut)
             {
                 optionsPopup.transform.GetChild(4).GetComponent<SpriteRenderer>().enabled = true;
             }
-            else if (canKickAlchemists && NPC.name == "AlchemistChief")
+            else if (canKickAlchemists && NPC.name == "AlchemistChief" && !minersOut)
             {
                 optionsPopup.transform.GetChild(5).GetComponent<SpriteRenderer>().enabled = true;
             }
