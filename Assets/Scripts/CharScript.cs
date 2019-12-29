@@ -23,16 +23,15 @@ public class CharScript : MonoBehaviour
 
     GameObject cameraGO;
 
-    int PlayerAnimationState = 0;
+    public static int PlayerAnimationState = 0;
     Animator anim;
     float jumpAnimationBlend;
+    bool giveLife;
 
     //types of NPC
     public static int numberOfAliveSickNPCs;
-    //public static List<GameObject> AliveSickNPCs = new List<GameObject>(); //if we want to access alive sick npcs
 
     public static int ending = 0;
-
 
     //conditionalBools
     public static bool SetSpaceOptionsPromptsBool, sentWorker, minersOut, alchemistsOut, destroyBoulder, boulderWasDestroyed, canKickMiners, canKickAlchemists, alchemist2Died, sacrificeSickoKiller;
@@ -64,18 +63,6 @@ public class CharScript : MonoBehaviour
         {
             playerbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), playerbody.velocity.y / speed) * speed;
 
-            if (playerbody.velocity.x == 0)
-            {
-               PlayerAnimationState = 0; //idle
-            }
-            if (Input.GetKeyDown(KeyCode.UpArrow) && jumps > 0)
-            {
-                jumpAnimationBlend = 0;
-                jumps = 0;
-                PlayerAnimationState = 2; //jump
-                playerbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-                PlayerAnimationState = 2;
-            }
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 if (transform.localScale.x > 0)
@@ -94,11 +81,24 @@ public class CharScript : MonoBehaviour
                 transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 PlayerAnimationState = 1; //walk
             }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) && jumps > 0)
+            {
+                jumps = 0;
+                PlayerAnimationState = 2; //jump
+                playerbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            }
             if (Input.GetKeyDown(KeyCode.Space) && lookingatcompanion && reservehealth >= 20 && CompScript.comphealth <= 80 && CompScript.comphealth > 0)
             {
                 reservehealth -= 20;
                 CompScript.comphealth += 20;
             }
+
+            if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && !Input.GetKey(KeyCode.UpArrow)) //to fix sliding
+            {
+                PlayerAnimationState = 1; //walk if buttons are held
+            }
+
         }
         else
         {
@@ -123,7 +123,7 @@ public class CharScript : MonoBehaviour
             PlayerAnimationState = 0;
             if (Input.GetKeyDown(KeyCode.UpArrow) && NPC.GetComponent<NPCScript>().alive)
             {
-                //talk here
+                PlayerAnimationState = 3; //speak
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && NPC.GetComponent<NPCScript>().alive)
             {
@@ -133,9 +133,9 @@ public class CharScript : MonoBehaviour
                 //}
                 //absorb life here
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow) && reservehealth >= 50)
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                //give life here
+                //give life done through npc script
             }
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
@@ -150,7 +150,7 @@ public class CharScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                //talk here
+                //PlayerAnimationState = 3; //speak
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -169,6 +169,8 @@ public class CharScript : MonoBehaviour
         if (!NarrationManager.instance.isPlaying && PlayerState == 3 && Input.GetKeyUp(KeyCode.Space))
         {
             PlayerState = 0;
+            PlayerAnimationState = 3;
+            PlayerAnimationState = 0;
             UpdateNPCStats();
             SetSpaceOptionsPrompts();
         }
@@ -188,7 +190,15 @@ public class CharScript : MonoBehaviour
         }
 
         reserveHealthBar.GetComponent<RectTransform>().transform.localScale = new Vector3(reservehealth / 100, 0.1f, 1);
-        reserveHealthBar.transform.position = new Vector2(this.gameObject.transform.position.x - 1, this.gameObject.transform.position.y + 2.5f);
+        if (transform.localScale.x > 0) //making the reserve health bar in the correct position
+        {
+            reserveHealthBar.transform.position = new Vector2(this.gameObject.transform.position.x + 3.6f, this.gameObject.transform.position.y + 2.5f);
+        }
+        if (transform.localScale.x < 0)
+        {
+            reserveHealthBar.transform.position = new Vector2(this.gameObject.transform.position.x - 4.2f, this.gameObject.transform.position.y + 2.5f);
+        }
+
 
         if (reservehealth > 100)
         {
@@ -248,6 +258,7 @@ public class CharScript : MonoBehaviour
             else if (sanity < 1)
             {
                 //dead animation
+                PlayerAnimationState = 6;
                 if (intensity < 50f)
                 {
                     intensity = intensity + 0.1f * Time.deltaTime;
@@ -272,9 +283,10 @@ public class CharScript : MonoBehaviour
             cameraGO.GetComponent<PostProcessVolume>().profile.GetSetting<Vignette>().intensity.value = intensity;
         }
 
-        if(NarrationManager.instance.isPlaying)
+
+        if (NarrationManager.instance.isPlaying && PlayerState != 2)
         {
-            PlayerAnimationState = 0;
+            PlayerAnimationState = 3; //speak
         }
 
         SetAnimationState();
@@ -375,22 +387,28 @@ public class CharScript : MonoBehaviour
             case 0:
                 anim.SetInteger("PlayerAnimationState", 0); //idle
                 break;
-
             case 1:
                 anim.SetInteger("PlayerAnimationState", 1); //walk
                 break;
-
             case 2:
                 if (jumpAnimationBlend <= 1.0f)
                 {
-                    jumpAnimationBlend += 0.045f;
+                    jumpAnimationBlend += 0.1f;
                 }
                 anim.SetInteger("PlayerAnimationState", 2); //jump
                 anim.SetFloat("Blend", jumpAnimationBlend);
                 break;
-
             case 3:
-                anim.SetInteger("PlayerAnimationState", 3); //dead? didn't set 3rd case to anything yet
+                anim.SetInteger("PlayerAnimationState", 3); //speak
+                break;
+            case 4:
+                anim.SetInteger("PlayerAnimationState", 4); //giveLife
+                break;
+            case 5:
+                anim.SetInteger("PlayerAnimationState", 5); //takeLife
+                break;
+            case 6:
+                anim.SetInteger("PlayerAnimationState", 6); //dead
                 break;
         }
     }
@@ -398,13 +416,12 @@ public class CharScript : MonoBehaviour
     void UpdateNPCStats()
     {
         numberOfAliveSickNPCs = 0;
-        //AliveSickNPCs.Clear();
+
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("NPC").Length; i++)
         {
             if (GameObject.FindGameObjectsWithTag("NPC")[i].GetComponent<NPCScript>().alive && GameObject.FindGameObjectsWithTag("NPC")[i].GetComponent<NPCScript>().sick)
             {
                 numberOfAliveSickNPCs++;
-                //AliveSickNPCs.Add(GameObject.FindGameObjectsWithTag("NPC")[i]); //if we want to access the alive sick npcs we can reach them from here
             }
         }
     }
@@ -431,10 +448,11 @@ public class CharScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Ground")
+        if (col.gameObject.tag == "Ground")
         {
             jumps = 1;
-            PlayerAnimationState = 1;
+            PlayerAnimationState = 0;
+            jumpAnimationBlend = 0;
         }
     }
 

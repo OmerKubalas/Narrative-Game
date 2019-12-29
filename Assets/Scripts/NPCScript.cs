@@ -188,6 +188,7 @@ public class NPCScript : MonoBehaviour
             alive = false;
             killedOnce = true;
             //absorb
+            CharScript.PlayerAnimationState = 5; //player take life animation
             CharScript.PlayerState = 3;
             NarrationManager.instance.PlayNarration(aliveTakeLifeSpeech);
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
@@ -200,6 +201,7 @@ public class NPCScript : MonoBehaviour
             if (alive && CharScript.reservehealth >= 20)
             {
                 CharScript.reservehealth -= 20;
+                CharScript.PlayerAnimationState = 4; //player give life animation
                 NarrationManager.instance.PlayNarration(aliveGiveLifeSpeech);
                 aliveGiveLifeSpeechDone = true;
                 NPCAnimationState = 0; //idle animation
@@ -211,12 +213,14 @@ public class NPCScript : MonoBehaviour
                 CharScript.reservehealth -= 60;
                 CharScript.sanity += 2;
                 transform.position = new Vector3(transform.position.x, transform.position.y + 1, 0);
+                CharScript.PlayerAnimationState = 4; //player give life animation
                 NarrationManager.instance.PlayNarration(deadGiveLifeSpeech);
                 NPCAnimationState = 0; //idle animation
                 alive = true;
                 CharScript.PlayerState = 3;
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             }
+
         }
 
         //conditional buttons and actions
