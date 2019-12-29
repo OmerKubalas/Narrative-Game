@@ -32,34 +32,41 @@ public class NPCScript : MonoBehaviour
 
     //Animations
     int NPCAnimationState;
-    Animator anim;
+    public Animator anim;
+    public bool tempBool;
+    //extra 
+    GameObject player;
+    float NPCscale;
+    float sizeX, sizeY; //colliders
 
     // Start is called before the first frame update
     void Start()
     {
-        if (sick)
-        {
-            GetComponent<SpriteRenderer>().color = new Color32(120, 215, 70, 255);
-        }
-        else
-        { 
-            GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
-        }
+        player = GameObject.Find("Player");
+        NPCscale = transform.localScale.x;
+        sizeX = GetComponent<BoxCollider2D>().size.x;
+        sizeY = GetComponent<BoxCollider2D>().size.y;
+        //if (sick && this.gameObject.GetComponent<SpriteRenderer>() != null) //erase all this stuff later on, keep it for now just in case
+        //{
+        //    GetComponent<SpriteRenderer>().color = new Color32(120, 215, 70, 255);
+        //}
+        //else if (!sick && this.gameObject.GetComponent<SpriteRenderer>() != null)
+        //{ 
+        //    GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+        //}
 
         if (alive)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            //transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            //transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             NPCAnimationState = 0; //idle
         }
         else
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
-            transform.position = new Vector3(transform.position.x, transform.position.y-1, 0);
-            NPCAnimationState = 1; //dead
+            //transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+           // transform.position = new Vector3(transform.position.x, transform.position.y-1, 0);
+            NPCAnimationState = 4; //dead
         }
-
-        anim = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -74,7 +81,7 @@ public class NPCScript : MonoBehaviour
         {
             //talk
             CharScript.PlayerState = 3;
-            NPCAnimationState = 2; //talk
+            NPCAnimationState = 1; //talk
 
             //special condition for random speech only occurs if we press up
 
@@ -86,7 +93,7 @@ public class NPCScript : MonoBehaviour
                 {
                     GameObject.Find("SickoKiller").transform.position = new Vector2(999, 999);
                 }
-                else if (GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive && !GameObject.Find("SickoKiller").GetComponent<NPCScript>().aliveGiveLifeSpeechDone) 
+                else if (GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive && !GameObject.Find("SickoKiller").GetComponent<NPCScript>().aliveGiveLifeSpeechDone)
                 {
                     CharScript.alchemist2Died = true;
                     GameObject.Find("SickoKiller").transform.position = new Vector2(999, 999);
@@ -190,10 +197,13 @@ public class NPCScript : MonoBehaviour
             //absorb
             CharScript.PlayerAnimationState = 5; //player take life animation
             CharScript.PlayerState = 3;
+            //PushPlayerBack();
             NarrationManager.instance.PlayNarration(aliveTakeLifeSpeech);
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
-            transform.position = new Vector3(transform.position.x, transform.position.y - 1, 0);
-            NPCAnimationState = 1; //dead animation
+            //transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+            //transform.position = new Vector3(transform.position.x, transform.position.y - 1, 0);
+           // GetComponent<BoxCollider2D>().size = new Vector2(sizeY, sizeX); //wrote this code to rotate collider, but not so helpful
+           // GetComponent<BoxCollider2D>().offset = new Vector2(GetComponent<BoxCollider2D>().offset.x, GetComponent<BoxCollider2D>().offset.y - 1);
+            NPCAnimationState = 4; //dead animation
         }
 
         if (InRange && Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 2)
@@ -202,23 +212,26 @@ public class NPCScript : MonoBehaviour
             {
                 CharScript.reservehealth -= 20;
                 CharScript.PlayerAnimationState = 4; //player give life animation
+                //PushPlayerBack();
                 NarrationManager.instance.PlayNarration(aliveGiveLifeSpeech);
                 aliveGiveLifeSpeechDone = true;
-                NPCAnimationState = 0; //idle animation
+                NPCAnimationState = 2; //alive give life animation
                 CharScript.PlayerState = 3;
-                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                //transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             }
             else if (!alive && CharScript.reservehealth >= 60)
             {
                 CharScript.reservehealth -= 60;
                 CharScript.sanity += 2;
-                transform.position = new Vector3(transform.position.x, transform.position.y + 1, 0);
+                //transform.position = new Vector3(transform.position.x, transform.position.y + 1, 0);
                 CharScript.PlayerAnimationState = 4; //player give life animation
+                //PushPlayerBack();
+
                 NarrationManager.instance.PlayNarration(deadGiveLifeSpeech);
-                NPCAnimationState = 0; //idle animation
+                NPCAnimationState = 3; //dead give life animation
                 alive = true;
                 CharScript.PlayerState = 3;
-                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                //transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             }
 
         }
@@ -628,7 +641,19 @@ public class NPCScript : MonoBehaviour
                 break;
         }
 
-        //SetAnimationState();
+        if (tempBool)
+            SetAnimationState();
+
+
+        //let the npc face the player during speech
+        if (player.transform.localScale.x > 0 && alive && InRange && NarrationManager.instance.isPlaying)
+        {
+            transform.localScale = new Vector2(-NPCscale, transform.localScale.y);
+        }
+        else if (player.transform.localScale.x < 0 && alive && InRange && NarrationManager.instance.isPlaying)
+        {
+            transform.localScale = new Vector2(NPCscale, transform.localScale.y);
+        }
     }
 
     void SetAnimationState()
@@ -638,13 +663,17 @@ public class NPCScript : MonoBehaviour
             case 0:
                 anim.SetInteger("NPCAnimationState", 0); //idle
                 break;
-
             case 1:
-                anim.SetInteger("NPCAnimationState", 1); //dead
+                anim.SetInteger("NPCAnimationState", 1); //talk
                 break;
-
             case 2:
-                anim.SetInteger("NPCAnimationState", 2); //talk
+                anim.SetInteger("NPCAnimationState", 2); //alive give life
+                break;
+            case 3:
+                anim.SetInteger("NPCAnimationState", 3); //dead give life
+                break;
+            case 4:
+                anim.SetInteger("NPCAnimationState", 4); //dead
                 break;
         }
     }
@@ -655,6 +684,18 @@ public class NPCScript : MonoBehaviour
         int timesSpoken = NPC.GetComponent<NPCScript>().regularSpeechDone;
         return timesSpoken;
 
+    }
+
+    void PushPlayerBack()
+    {
+        if (player.transform.localScale.x > 0)
+        {
+            player.transform.position += new Vector3(10, 0, 0) * Time.deltaTime;
+        }
+        else if (player.transform.localScale.x < 0)
+        {
+            player.transform.position -= new Vector3(10, 0, 0) * Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
