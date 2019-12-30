@@ -141,7 +141,7 @@ public class NPCScript : MonoBehaviour
             else if (npcSituation == "SickWorker" && sendWorkerOption)
             {
                 NarrationManager.instance.PlayNarration(regularSpeech);
-                transform.position = new Vector2(999, 999);
+                //transform.position = new Vector2(999, 999);
                 alive = false;
                 GetComponent<BoxCollider2D>().enabled = false;
                 CharScript.sentWorker = true;
@@ -211,6 +211,7 @@ public class NPCScript : MonoBehaviour
             if (alive && CharScript.reservehealth >= 20)
             {
                 CharScript.reservehealth -= 20;
+                CharScript.sanity++;
                 CharScript.PlayerAnimationState = 4; //player give life animation/
                 NPCAnimationState = 2; //alive give life animation
                 //PushPlayerBack();
@@ -358,6 +359,11 @@ public class NPCScript : MonoBehaviour
                     regularSpeech.phrases[3].text = "";
                     sendWorkerOption = true;
                     //transform.position = new Vector3(177, 10, 0);
+                }
+
+                if  (CharScript.sentWorker && !NarrationManager.instance.isPlaying && CharScript.PlayerState == 0)
+                {
+                    transform.position = new Vector2(999, 999);
                 }
 
                 //TO-DO: Add 
@@ -646,14 +652,14 @@ public class NPCScript : MonoBehaviour
 
 
         //let the npc face the player during speech
-        //if (player.transform.localScale.x > 0 && alive && InRange)
-        //{
-        //    transform.localScale = new Vector2(-NPCscale, transform.localScale.y);
-        //}
-        //else if (player.transform.localScale.x < 0 && alive && InRange)
-        //{
-        //    transform.localScale = new Vector2(NPCscale, transform.localScale.y);
-        //}
+        if (player.transform.localScale.x > 0 && alive && InRange)
+        {
+            transform.localScale = new Vector2(-NPCscale, transform.localScale.y);
+        }
+        else if (player.transform.localScale.x < 0 && alive && InRange)
+        {
+            transform.localScale = new Vector2(NPCscale, transform.localScale.y);
+        }
     }
 
     void SetAnimationState()

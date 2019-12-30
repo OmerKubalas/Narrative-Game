@@ -19,7 +19,7 @@ public class CharScript : MonoBehaviour
 
     GameObject NPC;
 
-    public GameObject spacePopup, optionsPopup, bossOptionsPopup, companion, companionPopup, reserveHealthBar, Boss;
+    public GameObject spacePopup, optionsPopup, bossOptionsPopup, companion, companionPopup, reserveHealthBar, visualHealthBar, Boss;
 
     GameObject cameraGO;
 
@@ -189,14 +189,16 @@ public class CharScript : MonoBehaviour
             SetBossSpaceOptionsPrompts();
         }
 
-        reserveHealthBar.GetComponent<RectTransform>().transform.localScale = new Vector3(reservehealth / 100, 0.1f, 1);
+        reserveHealthBar.GetComponent<RectTransform>().transform.localScale = new Vector3(reservehealth / 37.5f, 0.1f, 1);
         if (transform.localScale.x > 0) //making the reserve health bar in the correct position
         {
-            reserveHealthBar.transform.position = new Vector2(this.gameObject.transform.position.x + 3.6f, this.gameObject.transform.position.y + 2.5f);
+            reserveHealthBar.transform.position = new Vector2(this.gameObject.transform.position.x + 2.8f, this.gameObject.transform.position.y + 2.5f);
+            visualHealthBar.transform.position = new Vector2(this.gameObject.transform.position.x + 2.6f, this.gameObject.transform.position.y + 2.5f);
         }
         if (transform.localScale.x < 0)
         {
-            reserveHealthBar.transform.position = new Vector2(this.gameObject.transform.position.x - 4.2f, this.gameObject.transform.position.y + 2.5f);
+            reserveHealthBar.transform.position = new Vector2(this.gameObject.transform.position.x - 5f, this.gameObject.transform.position.y + 2.5f);
+            visualHealthBar.transform.position = new Vector2(this.gameObject.transform.position.x - 5.2f, this.gameObject.transform.position.y + 2.5f);
         }
 
 
