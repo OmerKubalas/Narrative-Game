@@ -86,7 +86,7 @@ public class NPCScript : MonoBehaviour
             //ALCHEMIST2 DIES WHEN TALKING TO MAYOR IF KILLER NOT HEALED OR KILLED
             if (npcSituation == "Mayor")
             {
-                GameObject.Find("MineGate").transform.position = new Vector2(999, 999);
+                GameObject.Find("MineGate").transform.position = new Vector2(120, 119);
                 if (!GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive && GameObject.Find("SickoKiller").GetComponent<BoxCollider2D>().enabled)
                 {
                     GameObject.Find("SickoKiller").transform.position = new Vector2(999, 999);
