@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using Narrate;
 
 public class CompScript : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class CompScript : MonoBehaviour
     public int companionstate = 1;
 
     //Animations
-    int CompAnimationState;
+    public static int CompAnimationState;
     float jumpAnimationBlend;
     public Animator anim;
 
@@ -32,9 +33,14 @@ public class CompScript : MonoBehaviour
 
     void Update()
     {
-        if (companionbody.velocity.x == 0 && companionbody.velocity.y == 0)
+        if (companionbody.velocity.x == 0 && companionbody.velocity.y == 0 && !NarrationManager.instance.isPlaying)
         {
             CompAnimationState = 0; //idle anim
+        }
+
+        if (companionbody.velocity.x > 0 || companionbody.velocity.x < 0)
+        {
+            CompAnimationState = 1; //walk anim
         }
 
         if (companionstate == 1)
@@ -114,13 +120,11 @@ public class CompScript : MonoBehaviour
         {
             companionbody.velocity = new Vector2(1, companionbody.velocity.y / speed) * speed;
             comphealth -= 2.25f * Time.deltaTime;
-            CompAnimationState = 1; //walk anim
         }
         else if (this.gameObject.transform.position.x - 3 > Player.transform.position.x)
         {
             companionbody.velocity = new Vector2(-1, companionbody.velocity.y / speed) * speed;
             comphealth -= 2.25f * Time.deltaTime;
-            CompAnimationState = 1; //walk anim
         }
         else
         {
@@ -166,10 +170,13 @@ public class CompScript : MonoBehaviour
                 anim.SetFloat("Blend", jumpAnimationBlend);
                 anim.SetInteger("CompAnimationState", 2); //jump
                 break;
-
             case 3:
                 anim.SetInteger("CompAnimationState", 3); //dead
                 break;
+            case 4:
+                anim.SetInteger("CompAnimationState", 4); //speak/listen
+                break;
+
         }
     }
 
