@@ -62,7 +62,7 @@ public class CharScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerState != 2 && PlayerState != 3 && PlayerState != 12 && PlayerState != 13)
+        if (PlayerState != 2 && PlayerState != 3 && PlayerState != 12 && PlayerState != 13 && !anim.GetCurrentAnimatorStateInfo(0).IsName("give_life") && !anim.GetCurrentAnimatorStateInfo(0).IsName("drain"))
         {
             playerbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), playerbody.velocity.y / speed) * speed;
 
@@ -83,6 +83,22 @@ public class CharScript : MonoBehaviour
                 }
                 transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 PlayerAnimationState = 1; //walk
+            }
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                if (transform.localScale.x > 0)
+                {
+                    transform.position += new Vector3(8.1f, 0, 0); //add pixels to make him move correctly
+                }
+                transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+            }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                if (transform.localScale.x < 0)
+                {
+                    transform.position -= new Vector3(8.1f, 0, 0);
+                }
+                transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             }
 
             if (Input.GetKeyDown(KeyCode.UpArrow) && jumps > 0)

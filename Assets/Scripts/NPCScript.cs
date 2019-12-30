@@ -37,15 +37,13 @@ public class NPCScript : MonoBehaviour
     //extra 
     GameObject player;
     float NPCscale;
-    float sizeX, sizeY; //colliders
+    public bool rightie; //colliders
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
         NPCscale = transform.localScale.x;
-        sizeX = GetComponent<BoxCollider2D>().size.x;
-        sizeY = GetComponent<BoxCollider2D>().size.y;
         //if (sick && this.gameObject.GetComponent<SpriteRenderer>() != null) //erase all this stuff later on, keep it for now just in case
         //{
         //    GetComponent<SpriteRenderer>().color = new Color32(120, 215, 70, 255);
@@ -662,13 +660,29 @@ public class NPCScript : MonoBehaviour
 
 
         //let the npc face the player during speech
-        if (player.transform.localScale.x > 0 && alive && InRange)
+        if (rightie)
         {
-            transform.localScale = new Vector2(-NPCscale, transform.localScale.y);
+            if (player.transform.localScale.x > 0 && alive && InRange)
+            {
+                transform.localScale = new Vector2(NPCscale, transform.localScale.y);
+            }
+            else if (player.transform.localScale.x < 0 && alive && InRange)
+            {
+                transform.localScale = new Vector2(-NPCscale, transform.localScale.y);
+            }
+
         }
-        else if (player.transform.localScale.x < 0 && alive && InRange)
+        else
         {
-            transform.localScale = new Vector2(NPCscale, transform.localScale.y);
+            if (player.transform.localScale.x > 0 && alive && InRange)
+            {
+                transform.localScale = new Vector2(-NPCscale, transform.localScale.y);
+            }
+            else if (player.transform.localScale.x < 0 && alive && InRange)
+            {
+                transform.localScale = new Vector2(NPCscale, transform.localScale.y);
+            }
+
         }
     }
 
