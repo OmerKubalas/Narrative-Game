@@ -204,6 +204,10 @@ public class NPCScript : MonoBehaviour
            // GetComponent<BoxCollider2D>().size = new Vector2(sizeY, sizeX); //wrote this code to rotate collider, but not so helpful
            // GetComponent<BoxCollider2D>().offset = new Vector2(GetComponent<BoxCollider2D>().offset.x, GetComponent<BoxCollider2D>().offset.y - 1);
             NPCAnimationState = 4; //dead animation
+
+            player.GetComponent<CharScript>().PlayerAudioSource.clip = player.GetComponent<CharScript>().takeLifeSound;
+            player.GetComponent<CharScript>().PlayerAudioSource.Play();
+            
         }
 
         if (InRange && Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 2)
@@ -219,6 +223,9 @@ public class NPCScript : MonoBehaviour
                 aliveGiveLifeSpeechDone = true;
                 CharScript.PlayerState = 3;
                 //transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+
+                player.GetComponent<CharScript>().PlayerAudioSource.clip = player.GetComponent<CharScript>().giveLifeSound;
+                player.GetComponent<CharScript>().PlayerAudioSource.Play();
             }
             else if (!alive && CharScript.reservehealth >= 60)
             {
@@ -233,6 +240,9 @@ public class NPCScript : MonoBehaviour
                 alive = true;
                 CharScript.PlayerState = 3;
                 //transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+
+                player.GetComponent<CharScript>().PlayerAudioSource.clip = player.GetComponent<CharScript>().giveLifeSound;
+                player.GetComponent<CharScript>().PlayerAudioSource.Play();
             }
 
         }

@@ -17,6 +17,9 @@ public class CharScript : MonoBehaviour
     public static float intensity;
     bool lookingatcompanion;
 
+    public AudioClip giveLifeSound, takeLifeSound;
+    public AudioSource PlayerAudioSource;
+
     GameObject NPC;
 
     public GameObject spacePopup, optionsPopup, bossOptionsPopup, companion, companionPopup, reserveHealthBar, visualHealthBar, Boss;
@@ -132,10 +135,14 @@ public class CharScript : MonoBehaviour
                 //    sanity--;
                 //}
                 //absorb life here
+                PlayerAudioSource.clip = takeLifeSound;
+                PlayerAudioSource.Play();
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) && ((reservehealth >= 20 && NPC.GetComponent<NPCScript>().alive) || reservehealth >= 60 && !NPC.GetComponent<NPCScript>().alive))
             {
                 //give life done through npc script
+                PlayerAudioSource.clip = giveLifeSound;
+                PlayerAudioSource.Play();
             }
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
@@ -145,6 +152,7 @@ public class CharScript : MonoBehaviour
                 SetSpaceOptionsPrompts();
             }
         }
+
         //FOR BOSS
         if (PlayerState == 12)
         {
