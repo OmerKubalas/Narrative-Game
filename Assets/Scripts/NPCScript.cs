@@ -211,11 +211,11 @@ public class NPCScript : MonoBehaviour
             if (alive && CharScript.reservehealth >= 20)
             {
                 CharScript.reservehealth -= 20;
-                CharScript.PlayerAnimationState = 4; //player give life animation
+                CharScript.PlayerAnimationState = 4; //player give life animation/
+                NPCAnimationState = 2; //alive give life animation
                 //PushPlayerBack();
                 NarrationManager.instance.PlayNarration(aliveGiveLifeSpeech);
                 aliveGiveLifeSpeechDone = true;
-                NPCAnimationState = 2; //alive give life animation
                 CharScript.PlayerState = 3;
                 //transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             }
@@ -225,10 +225,10 @@ public class NPCScript : MonoBehaviour
                 CharScript.sanity += 2;
                 //transform.position = new Vector3(transform.position.x, transform.position.y + 1, 0);
                 CharScript.PlayerAnimationState = 4; //player give life animation
+                NPCAnimationState = 3; //dead give life animation
                 //PushPlayerBack();
 
                 NarrationManager.instance.PlayNarration(deadGiveLifeSpeech);
-                NPCAnimationState = 3; //dead give life animation
                 alive = true;
                 CharScript.PlayerState = 3;
                 //transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
@@ -272,7 +272,7 @@ public class NPCScript : MonoBehaviour
                 NPCAnimationState = 0; //talk
 
                 CharScript.alchemistsOut = true;
-                //Destroy(this.gameObject);
+
                 transform.position = new Vector2(999, 999);
                 GameObject.Find("Alchemist1").transform.position = new Vector2(999, 999);
                 if (GameObject.Find("Alchemist2").GetComponent<BoxCollider2D>().enabled)
@@ -646,14 +646,14 @@ public class NPCScript : MonoBehaviour
 
 
         //let the npc face the player during speech
-        if (player.transform.localScale.x > 0 && alive && InRange && NarrationManager.instance.isPlaying)
-        {
-            transform.localScale = new Vector2(-NPCscale, transform.localScale.y);
-        }
-        else if (player.transform.localScale.x < 0 && alive && InRange && NarrationManager.instance.isPlaying)
-        {
-            transform.localScale = new Vector2(NPCscale, transform.localScale.y);
-        }
+        //if (player.transform.localScale.x > 0 && alive && InRange)
+        //{
+        //    transform.localScale = new Vector2(-NPCscale, transform.localScale.y);
+        //}
+        //else if (player.transform.localScale.x < 0 && alive && InRange)
+        //{
+        //    transform.localScale = new Vector2(NPCscale, transform.localScale.y);
+        //}
     }
 
     void SetAnimationState()
