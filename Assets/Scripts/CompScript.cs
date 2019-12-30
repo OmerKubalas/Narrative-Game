@@ -33,12 +33,12 @@ public class CompScript : MonoBehaviour
 
     void Update()
     {
-        if (companionbody.velocity.x == 0 && companionbody.velocity.y == 0 && !NarrationManager.instance.isPlaying)
+        if (companionbody.velocity.x == 0 && companionbody.velocity.y == 0 && !NarrationManager.instance.isPlaying && !anim.GetCurrentAnimatorStateInfo(0).IsName("giveLife"))
         {
             CompAnimationState = 0; //idle anim
         }
 
-        if (companionbody.velocity.x > 0 || companionbody.velocity.x < 0)
+        if ((companionbody.velocity.x > 0 || companionbody.velocity.x < 0) && CharScript.PlayerState != 3 && !anim.GetCurrentAnimatorStateInfo(0).IsName("giveLife"))
         {
             CompAnimationState = 1; //walk anim
         }
@@ -157,11 +157,9 @@ public class CompScript : MonoBehaviour
             case 0:
                 anim.SetInteger("CompAnimationState", 0); //idle
                 break;
-
             case 1:
                 anim.SetInteger("CompAnimationState", 1); //walk
                 break;
-
             case 2:
                 if (jumpAnimationBlend <= 1.0f)
                 {
@@ -175,6 +173,9 @@ public class CompScript : MonoBehaviour
                 break;
             case 4:
                 anim.SetInteger("CompAnimationState", 4); //speak/listen
+                break;
+            case 5:
+                anim.SetInteger("CompAnimationState", 5); //give life
                 break;
 
         }

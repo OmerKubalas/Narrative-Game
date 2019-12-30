@@ -23,7 +23,6 @@ public class NarrationTrigger : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             CharScript.PlayerState = 3;
-            CompScript.CompAnimationState = 4; //companion speak
             NarrationManager.instance.PlayNarration(speech);
             Destroy(this.gameObject);
         }

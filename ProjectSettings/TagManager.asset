@@ -9,6 +9,7 @@ TagManager:
   - Companion
   - Wall
   - Boss
+  - NarrationTrigger
   layers:
   - Default
   - TransparentFX

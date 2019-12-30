@@ -42,7 +42,6 @@ public class CharScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         boulderWasDestroyed = false;
         jumps = 1;
         speed = 10;
@@ -57,6 +56,8 @@ public class CharScript : MonoBehaviour
         anim = this.GetComponent<Animator>();
 
         UpdateNPCStats();
+
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame
@@ -110,6 +111,7 @@ public class CharScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && lookingatcompanion && reservehealth >= 20 && CompScript.comphealth <= 80 && CompScript.comphealth > 0)
             {
                 reservehealth -= 20;
+                CompScript.CompAnimationState = 5;
                 CompScript.comphealth += 20;
             }
 
@@ -504,6 +506,10 @@ public class CharScript : MonoBehaviour
             {
                 GameObject.Find("Boulder").transform.position = new Vector2(185, 12.5f);
             }
+        }
+        if (col.gameObject.tag == "NarrationTrigger")
+        {
+            CompScript.CompAnimationState = 4; //speaking companion
         }
     }
 

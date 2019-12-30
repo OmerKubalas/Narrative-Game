@@ -3977,7 +3977,7 @@ GameObject:
   - component: {fileID: 284792078}
   m_Layer: 0
   m_Name: KillerHelpedTrigger
-  m_TagString: Untagged
+  m_TagString: NarrationTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4115,7 +4115,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 1186
+    lastCalculatedHeight: 88
     useSmartSubs: 0
 --- !u!61 &284792079
 BoxCollider2D:
@@ -4627,7 +4627,7 @@ GameObject:
   - component: {fileID: 299455941}
   m_Layer: 0
   m_Name: BrotherSpeech2
-  m_TagString: Untagged
+  m_TagString: NarrationTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4676,7 +4676,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 394
+    lastCalculatedHeight: 88
     useSmartSubs: 0
 --- !u!61 &299455942
 BoxCollider2D:
@@ -10870,7 +10870,7 @@ GameObject:
   - component: {fileID: 655654940}
   m_Layer: 0
   m_Name: BrotherSpeechNearMine
-  m_TagString: Untagged
+  m_TagString: NarrationTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10921,7 +10921,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 250
+    lastCalculatedHeight: 88
     useSmartSubs: 0
 --- !u!61 &655654941
 BoxCollider2D:
@@ -22490,7 +22490,7 @@ GameObject:
   - component: {fileID: 1603169105}
   m_Layer: 0
   m_Name: BrotherSpeech1
-  m_TagString: Untagged
+  m_TagString: NarrationTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22546,7 +22546,7 @@ MonoBehaviour:
       move: 0
     LoopAudioForDuration: 0
     expanded: 1
-    lastCalculatedHeight: 466
+    lastCalculatedHeight: 88
     useSmartSubs: 0
 --- !u!212 &1603169106
 SpriteRenderer:
