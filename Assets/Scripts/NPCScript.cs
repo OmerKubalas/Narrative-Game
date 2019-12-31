@@ -65,6 +65,8 @@ public class NPCScript : MonoBehaviour
            // transform.position = new Vector3(transform.position.x, transform.position.y-1, 0);
             NPCAnimationState = 4; //dead
         }
+
+        anim.enabled = false;
     }
 
     // Update is called once per frame
@@ -195,7 +197,6 @@ public class NPCScript : MonoBehaviour
             //absorb
             CharScript.PlayerAnimationState = 5; //player take life animation
             CharScript.PlayerState = 3;
-            //PushPlayerBack();
             NarrationManager.instance.PlayNarration(aliveTakeLifeSpeech);
             //transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
             //transform.position = new Vector3(transform.position.x, transform.position.y - 1, 0);
@@ -216,7 +217,6 @@ public class NPCScript : MonoBehaviour
                 CharScript.sanity++;
                 CharScript.PlayerAnimationState = 4; //player give life animation/
                 NPCAnimationState = 2; //alive give life animation
-                //PushPlayerBack();
                 NarrationManager.instance.PlayNarration(aliveGiveLifeSpeech);
                 aliveGiveLifeSpeechDone = true;
                 CharScript.PlayerState = 3;
@@ -716,23 +716,15 @@ public class NPCScript : MonoBehaviour
 
     }
 
-    void PushPlayerBack()
-    {
-        if (player.transform.localScale.x > 0)
-        {
-            player.transform.position += new Vector3(10, 0, 0) * Time.deltaTime;
-        }
-        else if (player.transform.localScale.x < 0)
-        {
-            player.transform.position -= new Vector3(10, 0, 0) * Time.deltaTime;
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
             InRange = true;
+        }
+        if (col.gameObject.tag == "PlayerZone")
+        {
+            anim.enabled = true;
         }
     }
 
@@ -749,6 +741,10 @@ public class NPCScript : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             InRange = false;
+        }
+        if (col.gameObject.tag == "PlayerZone")
+        {
+            anim.enabled = false;
         }
     }
 }
