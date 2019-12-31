@@ -82,8 +82,6 @@ public class CompScript : MonoBehaviour
         {
             comphealth = 0.000001f; //(if set as 0, this if case will keep looping)
             companionbody.velocity = new Vector2(0, companionbody.velocity.y / speed) * speed;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, 0);
             companionstate = 0;
             CharScript.sanity = 0;
             CharScript.PlayerAnimationState = 6;
