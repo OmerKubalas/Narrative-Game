@@ -88,7 +88,7 @@ public class NPCScript : MonoBehaviour
             //ALCHEMIST2 DIES WHEN TALKING TO MAYOR IF KILLER NOT HEALED OR KILLED
             if (npcSituation == "Mayor")
             {
-                GameObject.Find("MineGate").transform.position = new Vector2(120, 119);
+                GameObject.Find("MineGate").transform.position = new Vector2(121.2f, 100.1f);
                 if (!GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive && GameObject.Find("SickoKiller").GetComponent<BoxCollider2D>().enabled)
                 {
                     GameObject.Find("SickoKiller").transform.position = new Vector2(999, 999);
@@ -102,18 +102,18 @@ public class NPCScript : MonoBehaviour
                     GameObject.Find("Alchemist2").GetComponent<BoxCollider2D>().enabled = false;
                     GameObject.Find("Alchemist2").transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
                     GameObject.Find("Alchemist2").transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
-                    GameObject.Find("Alchemist2").transform.position = new Vector2(130, 9.5f);
+                    GameObject.Find("Alchemist2").transform.position = new Vector2(126.64f, 12.34f);
                     GameObject.Find("Alchemist2").transform.rotation = Quaternion.Euler(0, 0, 70);
                     //CHANGE SPRITE TO SEVERED HEAD
                 }
                 else if (GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive && GameObject.Find("SickoKiller").GetComponent<NPCScript>().aliveGiveLifeSpeechDone)
                 {
-                    GameObject.Find("SickoKiller").transform.position = new Vector2(207, 10);
+                    GameObject.Find("SickoKiller").transform.position = new Vector2(178.67f, 34.89f);
                     GameObject.Find("SickoKiller").transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-                    GameObject.Find("SickoKiller").transform.position = new Vector2(207, 10);
+                    GameObject.Find("SickoKiller").transform.position = new Vector2(178.67f, 34.89f);
                     GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive = false;
                     GameObject.Find("SickoKiller").GetComponent<BoxCollider2D>().enabled = false;
-                    GameObject.Find("KillerHelpedTrigger").transform.position = new Vector2(200, 15);
+                    GameObject.Find("KillerHelpedTrigger").transform.position = new Vector2(176, 34);
                     CharScript.sacrificeSickoKiller = true;
                     //DISABLED COLLIDER INSTEAD OF SCRIPT TO MAKE HIM DIE
                 }

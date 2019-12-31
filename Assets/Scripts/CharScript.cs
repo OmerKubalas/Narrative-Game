@@ -504,12 +504,21 @@ public class CharScript : MonoBehaviour
             //Set Boulder Position
             if (GameObject.Find("DrunkMiner").GetComponent<NPCScript>().alive)
             {
-                GameObject.Find("Boulder").transform.position = new Vector2(185, 12.5f);
+                GameObject.Find("Boulder").transform.position = new Vector2(177.68f, 12.5f);
             }
         }
         if (col.gameObject.tag == "NarrationTrigger")
         {
             CompScript.CompAnimationState = 4; //speaking companion
+        }
+
+        if (col.gameObject.name == "PrisonCage")
+        {
+            col.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        if (col.gameObject.name == "Temple")
+        {
+            col.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
@@ -549,6 +558,14 @@ public class CharScript : MonoBehaviour
         {
             PlayerState = 0;
             SetBossSpaceOptionsPrompts();
+        }
+        if (col.gameObject.name == "PrisonCage")
+        {
+            col.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        if (col.gameObject.name == "Temple")
+        {
+            col.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 }
