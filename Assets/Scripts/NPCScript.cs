@@ -100,7 +100,9 @@ public class NPCScript : MonoBehaviour
                     GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive = false;
                     GameObject.Find("Alchemist2").GetComponent<NPCScript>().alive = false;
                     GameObject.Find("Alchemist2").GetComponent<BoxCollider2D>().enabled = false;
-                    GameObject.Find("Alchemist2").transform.position = new Vector2(130, 10);
+                    GameObject.Find("Alchemist2").transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                    GameObject.Find("Alchemist2").transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                    GameObject.Find("Alchemist2").transform.position = new Vector2(130, 9.5f);
                     GameObject.Find("Alchemist2").transform.rotation = Quaternion.Euler(0, 0, 70);
                     //CHANGE SPRITE TO SEVERED HEAD
                 }
