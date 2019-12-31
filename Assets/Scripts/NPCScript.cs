@@ -109,7 +109,7 @@ public class NPCScript : MonoBehaviour
                 else if (GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive && GameObject.Find("SickoKiller").GetComponent<NPCScript>().aliveGiveLifeSpeechDone)
                 {
                     GameObject.Find("SickoKiller").transform.position = new Vector2(207, 10);
-                    GameObject.Find("SickoKiller").transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                    GameObject.Find("SickoKiller").transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                     GameObject.Find("SickoKiller").transform.position = new Vector2(207, 10);
                     GameObject.Find("SickoKiller").GetComponent<NPCScript>().alive = false;
                     GameObject.Find("SickoKiller").GetComponent<BoxCollider2D>().enabled = false;
@@ -197,8 +197,8 @@ public class NPCScript : MonoBehaviour
             alive = false;
             killedOnce = true;
             //absorb
-            CharScript.PlayerAnimationState = 5; //player take life animation
             CharScript.PlayerState = 3;
+            CharScript.PlayerAnimationState = 5; //player take life animation
             NarrationManager.instance.PlayNarration(aliveTakeLifeSpeech);
             //transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
             //transform.position = new Vector3(transform.position.x, transform.position.y - 1, 0);
@@ -208,7 +208,16 @@ public class NPCScript : MonoBehaviour
 
             player.GetComponent<CharScript>().PlayerAudioSource.clip = player.GetComponent<CharScript>().takeLifeSound;
             player.GetComponent<CharScript>().PlayerAudioSource.Play();
-            
+
+            if (npcSituation == "KilledMiner")
+            {
+                transform.position = new Vector2(transform.position.x, transform.position.y + 0.6f);
+            }
+            if (npcSituation == "SickoKiller")
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 20);
+                transform.position = new Vector2(transform.position.x, transform.position.y + 0.3f);
+            }
         }
 
         if (InRange && Input.GetKeyDown(KeyCode.RightArrow) && CharScript.PlayerState == 2)
@@ -217,11 +226,11 @@ public class NPCScript : MonoBehaviour
             {
                 CharScript.reservehealth -= 20;
                 CharScript.sanity++;
+                CharScript.PlayerState = 3;
                 CharScript.PlayerAnimationState = 4; //player give life animation/
                 NPCAnimationState = 2; //alive give life animation
                 NarrationManager.instance.PlayNarration(aliveGiveLifeSpeech);
                 aliveGiveLifeSpeechDone = true;
-                CharScript.PlayerState = 3;
                 //transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
 
                 player.GetComponent<CharScript>().PlayerAudioSource.clip = player.GetComponent<CharScript>().giveLifeSound;
@@ -243,6 +252,16 @@ public class NPCScript : MonoBehaviour
 
                 player.GetComponent<CharScript>().PlayerAudioSource.clip = player.GetComponent<CharScript>().giveLifeSound;
                 player.GetComponent<CharScript>().PlayerAudioSource.Play();
+
+                if (npcSituation == "KilledMiner")
+                {
+                    transform.position = new Vector2(transform.position.x, transform.position.y - 0.6f);
+                }
+                if (npcSituation == "SickoKiller")
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                    transform.position = new Vector2(transform.position.x, transform.position.y - 0.3f);
+                }
             }
 
         }

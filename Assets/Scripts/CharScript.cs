@@ -63,7 +63,7 @@ public class CharScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerState != 2 && PlayerState != 3 && PlayerState != 12 && PlayerState != 13 && !anim.GetCurrentAnimatorStateInfo(0).IsName("give_life") && !anim.GetCurrentAnimatorStateInfo(0).IsName("drain"))
+        if (PlayerState != 2 && PlayerState != 3 && PlayerState != 12 && PlayerState != 13 && !anim.GetCurrentAnimatorStateInfo(0).IsName("give_life") && !anim.GetCurrentAnimatorStateInfo(0).IsName("drain") && !anim.GetCurrentAnimatorStateInfo(0).IsName("die"))
         {
             playerbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), playerbody.velocity.y / speed) * speed;
 
