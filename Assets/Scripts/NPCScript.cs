@@ -681,7 +681,7 @@ public class NPCScript : MonoBehaviour
 
 
         //let the npc face the player during speech
-        if (rightie)
+        if (rightie && npcSituation != "Mayor")
         {
             if (player.transform.localScale.x > 0 && alive && InRange)
             {
@@ -693,7 +693,7 @@ public class NPCScript : MonoBehaviour
             }
 
         }
-        else
+        else if (!rightie && npcSituation != "Mayor")
         {
             if (player.transform.localScale.x > 0 && alive && InRange)
             {

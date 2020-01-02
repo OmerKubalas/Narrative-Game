@@ -519,6 +519,7 @@ public class CharScript : MonoBehaviour
         if (col.gameObject.name == "Temple")
         {
             col.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            GameObject.Find("HungerGod").GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 
@@ -539,6 +540,15 @@ public class CharScript : MonoBehaviour
         {
             PlayerState = 11;
             SetBossSpaceOptionsPrompts();
+        }
+        if (col.gameObject.name == "PrisonCage")
+        {
+            col.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        if (col.gameObject.name == "Temple")
+        {
+            col.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            GameObject.Find("HungerGod").GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 
@@ -566,6 +576,7 @@ public class CharScript : MonoBehaviour
         if (col.gameObject.name == "Temple")
         {
             col.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            GameObject.Find("HungerGod").GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 }
